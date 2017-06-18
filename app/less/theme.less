@@ -1,0 +1,73 @@
+* {
+
+}
+
+main {
+	background: #fff;
+}
+
+.animated(@duration) {
+	transition: all @duration ease;
+}
+
+.fixed-centered {
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.flex-centered {
+	align-items: center;
+	justify-content: center;
+}
+
+@keyframes whiteout {
+	100% {
+		background-color: #00c0a0;
+	}
+}
+
+@keyframes fadein {
+	100% {
+		opacity: 1;
+	}
+}
+
+@keyframes up {
+	100% {
+		top: 0;
+	}
+}
+
+@keyframes wave-front {
+	100% {
+		transform: translate(-50%, 0);
+	}
+}
+
+@keyframes wave-back {
+	100% {
+		transform: translate(50%, 0);
+	}
+}
+
+@keyframes view-in {
+	100% {
+		left: 0;
+	}
+}
+// ............................................................
+// .for
+
+.for(@i, @n) {.-each(@i)}
+.for(@n)     when (isnumber(@n)) {.for(1, @n)}
+.for(@i, @n) when not (@i = @n)  {
+	.for((@i + (@n - @i) / abs(@n - @i)), @n);
+}
+
+// ............................................................
+// .for-each
+
+.for(@array)   when (default()) {.for-impl_(length(@array))}
+.for-impl_(@i) when (@i > 1)    {.for-impl_((@i - 1))}
+.for-impl_(@i) when (@i > 0)    {.-each(extract(@array, @i))}
