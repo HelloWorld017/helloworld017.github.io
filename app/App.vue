@@ -1,10 +1,11 @@
 <template>
-	<div id="app" :class="{loaded}">
+	<div id="app" :class="{loaded, finished}">
 		<nenw-loading v-if="!loaded"></nenw-loading>
-		<nenw-logon class="fixed-centered" v-if="loaded"></nenw-logon>
-		<transition name="slide-fade" mode="out-in" v-if="loaded">
+		<nenw-logon v-if="loaded && !finished"></nenw-logon>
+		<div class="fake-slide" :class="{finished}"></div>
+		<transition name="slide-fade" mode="out-in" v-if="finished">
 			<keep-alive>
-				<router-view id="app-view"></router-view>
+				<router-view id="app-view" :class="{finished}"></router-view>
 			</keep-alive>
 		</transition>
 	</div>
@@ -23,30 +24,36 @@
 		min-height: 100vh;
 
 		&.loaded {
-			animation-name: whiteout;
-			animation-duration: 1s;
-			animation-fill-mode: forwards;
-			animation-timing-function: ease;
-			background-color: #1de9b6;
+			background-color: transparent;
 		}
 	}
 
 	#app-view {
+		opacity: 0;
+		animation-name: fadein;
+		animation-duration: .5s;
+		animation-delay: .3s;
+		animation-timing-function: ease;
+		animation-fill-mode: forwards;
+	}
+
+	.fake-slide {
 		position: fixed;
 		top: 0;
 		left: -100vw;
 		width: 100vw;
 		height: 100vh;
+		background: #fff;
 
 		animation-name: view-in;
 		animation-duration: .5s;
 		animation-timing-function: ease;
 		animation-fill-mode: forwards;
-		animation-delay: 4.3s;
-	}
+		animation-delay: 6.8s;
 
-	.fixed-centered {
-		position: fixed;
+		&.finished {
+			display: none;
+		}
 	}
 
 	.slide-fade-enter-active {
@@ -68,6 +75,10 @@
 		computed: {
 			loaded() {
 				return this.$store.state.assetFinish;
+			},
+
+			finished() {
+				return this.$store.state.initAnimationFinish;
 			}
 		},
 

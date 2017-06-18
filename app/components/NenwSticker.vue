@@ -41,6 +41,10 @@
 			transform: rotate(@rotate-start);
 			transform-origin: @size / 2 @size / 2;
 
+			&.sticker-animated {
+				.animated(400ms);
+			}
+
 			.circle-wrapper {
 				overflow: hidden;
 

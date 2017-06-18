@@ -41,13 +41,13 @@ main {
 
 @keyframes wave-front {
 	100% {
-		transform: translate(-50%, 0);
+		transform: translate(-50%, -100%);
 	}
 }
 
 @keyframes wave-back {
 	100% {
-		transform: translate(50%, 0);
+		transform: translate(50%, -100%);
 	}
 }
 
@@ -56,6 +56,13 @@ main {
 		left: 0;
 	}
 }
+
+@keyframes disappear {
+	100% {
+		display: none !important;
+	}
+}
+
 // ............................................................
 // .for
 

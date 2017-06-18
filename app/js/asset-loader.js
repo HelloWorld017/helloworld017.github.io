@@ -2,6 +2,7 @@ export default async (assets, store) => {
 	window.assets = {};
 
 	const length = Object.keys(assets).length;
+	console.log(assets);
 
 	for(let asset in assets){
 		const resp = await fetch(assets[asset]);
@@ -12,4 +13,5 @@ export default async (assets, store) => {
 	}
 
 	setTimeout(() => store.commit('assetFinish'), 2000);
+	setTimeout(() => store.commit('animationFinish'), 6800);
 };

@@ -45,18 +45,18 @@
 		.water{
 			position: absolute;
 			left: 0;
-			top: 0;
+			bottom: 0;
 			z-index: 2;
 			width: 100%;
-			height: 100%;
-			transform:translate(0, 100%);
+			height: 0%;
 			background: @waterFColor;
 			.animated(2s);
 
 			&-wave {
 				width: 200%;
 				position: absolute;
-				bottom: 100%;
+				top: 1px;
+				transform: translate(0, -100%);
 			}
 		}
 
@@ -90,9 +90,12 @@
 	canvas {
 		width: 100%;
 		height: 100%;
+		opacity: 1;
+
+		transition-delay: 7s;
 		.animated(1s);
 
-		.fade {
+		&.fade {
 			opacity: 0;
 		}
 	}
@@ -110,7 +113,7 @@
 
 			style() {
 				return {
-					transform: `translateY(${Math.round(100 - this.percent)}%)`
+					height: `${Math.round(this.percent)}%`
 				};
 			}
 		},

@@ -1,16 +1,18 @@
 <template>
-	<div class="nenw-logon">
-		<nenw-sticker class="sticker"></nenw-sticker>
-		<div class="bio">
-			<h1>Khinenw</h1>
-			<span>console.log("Hello, World!")</span>
-		</div>
-		<div class="loader">
-			<div></div>
-			<div></div>
-			<div></div>
-			<div></div>
-			<div></div>
+	<div class="fullpage">
+		<div class="nenw-logon">
+			<nenw-sticker class="sticker"></nenw-sticker>
+			<div class="bio">
+				<h1>Khinenw</h1>
+				<span>console.log("Hello, World!")</span>
+			</div>
+			<div class="loader">
+				<div></div>
+				<div></div>
+				<div></div>
+				<div></div>
+				<div></div>
+			</div>
 		</div>
 	</div>
 </template>
@@ -20,6 +22,26 @@
 	@import "../less/horizontal-loader.css";
 
 	@bio-height: 100px;
+
+	.fullpage {
+		position: fixed;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		width: 100vw;
+		height: 100vh;
+		animation-name: whiteout;
+		animation-duration: 1s;
+		animation-fill-mode: forwards;
+		animation-timing-function: ease;
+		background-color: #1de9b6;
+	}
+
+	.nenw-logon {
+		position: fixed;
+		.fixed-centered;
+	}
 
 	.nenw-logon, .bio {
 		.flex-centered;

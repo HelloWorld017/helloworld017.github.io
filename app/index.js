@@ -19,16 +19,21 @@ const store = new Vuex.Store({
 	state: {
 		assetsAmount: Object.keys(assetList).length,
 		assetFinish: false,
+		initAnimationFinish: false,
 		loadedAssets: 0
 	},
 
 	mutations: {
-		loadAsset (state){
+		loadAsset(state) {
 			state.loadedAssets++;
 		},
 
-		assetFinish (state){
+		assetFinish(state) {
 			state.assetFinish = true;
+		},
+
+		animationFinish(state) {
+			state.initAnimationFinish = true;
 		}
 	}
 });
