@@ -1,5 +1,62 @@
-* {
+@scrollbar-color: #303030;
+@scrollbar-foreground: #00C0A0;
+@title-font: 'Roboto', 'NanumSquare', sans-serif;
 
+::selection {
+	color: #fff;
+	background: #00C0A0;
+}
+
+::-webkit-scrollbar {
+	width: 16px;
+	height: 16px;
+}
+
+::-webkit-scrollbar-button {
+	width: 0px;
+	height: 0px;
+}
+
+::-webkit-scrollbar-thumb {
+	background: @scrollbar-foreground;
+	border: none;
+	border-radius: 0px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+	background: lighten(@scrollbar-foreground, 10%);
+}
+
+::-webkit-scrollbar-thumb:active {
+	background: lighten(@scrollbar-foreground, 5%);
+}
+
+::-webkit-scrollbar-track {
+	background: @scrollbar-color;
+	border: none;
+	border-radius: 0px;
+}
+
+::-webkit-scrollbar-track:active {
+	background: darken(@scrollbar-color, 10%);
+}
+
+::-webkit-scrollbar-corner {
+	background: @scrollbar-color;
+}
+
+
+* {
+	scrollbar-arrow-color: @scrollbar-foreground;
+	scrollbar-base-color: @scrollbar-color;
+	scrollbar-track-color: @scrollbar-color;
+	scrollbar-face-color: @scrollbar-foreground;
+	scrollbar-highlight-color: @scrollbar-color;
+	scrollbar-3dlight-color: @scrollbar-color;
+	scrollbar-darkshadow-color: @scrollbar-color;
+	scrollbar-shadow-color: @scrollbar-foreground;
+
+	font-family: 'Roboto', 'Nanum Barun Gothic', sans-serif;
 }
 
 main {
@@ -19,6 +76,10 @@ main {
 .flex-centered {
 	align-items: center;
 	justify-content: center;
+}
+
+.text-centered {
+	text-align: center;
 }
 
 @keyframes whiteout {
