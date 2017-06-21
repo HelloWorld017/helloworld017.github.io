@@ -2,7 +2,7 @@
 	<div id="app" :class="{loaded, finished}">
 		<nenw-loading v-if="!loaded"></nenw-loading>
 		<nenw-logon v-if="loaded && !finished"></nenw-logon>
-		<div class="fake-slide" :class="{finished}"></div>
+		<div class="fake-slide" v-if="loaded" :class="{finished}"></div>
 		<transition name="slide-fade" mode="out-in" v-if="finished">
 			<keep-alive>
 				<router-view id="app-view" :class="{finished}"></router-view>
@@ -49,7 +49,7 @@
 		animation-duration: .5s;
 		animation-timing-function: ease;
 		animation-fill-mode: forwards;
-		animation-delay: 6.8s;
+		animation-delay: 4.2s;
 
 		&.finished {
 			display: none;

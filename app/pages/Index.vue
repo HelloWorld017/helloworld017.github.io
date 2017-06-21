@@ -1,16 +1,17 @@
 <template>
 	<main>
-		<div class="fixed-centered text-centered">
-			<h1 class="main-title">Khinenw's Page</h1>
-			<h3 class="sub-title">키네누의 페이지에 오신 것을 환영합니다!</h3>
-		</div>
-		<parallax :speedFactor="0.5" :sectionHeight="100">
-			<img :src="getBG(1)">
+		<parallax :height="100" :src="getBG(1)" :speed="0.2">
+			<div class="fixed-centered text-centered">
+				<h1 class="main-title">Khinenw's Page</h1>
+				<h3 class="sub-title">키네누의 페이지에 오신 것을 환영합니다!</h3>
+			</div>
 		</parallax>
 
 		<section id="summary">
 			<div class="section-inner">
-				<h2 class="section-title">Summary</h2>
+				<h2 class="section-title">
+					Summary
+				</h2>
 				<div class="sh">
 					<span class="sh-line">1</span>
 					<span class="sh-code">console.log(
@@ -20,23 +21,28 @@
 				</div>
 			</div>
 		</section>
-		
-		<parallax :speedFactor="0.7" :sectionHeight="30">
-			<img :src="getBG(2)">
-		</parallax>
 
-		<section id="summary">
+		<parallax :height="30" :src="getBG(2)" :speed="0.6"></parallax>
+
+		<section id="about-khinenw">
 			<div class="section-inner">
-				<h2 class="section-title">Summary</h2>
-				<div class="sh">
-					<span class="sh-line">1</span>
-					<span class="sh-code">console.log(
-						<span class="sh-str">"Hello, World!"</span>
-						);
-					</span>
+				<h2 class="section-title">
+					<light-text highlight="About ">Khinenw</light-text>
+				</h2>
+
+				대덕고등학교에 재학중인 <strike>개발자</strike> 코딩노예
+				<br>
+				<img src="https://track.khinenw.tk/script/res/profile2">
+
+				<div style="margin-bottom: 50px;">
+					<h3 class="inner-section-title">Links</h3>
+					<a href="https://github.com/HelloWorld017/">Github</a>
+					<a href="https://blog.khinenw.tk/">Blog</a>
 				</div>
 			</div>
 		</section>
+
+		<parallax :height="30" :src="getBG(3)" :speed="1.1"></parallax>
 		<!-- <parallax section-class="small-masthead">
 			<img :src="getBG(3)"></img>
 		</parallax> -->
@@ -54,11 +60,34 @@
 		padding: 10px;
 	}
 
+	blockquote {
+	    border-left: .5rem solid #c0c1c2;
+		padding: .75rem .25rem;
+	}
+
 	#summary {
 		background: #202020;
+		padding: 100px;
 
 		h2 {
 			color: #f1f1f1;
+		}
+	}
+
+	#about-khinenw {
+		background: #fff;
+		color: #202020;
+
+		h2 {
+			color: #202020;
+		}
+
+		a {
+			color: #333;
+		}
+
+		img {
+			width: 100%;
 		}
 	}
 
@@ -88,12 +117,21 @@
 		font-size: 1.3rem;
 	}
 
+	.section-title {
+		font-size: 2.3rem;
+	}
+
+	.inner-section-title {
+		font-size: 1.3rem;
+	}
+
 	.sh {
 		font-family: 'D2 Coding', monospace !important;
 		background: #303030;
 		color: #f1f1f1;
 		max-width: 750px;
 		margin: 15px;
+		display: flex;
 	}
 
 	.sh-line {
@@ -123,7 +161,8 @@
 </style>
 
 <script>
-	import Parallax from "vue-parallaxy";
+	import LightText from "../components/LightText.vue";
+	import Parallax from "../components/Parallax.vue";
 
 	export default {
 		methods: {
@@ -133,6 +172,7 @@
 		},
 
 		components: {
+			LightText,
 			Parallax
 		}
 	};

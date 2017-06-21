@@ -10,7 +10,7 @@
 		</svg>
 
 		<div class="box">
-			<div id="water" class="water" :style="style">
+			<div id="water" class="water" :style="style" ref="water">
 				<canvas :class="{fade: percent === 100}" ref="canvas"></canvas>
 
 				<div class="water-wave wave-back">
@@ -92,8 +92,10 @@
 		height: 100%;
 		opacity: 1;
 
+		transition-property: all;
+		transition-timing-function: ease;
+		transition-duration: 1s;
 		transition-delay: 7s;
-		.animated(1s);
 
 		&.fade {
 			opacity: 0;
@@ -121,9 +123,10 @@
 		mounted() {
 			const canvas = this.$refs.canvas;
 			canvas.width = canvas.offsetWidth;
-			canvas.height = canvas.offsetHeight;
 
-			this.rippleCreator = new RippleCreator(canvas);
+			this.rippleCreator = new RippleCreator(canvas, () => {
+				return this.$refs.water.offsetHeight;
+			});
 		},
 
 		beforeDestroy(){

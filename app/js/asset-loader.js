@@ -2,7 +2,6 @@ export default async (assets, store) => {
 	window.assets = {};
 
 	const length = Object.keys(assets).length;
-	console.log(assets);
 
 	for(let asset in assets){
 		const resp = await fetch(assets[asset]);

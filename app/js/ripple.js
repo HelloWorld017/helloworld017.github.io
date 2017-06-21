@@ -31,8 +31,9 @@ class Ripple {
 }
 
 class RippleCreator {
-	constructor(canvas) {
+	constructor(canvas, height) {
 		this.canvas = canvas;
+		this.heightGetter = height;
 		this.ctx = canvas.getContext('2d');
 		this.boundRender = this.render.bind(this);
 		this.stopped = false;
@@ -49,6 +50,7 @@ class RippleCreator {
 		this.previous = now - now % msPerFrame;
 
 		((ctx, canvas) => {
+			canvas.height = this.heightGetter();
 			ctx.clearRect(0, 0, canvas.width, canvas.height);
 
 			this.ripples = this.ripples.filter((v) => {
@@ -60,7 +62,6 @@ class RippleCreator {
 				ctx.beginPath();
 				ctx.arc(v.x, canvas.height - v.y, v.radius, 0, 2 * Math.PI);
 				ctx.stroke();
-
 				return true;
 			});
 
