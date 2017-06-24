@@ -16,6 +16,8 @@
 </style>
 
 <script>
+	import scroll from "../js/scroll";
+
 	export default {
 		data(){
 			return {
@@ -29,6 +31,10 @@
 		},
 
 		props: {
+			unparallax: {
+				type: Boolean
+			},
+
 			src: {
 				type: String,
 				required: true
@@ -51,6 +57,15 @@
 
 		computed: {
 			computedStyle() {
+				if(this.unparallax) {
+					return {
+						minHeight: `${this.calculatedHeight}px`,
+						backgroundImage: `url('${this.src}')`,
+						backgroundSize: 'cover',
+						backgroundPosition: 'center'
+					};
+				}
+
 				return {
 					minHeight: `${this.calculatedHeight}px`,
 					backgroundImage: `url('${this.src}')`,
@@ -92,14 +107,7 @@
 			},
 
 			updateScroll() {
-				const supportPageOffset = window.pageXOffset !== undefined;
-				const isCSS1Compat = ((document.compatMode || "") === "CSS1Compat");
-				this.scrollPosition = supportPageOffset ?
-					window.pageYOffset :
-					isCSS1Compat ?
-						document.documentElement.scrollTop :
-						document.body.scrollTop;
-
+				this.scrollPosition = scroll();
 				this.scrollOffset = this.$el.scrollTop;
 			},
 

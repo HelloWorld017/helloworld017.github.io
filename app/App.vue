@@ -1,13 +1,30 @@
 <template>
 	<div id="app" :class="{loaded, finished}">
-		<nenw-loading v-if="!loaded"></nenw-loading>
-		<nenw-logon v-if="loaded && !finished"></nenw-logon>
-		<div class="fake-slide" v-if="loaded" :class="{finished}"></div>
-		<transition name="slide-fade" mode="out-in" v-if="finished">
-			<keep-alive>
-				<router-view id="app-view" :class="{finished}"></router-view>
-			</keep-alive>
-		</transition>
+		<template v-if="!logonShowed">
+			<nenw-loading v-if="!loaded"></nenw-loading>
+			<nenw-logon v-if="loaded && !finished"></nenw-logon>
+			<div class="fake-slide" v-if="loaded" :class="{finished}"></div>
+			<transition name="slide-fade" mode="out-in" v-if="finished">
+				<keep-alive>
+					<router-view id="app-view" :class="{finished}"></router-view>
+				</keep-alive>
+			</transition>
+		</template>
+		<template v-else>
+			<nenw-loading v-if="!firstFinished"></nenw-loading>
+			<div
+				class="fake-slide first-anim"
+				v-if="loaded"
+				:class="{finished: firstFinished}">
+			</div>
+
+			<transition name="slide-fade" mode="out-in" v-if="firstFinished">
+				<keep-alive>
+					<router-view id="app-view" :class="{finished: firstFinished}">
+					</router-view>
+				</keep-alive>
+			</transition>
+		</template>
 	</div>
 </template>
 
@@ -51,6 +68,10 @@
 		animation-fill-mode: forwards;
 		animation-delay: 4.2s;
 
+		&.first-anim {
+			animation-delay: 0s;
+		}
+
 		&.finished {
 			display: none;
 		}
@@ -68,6 +89,8 @@
 </style>
 
 <script>
+	import Cookie from "./js/cookie";
+
 	import NenwLoading from "./components/NenwLoading.vue";
 	import NenwLogon from "./components/NenwLogon.vue";
 
@@ -79,6 +102,14 @@
 
 			finished() {
 				return this.$store.state.initAnimationFinish;
+			},
+
+			firstFinished(){
+				return this.$store.state.firstAnimationFinish;
+			},
+
+			logonShowed() {
+				return Cookie.read('logon') === "true";
 			}
 		},
 

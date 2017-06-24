@@ -99,10 +99,16 @@
 </style>
 
 <script>
+	import Cookie from "../js/cookie";
 	import NenwSticker from "../components/NenwSticker.vue";
+
 	export default {
 		components: {
 			NenwSticker
+		},
+
+		mounted(){
+			Cookie.create('logon', "true");
 		}
 	};
 </script>

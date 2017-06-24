@@ -19,6 +19,7 @@ const store = new Vuex.Store({
 	state: {
 		assetsAmount: Object.keys(assetList).length,
 		assetFinish: false,
+		firstAnimationFinish: false,
 		initAnimationFinish: false,
 		loadedAssets: 0
 	},
@@ -32,6 +33,10 @@ const store = new Vuex.Store({
 			state.assetFinish = true;
 		},
 
+		firstAnimationFinish(state) {
+			state.firstAnimationFinish = true;
+		},
+
 		animationFinish(state) {
 			state.initAnimationFinish = true;
 		}
@@ -40,7 +45,7 @@ const store = new Vuex.Store({
 
 const router = new VueRouter({routes, mode: 'history'});
 
-const app = new Vue({
+new Vue({
 	el: '#app',
 	store,
 	router,

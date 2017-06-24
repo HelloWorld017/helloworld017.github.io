@@ -1,10 +1,32 @@
 <template>
 	<main>
-		<parallax :height="100" :src="getBG(1)" :speed="0.2">
+		<parallax :height="100" :src="getBG(1)" :speed="0.2" :unparallax="mobile">
 			<div class="fixed-centered text-centered">
 				<h1 class="main-title">Khinenw's Page</h1>
 				<h3 class="sub-title">키네누의 페이지에 오신 것을 환영합니다!</h3>
+				<div class="mobile-menu show-on-mobile-down" ref="mobileMenu">
+					<a href="https://blog.khinenw.tk">Blog</a>
+					<router-link to="/gallery">Gallery</router-link>
+					<router-link to="/project">Projects</router-link>
+					<router-link to="/service">Services</router-link>
+				</div>
 			</div>
+
+			<scroll-trigger
+				class="bottom-menu hide-on-mobile-down"
+				ref="desktopMenu"
+				class-name="fixed"
+				:position="height * 0.8"
+				:scroll-offset="0">
+
+				<h1 class="title">Khinenw's Page</h1>
+				<div class="right-menu">
+					<a href="https://blog.khinenw.tk">Blog</a>
+					<router-link to="/gallery">Gallery</router-link>
+					<router-link to="/project">Projects</router-link>
+					<router-link to="/service">Services</router-link>
+				</div>
+			</scroll-trigger>
 		</parallax>
 
 		<section id="summary">
@@ -22,7 +44,7 @@
 			</div>
 		</section>
 
-		<parallax :height="30" :src="getBG(2)" :speed="0.6"></parallax>
+		<parallax :height="30" :src="getBG(2)" :speed="0.6" :unparallax="mobile"></parallax>
 
 		<section id="about-khinenw">
 			<div class="section-inner">
@@ -42,10 +64,9 @@
 			</div>
 		</section>
 
-		<parallax :height="30" :src="getBG(3)" :speed="1.1"></parallax>
-		<!-- <parallax section-class="small-masthead">
-			<img :src="getBG(3)"></img>
-		</parallax> -->
+		<parallax :height="50" :src="getBG(3)" :speed="0.3" :unparallax="mobile"></parallax>
+
+		<nenw-footer></nenw-footer>
 	</main>
 </template>
 
@@ -125,6 +146,121 @@
 		font-size: 1.3rem;
 	}
 
+	.animated-link {
+		color: #fff;
+		position: relative;
+		display: inline-block;
+		margin: 0 10px;
+		padding: 10px;
+		font-family: @title-font;
+		text-decoration: none;
+		font-size: 1.3rem;
+		font-weight: 200;
+
+		&::after {
+			content: '';
+			display: block;
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			width: 100%;
+			height: 3px;
+			background: #fff;
+			transform: scaleX(0);
+			transition: transform 300ms;
+			will-change: transform;
+		}
+
+		&:hover::after {
+			transform: scaleX(1);
+		}
+	}
+
+	.bottom-menu {
+		top: 80%;
+		left: 50%;
+		box-sizing: border-box;
+		transform: translateX(-50%);
+		position: absolute;
+		display: flex;
+		min-width: 0;
+		transition: min-width .4s ease, padding .35s ease, box-shadow .4s ease;
+		justify-content: space-between;
+		.text-centered;
+
+		.right-menu {
+			display: flex;
+		}
+
+		a {
+			.animated-link
+		}
+
+		.title {
+			padding: 0;
+			font-family: @title-font;
+			font-size: 1.3rem;
+			font-weight: 100;
+			color: #fff;
+			margin: 0;
+			display: none;
+			.animated(.4s);
+			opacity: 0;
+			z-index: inherit;
+			max-width: 0;
+			overflow: hidden;
+			font-size: 1.5rem;
+			padding: 10px;
+		}
+
+		&::before {
+			content: '';
+			display: block;
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			transform: skewX(-10deg);
+			background: rgba(0, 0, 0, 0.5);
+			.animated(.4s);
+		}
+
+		&.hide-on-mobile-down.fixed {
+			position: fixed;
+			top: 0;
+			z-index: 99;
+			min-width: 100vw;
+			padding: 0 5vw;
+			box-shadow: #000 0 0 15px 1px;
+
+			a {
+				font-weight: 400;
+			}
+
+			&::before {
+				background: #00C0A0;
+			}
+
+			.title {
+				display: inline-block;
+				opacity: 1;
+				max-width: none;
+			}
+		}
+	}
+
+	.mobile-menu {
+		display: flex;
+		position: relative;
+		flex-direction: column;
+		.flex-centered;
+
+		a {
+			.animated-link
+		}
+	}
+
 	.sh {
 		font-family: 'D2 Coding', monospace !important;
 		background: #303030;
@@ -157,23 +293,59 @@
 		.sub-title {
 			font-size: 1rem;
 		}
+
+		.bottom-menu a {
+			font-size: 0.8rem;
+		}
+
+		#summary {
+			padding: 10px;
+		}
 	}
 </style>
 
 <script>
+	const NAVBAR_DESIRED = 100;
+
 	import LightText from "../components/LightText.vue";
+	import NenwFooter from "../components/NenwFooter.vue";
 	import Parallax from "../components/Parallax.vue";
+	import ScrollTrigger from "../components/ScrollTrigger.vue";
+
+	import scroll from "../js/scroll";
 
 	export default {
+		data(){
+			return {
+				mobile: window.innerWidth < 768,
+				height: window.innerHeight,
+				scroll: scroll()
+			};
+		},
+
 		methods: {
 			getBG(num){
 				return window.assets[`bgMain${num}`];
 			}
 		},
 
+		mounted() {
+			this._checkSize = () => {
+				this.height = window.innerHeight,
+				this.mobile = window.innerWidth < 768
+			};
+			window.addEventListener('resize', this._checkSize);
+		},
+
+		beforeDestroy() {
+			window.removeEventListener('resize', this._checkSize);
+		},
+
 		components: {
 			LightText,
-			Parallax
+			NenwFooter,
+			Parallax,
+			ScrollTrigger
 		}
 	};
 </script>

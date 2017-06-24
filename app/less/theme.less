@@ -82,6 +82,20 @@ main {
 	text-align: center;
 }
 
+.show-on-mobile-down {
+	display: none;
+}
+
+@media only screen and (max-width: 768px) {
+	.show-on-mobile-down {
+		display: flex;
+	}
+
+	.hide-on-mobile-down {
+		display: none;
+	}
+}
+
 @keyframes whiteout {
 	100% {
 		background-color: #00c0a0;

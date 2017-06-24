@@ -50,6 +50,7 @@ class RippleCreator {
 		this.previous = now - now % msPerFrame;
 
 		((ctx, canvas) => {
+			if(this.stopped) return;
 			canvas.height = this.heightGetter();
 			ctx.clearRect(0, 0, canvas.width, canvas.height);
 

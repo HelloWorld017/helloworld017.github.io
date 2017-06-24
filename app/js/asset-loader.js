@@ -12,5 +12,6 @@ export default async (assets, store) => {
 	}
 
 	setTimeout(() => store.commit('assetFinish'), 2000);
+	setTimeout(() => store.commit('firstAnimationFinish'), 2400);
 	setTimeout(() => store.commit('animationFinish'), 6800);
 };
