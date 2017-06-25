@@ -5,6 +5,8 @@
 			<h1>Oops!</h1>
 			<span>Page not found :(</span>
 		</section>
+
+		<canvas ref="canvas"></canvas>
 	</main>
 </template>
 
@@ -31,7 +33,7 @@
 
 	section {
 		width: 80vw;
-		height: 300px;
+		height: 80vh;
 		position: absolute;
 		color: #fff;
 
@@ -46,6 +48,16 @@
 		}
 	}
 
+	canvas {
+		position: fixed;
+		width: 100vw;
+		height: 100vh;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+	}
+
 </style>
 
 <script>
@@ -54,6 +66,15 @@
 			sadIcon() {
 				return window.assets.sadIcon;
 			}
+		},
+
+		mounted() {
+			this.canvas = this.$refs.canvas;
+			
+		},
+
+		beforeDestroy() {
+
 		}
 	};
 </script>

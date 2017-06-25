@@ -14,11 +14,11 @@ export default class Cookie {
 		const nameEQ = `${name}=`;
 		const result = document.cookie.split(';').find((c) => {
 			return (c.trim().indexOf(nameEQ) === 0);
-		}).trim();
+		});
 
 		if(!result) return null;
 
-		return result.substring(nameEQ.length, result.length);
+		return result.trim().substring(nameEQ.length, result.length);
 	}
 
 	static erase(name){
