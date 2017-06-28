@@ -35,15 +35,18 @@ class World {
 				}));
 			}
 		}
+
+		this.stopRender = false;
 	}
 
 	render() {
+		if(this.stopRender) return false;
 		this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 		this.fragments.forEach((v) => {
 			v.update();
 			v.render(this.ctx)
 		});
-		setTimeout(() => this.render(), 50);
+		setTimeout(() => this.render(), 30);
 	}
 
 	propagateFragment(start, checker, targetCount, cb) {
