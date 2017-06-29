@@ -126,6 +126,8 @@
 			.string();
 	};
 
+	const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
 	const TEXT_MAP = [
 		[
 			'#ff9800',
@@ -204,6 +206,7 @@
 			};
 
 			(async () => {
+				await sleep(4000);
 				await asyncProp(
 					center,
 					(fragId) => colorMap[getXY(fragId).x],
@@ -233,7 +236,7 @@
 					);
 				}
 
-				await (() => new Promise((resolve) => setTimeout(resolve, 5000)))();
+				await sleep(5000);
 
 				await asyncProp(center, () => {
 					const rand = Math.random() * 10 - 5;

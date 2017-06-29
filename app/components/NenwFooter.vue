@@ -42,7 +42,7 @@
 		color: #fff;
 
 		.bold {
-			font-weight: bold;
+			font-weight: 700;
 		}
 
 		a {

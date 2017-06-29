@@ -155,7 +155,7 @@
 		font-family: @title-font;
 		text-decoration: none;
 		font-size: 1.3rem;
-		font-weight: 200;
+		font-weight: 300;
 
 		&::after {
 			content: '';
@@ -200,7 +200,7 @@
 			padding: 0;
 			font-family: @title-font;
 			font-size: 1.3rem;
-			font-weight: 100;
+			font-weight: 300;
 			color: #fff;
 			margin: 0;
 			display: none;

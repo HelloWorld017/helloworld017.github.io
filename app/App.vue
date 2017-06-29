@@ -30,6 +30,7 @@
 
 <style lang="less">
 	@import "~theme";
+	@import "~sweetalert/dist/sweetalert.css";
 
 	body, html {
 		margin: 0;

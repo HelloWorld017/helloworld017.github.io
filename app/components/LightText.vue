@@ -9,11 +9,11 @@
 
 <style lang="less" scoped>
 	.unlight {
-		font-weight: 500;
+		font-weight: 700;
 	}
 
 	.light {
-		font-weight: 100;
+		font-weight: 300;
 	}
 </style>
 

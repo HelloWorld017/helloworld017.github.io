@@ -1,15 +1,23 @@
-export default async (assets, store) => {
+import swal from "sweetalert";
+
+export default async (assets, store, afterBehavior) => {
 	window.assets = {};
 
 	const length = Object.keys(assets).length;
 
 	for(let asset in assets){
-		const resp = await fetch(assets[asset]);
-		const blob = await resp.blob();
+		try {
+			const resp = await fetch(assets[asset]);
+			const blob = await resp.blob();
 
-		window.assets[asset] = URL.createObjectURL(blob);
-		store.commit('loadAsset');
+			window.assets[asset] = URL.createObjectURL(blob);
+			store.commit('loadAsset');
+		} catch(err) {
+			swal("Oops...", "Failed while loading assets!", "error");
+		}
 	}
+
+	await afterBehavior();
 
 	setTimeout(() => store.commit('assetFinish'), 2000);
 	setTimeout(() => store.commit('firstAnimationFinish'), 2400);

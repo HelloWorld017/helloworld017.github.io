@@ -1,6 +1,7 @@
 import Vue from "vue";
 import Vuex from "vuex";
 import VueRouter from "vue-router";
+import swal from "sweetalert";
 import "babel-polyfill";
 import "whatwg-fetch";
 
@@ -8,6 +9,7 @@ import App from "./App.vue";
 
 import loadAsset from "./js/asset-loader";
 import assetList from "./assets/";
+import fontList from "./js/fonts";
 import routes from "./js/routes";
 
 //Loading Assets
@@ -17,7 +19,7 @@ Vue.use(VueRouter);
 
 const store = new Vuex.Store({
 	state: {
-		assetsAmount: Object.keys(assetList).length,
+		assetsAmount: Object.keys(assetList).length + fontList.length,
 		assetFinish: false,
 		firstAnimationFinish: false,
 		initAnimationFinish: false,
@@ -54,4 +56,13 @@ new Vue({
 	}
 });
 
-loadAsset(assetList, store);
+loadAsset(assetList, store, () => Promise.all(fontList.map((v) => {
+	return new Promise((resolve, reject) => {
+		v.load().catch(() => {
+			swal("Oops...", "Failed while loading assets!", "error");
+		}).then(() => {
+			store.commit('loadAsset');
+			resolve();
+		});
+	});
+})));

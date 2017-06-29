@@ -78,6 +78,11 @@
 			margin-bottom: 5px;
 			padding: 0;
 			text-align: center;
+			font-family: @title-font;
+		}
+
+		h1 {
+			font-weight: 100;
 		}
 	}
 
