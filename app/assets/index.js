@@ -5,7 +5,7 @@ import bgGallery from "./backgrounds/gallery/gallery-background.png";
 import bgGalleryArt from "./backgrounds/gallery/gallery-background-art.png";
 import bgGalleryKorean from "./backgrounds/gallery/gallery-background-korean.png";
 import bgGalleryMath from "./backgrounds/gallery/gallery-background-math.png";
-import bgGalleryProcess from "./backgrounds/gallery/gallery-background-process.png";
+import bgGalleryProgress from "./backgrounds/gallery/gallery-background-progress.png";
 import bgService1 from "./backgrounds/service/service-background1.jpg";
 import bgService2 from "./backgrounds/service/service-background2.jpg";
 import bgService3 from "./backgrounds/service/service-background3.jpg";
@@ -15,7 +15,7 @@ import sadIcon from "./image/sad.svg";
 
 export default {
 	bgMain1, bgMain2, bgMain3,
-	bgGallery, bgGalleryArt, bgGalleryMath, bgGalleryProcess, bgGalleryKorean,
+	bgGallery, bgGalleryArt, bgGalleryMath, bgGalleryProgress, bgGalleryKorean,
 	bgService1, bgService2, bgService3, bgService4,
 	profile, sadIcon
 };
