@@ -1,37 +1,167 @@
 <template>
 	<main>
-		<section class="main-section">
-			<header>
-				<div class="header-wrapper">
-					<div class="header-content">
-						<h1 class="header-title"><i class="mdi mdi-image" style="font-size: 10rem;"></i></h1>
-						<h3 class="header-title" style="font-size: 1.7rem; font-weight: 300">Gallery</h3>
-					</div>
-				</div>
-			</header>
-		</section>
+		<nenw-navigation></nenw-navigation>
+		
+		<parallax
+			:height="100"
+			:src="getAsset('bgGallery')"
+			:speed="0.3"
+			:unparallax="mobile">
+			<section class="main-section">
+				<header class="section-header">
+					<h1 class="header-title">
+						<i class="mdi mdi-image"></i>
+					</h1>
+
+					<h3>Gallery</h3>
+				</header>
+			</section>
+		</parallax>
 
 		<template v-for="(section, k) in links">
 			<parallax
 				:height="section.height"
 				:src="getAsset(section.parallax)"
-				:unparallax="mobile",
+				:speed="0.3"
+				:unparallax="mobile"
 				pixelMode>
+				<section class="gallery-section">
+					<header class="section-header">
+						<h1><i :class="section.icon"></i></h1>
+					</header>
 
-				<header class="section-header">
-					<h1><i :class="section.icon"></i></h1>
-				</header>
-
-				<div class="decorated-text-wrapper" v-for="link in section.links">
-					<a :href="link.link" v-text="v.name"></a>
-				</div>
+					<div class="decorated-text" v-for="link in section.links">
+						<a :href="link.link" v-text="link.name"></a>
+					</div>
+				</section>
 			</parallax>
 		</template>
+
+		<nenw-footer highlight="#d00060" darken="#c00050"></nenw-footer>
 	</main>
 </template>
 
+<style lang="less" scoped>
+	@import "~theme";
+
+	main {
+		display: flex;
+		flex-direction: column;
+
+		.parallax {
+			position: relative;
+
+			section {
+				position: absolute;
+				background: rgba(0, 0, 0, 0.3);
+				top: 0;
+				left: 0;
+				right: 0;
+				bottom: 0;
+
+				header {
+					display: flex;
+					min-height: 300px;
+					flex-direction: column;
+					.flex-centered;
+
+					h1 {
+						color: #fff;
+						text-align: center;
+					}
+
+					i.mdi {
+						font-size: 100px;
+					}
+				}
+			}
+		}
+
+		.main-section {
+			display: flex;
+			flex-direction: column;
+			color: #fff;
+			.flex-centered;
+
+			header {
+				display: flex;
+				flex-direction: column;
+				.flex-centered;
+
+				h1>i.mdi {
+					font-size: 10rem;
+				}
+
+				h3 {
+					font-size: 1.7rem;
+					font-weight: 100;
+				}
+			}
+		}
+	}
+
+	.decorated-text {
+		width: 100%;
+		height: 70px;
+		display: flex;
+		.flex-centered;
+
+		a {
+			position: relative;
+			display: inline-block;
+			color: #fff;
+			font-family: 'Spoqa Han Sans', 'Nanum Square', sans-serif;
+			font-size: 15px;
+			text-decoration: none;
+			text-align: center;
+			max-width: 386px;
+			width: 100%;
+			height: 20px;
+			line-height: 20px;
+
+			&::before, &::after {
+				position: absolute;
+				top: 50%;
+				content: '';
+				width: 5px;
+				height: 40px;
+				background: rgba(255, 255, 255, 0.3);
+				transform-origin: center;
+				transform: translateY(-50%);
+				.animated(.5s);
+			}
+
+			&::before {
+				left: 0;
+			}
+
+			&::after {
+				right: 0;
+			}
+
+			&:hover {
+				&::before {
+					left: 50%;
+					top: -30px;
+					background: #fff;
+					transform: translateX(-50%) rotate(90deg);
+				}
+
+				&::after {
+					right: 50%;
+					bottom: -30px;
+					background: #fff;
+					transform: translateX(50%) rotate(90deg);
+				}
+			}
+		}
+	}
+</style>
+
 <script>
 	import Parallax from "../components/Parallax.vue";
+	import NenwFooter from "../components/NenwFooter.vue";
+	import NenwNavigation from "../components/NenwNavigation.vue";
 
 	const normalizeLinks = (v) => {
 		if(typeof v === 'string'){
@@ -44,8 +174,8 @@
 		if(!Array.isArray(v)) return;
 
 		return {
-			name: v[0],
-			link: `/play/${v[1]}.html`
+			name: v[1],
+			link: `/play/${v[0]}.html`
 		};
 	};
 
@@ -55,7 +185,7 @@
 			data[k].icon = `mdi mdi-${data[k].icon}`;
 			data[k].links = data[k].links.map(normalizeLinks);
 			data[k].parallax = `bgGallery${data[k].name}`;
-			data[k].height = data[k].links * 50 + 400;
+			data[k].height = data[k].links.length * 70 + 400;
 		});
 
 		return data;
@@ -63,7 +193,7 @@
 		math: {
 			icon: 'vector-triangle',
 			links: [
-				['Triangles', 'Tirnalges 1'],
+				['Triangles', 'Triangles 1'],
 				'Triangles 2', 'Triangles 3', 'Circles', 'Pixels', 'Lines',
 				'Diagonal Pattern', 'Square Pattern', 'Triangle Pattern',
 				['DrangonCurve', 'Dragon Curve (WIP)'],
@@ -96,9 +226,18 @@
 	export default {
 		data() {
 			return {
-				links: LINKS,
-				mobile: window.innerWidth < 768
+				links: LINKS
 			};
+		},
+
+		computed: {
+			mobile() {
+				return this.$store.state.mobile;
+			},
+
+			height() {
+				return this.$store.state.height;
+			}
 		},
 
 		methods: {
@@ -107,20 +246,10 @@
 			}
 		},
 
-		mounted() {
-			this._listener = () => {
-				this.mobile = window.innerWidth < 768;
-			};
-
-			window.addEventListener('resize', this._listener);
-		},
-
-		beforeDestroy() {
-			window.removeEventListener('resize', this._listener);
-		},
-
 		components: {
-			Parallax
+			Parallax,
+			NenwFooter,
+			NenwNavigation
 		}
 	};
 </script>

@@ -146,36 +146,6 @@
 		font-size: 1.3rem;
 	}
 
-	.animated-link {
-		color: #fff;
-		position: relative;
-		display: inline-block;
-		margin: 0 10px;
-		padding: 10px;
-		font-family: @title-font;
-		text-decoration: none;
-		font-size: 1.3rem;
-		font-weight: 300;
-
-		&::after {
-			content: '';
-			display: block;
-			position: absolute;
-			bottom: 0;
-			left: 0;
-			width: 100%;
-			height: 3px;
-			background: #fff;
-			transform: scaleX(0);
-			transition: transform 300ms;
-			will-change: transform;
-		}
-
-		&:hover::after {
-			transform: scaleX(1);
-		}
-	}
-
 	.bottom-menu {
 		top: 80%;
 		left: 50%;
@@ -232,7 +202,7 @@
 			z-index: 99;
 			min-width: 100vw;
 			padding: 0 5vw;
-			box-shadow: #000 0 0 15px 1px;
+			.nav-shadow;
 
 			a {
 				font-weight: 400;
@@ -312,33 +282,21 @@
 	import Parallax from "../components/Parallax.vue";
 	import ScrollTrigger from "../components/ScrollTrigger.vue";
 
-	import scroll from "../js/scroll";
-
 	export default {
-		data(){
-			return {
-				mobile: window.innerWidth < 768,
-				height: window.innerHeight,
-				scroll: scroll()
-			};
+		computed: {
+			mobile() {
+				return this.$store.state.mobile;
+			},
+
+			height() {
+				return this.$store.state.height;
+			}
 		},
 
 		methods: {
 			getBG(num){
 				return window.assets[`bgMain${num}`];
 			}
-		},
-
-		mounted() {
-			this._checkSize = () => {
-				this.height = window.innerHeight,
-				this.mobile = window.innerWidth < 768
-			};
-			window.addEventListener('resize', this._checkSize);
-		},
-
-		beforeDestroy() {
-			window.removeEventListener('resize', this._checkSize);
 		},
 
 		components: {

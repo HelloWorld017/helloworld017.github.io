@@ -1,6 +1,6 @@
 <template>
-	<footer>
-		<div class="highlight section" :class="{dark}">
+	<footer id="nenw-footer" :style="{color: foreground}">
+		<div class="highlight section" :style="{background: highlight}">
 			<div class="footer-container">
 				<h3>Footer</h3>
 
@@ -19,7 +19,7 @@
 				</p>
 			</div>
 		</div>
-		<div class="darken section" :class="{dark}">
+		<div class="darken section" :style="{background: darken}">
 			<div class="footer-container flex-container">
 				<light-text highlight="© 2016-2017 ">
 					Khinenw
@@ -28,7 +28,9 @@
 
 				<span>
 					View on
-					<a href="https://github.com/HelloWorld017/nenwchan2" class="no-decoration">
+					<a href="https://github.com/HelloWorld017/nenwchan2"
+						class="no-decoration" :style="{color: foreground}">
+
 						<span class="bold">GitHub</span>
 					</a>
 				</span>
@@ -39,14 +41,11 @@
 
 <style lang="less" scoped>
 	footer {
-		color: #fff;
-
 		.bold {
 			font-weight: 700;
 		}
 
 		a {
-			color: #fff;
 			text-decoration: none;
 		}
 
@@ -57,22 +56,6 @@
 
 		.section {
 		    padding: 20px 10px;
-
-			&.highlight {
-				background: #009688;
-
-				&.dark {
-					//Kong-color;
-					background: #222222;
-				}
-			}
-
-			&.darken {
-				background: #00897b;
-				&.dark {
-					background: #303132;
-				}
-			}
 
 			&>.footer-container {
 				max-width: 768px;
@@ -92,8 +75,19 @@
 
 	export default {
 		props: {
-			dark: {
-				type: Boolean
+			highlight: {
+				type: String,
+				default: '#009688'
+			},
+
+			darken: {
+				type: String,
+				default: '#00897b'
+			},
+
+			foreground: {
+				type: String,
+				default: '#fff'
 			}
 		},
 

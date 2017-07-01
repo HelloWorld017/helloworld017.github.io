@@ -11,6 +11,7 @@ import loadAsset from "./js/asset-loader";
 import assetList from "./assets/";
 import fontList from "./js/fonts";
 import routes from "./js/routes";
+import scroll from "./js/scroll";
 
 //Loading Assets
 
@@ -23,7 +24,11 @@ const store = new Vuex.Store({
 		assetFinish: false,
 		firstAnimationFinish: false,
 		initAnimationFinish: false,
-		loadedAssets: 0
+		loadedAssets: 0,
+		height: window.innerHeight,
+		width: window.innerWidth,
+		mobile: window.innerWidth < 768,
+		scroll: scroll()
 	},
 
 	mutations: {
@@ -41,9 +46,22 @@ const store = new Vuex.Store({
 
 		animationFinish(state) {
 			state.initAnimationFinish = true;
+		},
+
+		updateResize(state) {
+			state.width = window.innerWidth;
+			state.height = window.innerHeight;
+			state.mobile = window.innerWidth < 768;
+		},
+
+		updateScroll(state) {
+			state.scroll = scroll();
 		}
 	}
 });
+
+window.addEventListener('resize', () => store.commit('updateResize'));
+window.addEventListener('scroll', () => store.commit('updateScroll'));
 
 const router = new VueRouter({routes, mode: 'history'});
 
@@ -57,7 +75,7 @@ new Vue({
 });
 
 loadAsset(assetList, store, () => Promise.all(fontList.map((v) => {
-	return new Promise((resolve, reject) => {
+	return new Promise((resolve) => {
 		v.load().catch(() => {
 			swal("Oops...", "Failed while loading assets!", "error");
 		}).then(() => {

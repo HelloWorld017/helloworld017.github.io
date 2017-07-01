@@ -3,8 +3,6 @@ import swal from "sweetalert";
 export default async (assets, store, afterBehavior) => {
 	window.assets = {};
 
-	const length = Object.keys(assets).length;
-
 	for(let asset in assets){
 		try {
 			const resp = await fetch(assets[asset]);

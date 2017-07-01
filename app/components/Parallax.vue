@@ -21,11 +21,8 @@
 	export default {
 		data(){
 			return {
-				vpWidth: window.innerWidth,
-				vpHeight: window.innerHeight,
 				imgWidth: 1,
 				imgHeight: 1,
-				scrollPosition: 0,
 				scrollOffset: 0
 			};
 		},
@@ -97,20 +94,22 @@
 				}
 
 				return `${width}px ${height}px`;
+			},
+
+			vpWidth() {
+				return this.$store.state.width;
+			},
+
+			vpHeight() {
+				return this.$store.state.height;
+			},
+
+			scrollPosition() {
+				return this.$store.state.scroll;
 			}
 		},
 
 		methods: {
-			updateViewport() {
-				this.vpWidth = window.innerWidth;
-				this.vpHeight = window.innerHeight;
-			},
-
-			updateScroll() {
-				this.scrollPosition = scroll();
-				this.scrollOffset = this.$el.scrollTop;
-			},
-
 			getScrollData() {
 				const start = Math.max(0, this.scrollOffset - this.vpHeight);
 				const end = this.scrollOffset + this.calculatedHeight + this.vpHeight;
@@ -127,23 +126,10 @@
 				this.imgHeight = image.height;
 			};
 			image.src = this.src;
-
-			this.updateViewport();
 		},
 
 		mounted() {
-			this.updateScroll();
-
-			this._scrollListener = () => this.updateScroll();
-			this._resizeListener = () => this.updateViewport();
-
-			window.addEventListener('scroll', this._scrollListener);
-			window.addEventListener('resize', this._resizeListener);
-		},
-
-		beforeDestroy() {
-			window.removeEventListener('scroll', this._scrollListener);
-			window.removeEventListener('resize', this._resizeListener);
+			this.scrollOffset = this.$el.getBoundingClientRect().top;
 		}
 	};
 </script>

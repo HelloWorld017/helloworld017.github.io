@@ -2,6 +2,7 @@
 @import "~typeface-nanum-square";
 @import "~typeface-nanum-barun-gothic";
 @import "~typeface-spoqa-han-sans2";
+@import "~mdi/css/materialdesignicons.css";
 
 @scrollbar-color: #303030;
 @scrollbar-foreground: #00C0A0;
@@ -89,6 +90,40 @@ main {
 
 .show-on-mobile-down {
 	display: none !important;
+}
+
+.nav-shadow {
+	box-shadow: #303132 0 0 15px 1px;
+}
+
+.animated-link {
+	color: #fff;
+	position: relative;
+	display: inline-block;
+	margin: 0 10px;
+	padding: 10px;
+	font-family: @title-font;
+	text-decoration: none;
+	font-size: 1.3rem;
+	font-weight: 300;
+
+	&::after {
+		content: '';
+		display: block;
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		width: 100%;
+		height: 3px;
+		background: #fff;
+		transform: scaleX(0);
+		transition: transform 300ms;
+		will-change: transform;
+	}
+
+	&:hover::after {
+		transform: scaleX(1);
+	}
 }
 
 @media only screen and (max-width: 768px) {
