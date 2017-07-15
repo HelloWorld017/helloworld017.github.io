@@ -76,8 +76,11 @@ new Vue({
 
 loadAsset(assetList, store, () => Promise.all(fontList.map((v) => {
 	return new Promise((resolve) => {
-		v.load().catch(() => {
-			swal("Oops...", "Failed while loading assets!", "error");
+		v.load(null, 10000).catch((err) => {
+			if(err.family !== 'Material Design Icons')
+				swal("Oops...", "Failed while loading assets!", "error");
+
+			//Edge bug fix
 		}).then(() => {
 			store.commit('loadAsset');
 			resolve();

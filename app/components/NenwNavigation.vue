@@ -6,7 +6,7 @@
 					<h1>Khinenw's Page</h1>
 
 					<div class="mobile-nav show-on-mobile-down">
-						<a href="#" @click="toggleAside">
+						<a @click="toggleAside">
 							<i class="mdi mdi-menu"></i>
 						</a>
 					</div>
@@ -15,8 +15,8 @@
 						<router-link to="/">Main</router-link>
 						<a href="https://blog.khinenw.tk">Blog</a>
 						<router-link to="/gallery">Gallery</router-link>
-						<router-link to="/project">Projects</router-link>
-						<router-link to="/service">Services</router-link>
+						<a href="https://git.khinenw.tk">Projects</a>
+						<a href="https://t.me/Khinenw">Telegram</a>
 					</div>
 				</div>
 			</nav>
@@ -24,7 +24,7 @@
 
 
 		<aside :class="{active: aside}">
-			<a class="closer" href="#" @click="toggleAside">
+			<a class="closer" @click="toggleAside">
 				<i class="mdi mdi-close"></i>
 			</a>
 
@@ -32,8 +32,8 @@
 			<router-link to="/">Main</router-link>
 			<a href="https://blog.khinenw.tk">Blog</a>
 			<router-link to="/gallery">Gallery</router-link>
-			<router-link to="/project">Projects</router-link>
-			<router-link to="/service">Services</router-link>
+			<a href="https://git.khinenw.tk">Projects</a>
+			<a href="https://t.me/Khinenw">Telegram</a>
 		</aside>
 
 		<div class="cover" :class="{active: aside}" @click="toggleAside"></div>
@@ -68,8 +68,12 @@
 			font-weight: 100;
 		}
 
-		a:not(.closer) {
-			.animated-link;
+		a {
+			cursor: pointer;
+
+			&:not(.closer) {
+				.animated-link;
+			}
 		}
 
 		.closer {
@@ -196,9 +200,10 @@
 		},
 
 		methods: {
-			toggleAside() {
+			toggleAside(e) {
 				this.aside = !this.aside;
-				return false;
+				e.stopPropagation();
+				e.preventDefault();
 			}
 		},
 

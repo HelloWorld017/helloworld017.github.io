@@ -7,8 +7,8 @@
 				<div class="mobile-menu show-on-mobile-down" ref="mobileMenu">
 					<a href="https://blog.khinenw.tk">Blog</a>
 					<router-link to="/gallery">Gallery</router-link>
-					<router-link to="/project">Projects</router-link>
-					<router-link to="/service">Services</router-link>
+					<a href="https://git.khinenw.tk">Projects</a>
+					<a href="https://t.me/Khinenw">Telegram</a>
 				</div>
 			</div>
 
@@ -23,8 +23,8 @@
 				<div class="right-menu">
 					<a href="https://blog.khinenw.tk">Blog</a>
 					<router-link to="/gallery">Gallery</router-link>
-					<router-link to="/project">Projects</router-link>
-					<router-link to="/service">Services</router-link>
+					<a href="https://git.khinenw.tk">Projects</a>
+					<a href="https://t.me/Khinenw">Telegram</a>
 				</div>
 			</scroll-trigger>
 		</parallax>

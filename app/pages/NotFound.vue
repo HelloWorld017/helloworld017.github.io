@@ -172,6 +172,8 @@
 		},
 
 		mounted() {
+			window.scrollTo(0, 0);
+
 			this.canvas = this.$refs.canvas;
 			this.world = new World({
 				canvas: this.canvas,

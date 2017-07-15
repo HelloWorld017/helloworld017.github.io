@@ -10,7 +10,7 @@
 					</light-text>
 					<br>
 					<light-text highlight="Powered by ">
-						Nginx
+						Koa
 					</light-text>
 					<br>
 					<light-text highlight="Used ">
