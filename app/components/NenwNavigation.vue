@@ -13,10 +13,10 @@
 
 					<div class="nav-right">
 						<router-link to="/">Main</router-link>
-						<a href="https://blog.khinenw.tk">Blog</a>
+						<a target="_blank" href="https://blog.khinenw.tk">Blog</a>
 						<router-link to="/gallery">Gallery</router-link>
-						<a href="https://git.khinenw.tk">Projects</a>
-						<a href="https://t.me/Khinenw">Telegram</a>
+						<a target="_blank" href="https://git.khinenw.tk">Projects</a>
+						<a target="_blank" href="https://t.me/Khinenw">Telegram</a>
 					</div>
 				</div>
 			</nav>

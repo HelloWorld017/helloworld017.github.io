@@ -5,10 +5,10 @@
 				<h1 class="main-title">Khinenw's Page</h1>
 				<h3 class="sub-title">키네누의 페이지에 오신 것을 환영합니다!</h3>
 				<div class="mobile-menu show-on-mobile-down" ref="mobileMenu">
-					<a href="https://blog.khinenw.tk">Blog</a>
+					<a target="_blank" href="https://blog.khinenw.tk">Blog</a>
 					<router-link to="/gallery">Gallery</router-link>
-					<a href="https://git.khinenw.tk">Projects</a>
-					<a href="https://t.me/Khinenw">Telegram</a>
+					<a target="_blank" href="https://git.khinenw.tk">Projects</a>
+					<a target="_blank" href="https://t.me/Khinenw">Telegram</a>
 				</div>
 			</div>
 
@@ -21,19 +21,38 @@
 
 				<h1 class="title">Khinenw's Page</h1>
 				<div class="right-menu">
-					<a href="https://blog.khinenw.tk">Blog</a>
+					<a target="_blank" href="https://blog.khinenw.tk">Blog</a>
 					<router-link to="/gallery">Gallery</router-link>
-					<a href="https://git.khinenw.tk">Projects</a>
-					<a href="https://t.me/Khinenw">Telegram</a>
+					<a target="_blank" href="https://git.khinenw.tk">Projects</a>
+					<a target="_blank" href="https://t.me/Khinenw">Telegram</a>
 				</div>
 			</scroll-trigger>
+			<div class="particle-section" v-if="!mobile">
+				<parallax-object
+					class="diamond-particle"
+					v-for="(top, index) in particles"
+					:scroll-offset="0"
+					:top="top"
+					:key="index"
+					:speed="Math.random() + 0.5">
+				</parallax-object>
+			</div>
 		</parallax>
 
-		<section id="summary">
+		<section id="summary" class="chevron-section">
+			<scroll-trigger :position="height" class-name="active"></scroll-trigger>
+			<scroll-trigger :position="height + 550" class-name="inactive"></scroll-trigger>
+
+			<canvas :width="width" height="550" ref="canvas"></canvas>
+
 			<div class="section-inner">
 				<h2 class="section-title">
-					Summary
+					<light-text highlight="About ">Khinenw</light-text>
 				</h2>
+
+				Developer@Daedeok High School
+				<br>
+				<br>
 				<div class="sh">
 					<span class="sh-line">1</span>
 					<span class="sh-code">console.log(
@@ -41,21 +60,8 @@
 						);
 					</span>
 				</div>
-			</div>
-		</section>
 
-		<parallax :height="30" :src="getBG(2)" :speed="0.6" :unparallax="mobile"></parallax>
-
-		<section id="about-khinenw">
-			<div class="section-inner">
-				<h2 class="section-title">
-					<light-text highlight="About ">Khinenw</light-text>
-				</h2>
-
-				대덕고등학교에 재학중인 <strike>개발자</strike> 코딩노예
-				<br>
-				<img src="https://track.khinenw.tk/script/res/profile2">
-
+				<br><br>
 				<div style="margin-bottom: 50px;">
 					<h3 class="inner-section-title">Links</h3>
 					<a href="https://github.com/HelloWorld017/">Github</a>
@@ -64,7 +70,29 @@
 			</div>
 		</section>
 
-		<parallax :height="50" :src="getBG(3)" :speed="0.3" :unparallax="mobile"></parallax>
+		<section class="chevron-section"></section>
+		<section class="chevron-section"></section>
+
+		<section class="chevron-section contents" id="interests">
+			<div class="section-inner">
+				<img src="/app/assets/image/atom.svg">
+				<img src="/app/assets/image/ann.svg">
+				<img src="/app/assets/image/es6.svg">
+				<img src="/app/assets/image/lesscss.svg">
+				<img src="/app/assets/image/postcss.svg">
+				<img src="/app/assets/image/nodejs.svg">
+				<img src="/app/assets/image/vue.svg">
+				<a @click="heroes">
+					<img src="/app/assets/image/heroes.svg">
+				</a>
+			</div>
+		</section>
+
+		<section class="chevron-section"></section>
+
+		<!--<parallax :height="30" :src="getBG(2)" :speed="0.6" :unparallax="mobile"></parallax>
+
+		<parallax :height="50" :src="getBG(3)" :speed="0.3" :unparallax="mobile"></parallax> -->
 
 		<nenw-footer></nenw-footer>
 	</main>
@@ -87,28 +115,83 @@
 	}
 
 	#summary {
-		background: #202020;
+		color: #fff;
+		position: relative;
 		padding: 100px;
+		height: 550px;
+	    box-sizing: border-box;
+
+		a {
+			color: #fff;
+		}
 
 		h2 {
 			color: #f1f1f1;
 		}
+
+		canvas {
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			width: 100%;
+		}
+
+		.section-inner {
+			position: relative;
+		}
 	}
 
-	#about-khinenw {
-		background: #fff;
-		color: #202020;
-
-		h2 {
-			color: #202020;
+	.chevron-section {
+		min-height: 120px;
+		position: relative;
+		&.contents {
+			padding-top: 60px;
 		}
 
-		a {
-			color: #333;
+		&:not(:last-of-type) {
+			&::before, &::after {
+				display: block;
+				content: '';
+				position: absolute;
+				bottom: -60px;
+				width: 0;
+				height: 0;
+				border-style: solid;
+			}
+
+			&::before {
+				border-width: 60px 60vw 0 0;
+				left: 0;
+				z-index: 9;
+			}
+
+			&::after {
+				border-width: 0 60vw 60px 0;
+				right: 0;
+				z-index: 10;
+			}
 		}
 
-		img {
-			width: 100%;
+		@section-color: #212121, #323232, #3fc1c9, #ecfffb, #00c0a0;
+
+		.for(length(@section-color)); .-each(@i) {
+			@color: extract(@section-color, @i);
+
+			&:nth-of-type(@{i}) {
+				background: @color;
+
+				&:not(:last-of-type) {
+					&::before {
+						border-color: @color transparent transparent transparent;
+					}
+
+					&::after {
+						border-color: transparent @color transparent transparent;
+					}
+				}
+			}
 		}
 	}
 
@@ -144,6 +227,65 @@
 
 	.inner-section-title {
 		font-size: 1.3rem;
+	}
+
+	.particle-section {
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		overflow: hidden;
+
+		.diamond-particle {
+			position: absolute;
+			border-color: rgba(255, 255, 255, .3);
+			border-style: solid;
+			transform: rotate(45deg) translate(-50%, -50%);
+
+			&:nth-child(1) {
+				left: 25%;
+				top: 60%;
+				width: 400px;
+				height: 400px;
+				border-width: 3px;
+				border-color: rgba(255, 255, 255, .6);
+			}
+
+			&:nth-child(2) {
+				left: 60%;
+				top: 40%;
+				width: 200px;
+				height: 200px;
+				border-width: 5px;
+				border-color: rgba(255, 255, 255, .4);
+			}
+
+			&:nth-child(3) {
+				left: 50%;
+				top: 30%;
+				width: 50px;
+				height: 50px;
+				border-width: 3px;
+				border-color: rgba(255, 255, 255, .6);
+			}
+
+			&:nth-child(4) {
+				left: 20%;
+				top: 50%;
+				width: 200px;
+				height: 200px;
+				border-width: 18px;
+			}
+
+			&:nth-child(5) {
+				left: 50%;
+				top: 70%;
+				width: 300px;
+				height: 300px;
+				border-width: 7px;
+			}
+		}
 	}
 
 	.bottom-menu {
@@ -257,7 +399,7 @@
 
 	@media only screen and (max-width: 768px) {
 		.main-title {
-			font-size: 1.5rem;
+			font-size: 3rem;
 		}
 
 		.sub-title {
@@ -277,12 +419,20 @@
 <script>
 	const NAVBAR_DESIRED = 100;
 
+	import sketchless from "sketchless";
+	import restaurance from "restaurance";
+
 	import LightText from "../components/LightText.vue";
 	import NenwFooter from "../components/NenwFooter.vue";
 	import Parallax from "../components/Parallax.vue";
+	import ParallaxObject from "../components/ParallaxObject.vue";
 	import ScrollTrigger from "../components/ScrollTrigger.vue";
 
 	export default {
+		data() {
+			return {particles: [60, 40, 30, 50, 70]};
+		},
+
 		computed: {
 			mobile() {
 				return this.$store.state.mobile;
@@ -290,12 +440,31 @@
 
 			height() {
 				return this.$store.state.height;
+			},
+
+			width() {
+				return this.$store.state.width;
 			}
 		},
 
 		methods: {
 			getBG(num){
 				return window.assets[`bgMain${num}`];
+			},
+
+			/* getRandomParticle() {
+				let size = `${Math.random() * 400}px`;
+				return {
+					'border-width': `${Math.random() * 15 + 5}px`,
+					'top': `${Math.random() * 100}%`,
+					'left': `${Math.random() * 100}%`,
+					'width': size,
+					'height': size
+				};
+			}, */
+
+			heroes() {
+				restaurance({target: document.querySelector('#app-view')}, ['section', 'main>.parallax', 'footer'], 15);
 			}
 		},
 
@@ -303,7 +472,13 @@
 			LightText,
 			NenwFooter,
 			Parallax,
+			ParallaxObject,
 			ScrollTrigger
+		},
+
+		mounted() {
+			//transparent makes a bug in chrome (makes a white diagonal line when nginx hardware accelerated)
+			sketchless.rainy(this.$refs.canvas, '#212121');
 		}
 	};
 </script>

@@ -1,21 +1,21 @@
-import bgMain1 from "./backgrounds/main/main-background1.jpg";
-import bgMain2 from "./backgrounds/main/main-background2.jpg";
-import bgMain3 from "./backgrounds/main/main-background3.png";
-import bgGallery from "./backgrounds/gallery/gallery-background.png";
-import bgGalleryArt from "./backgrounds/gallery/gallery-background-art.png";
-import bgGalleryKorean from "./backgrounds/gallery/gallery-background-korean.png";
-import bgGalleryMath from "./backgrounds/gallery/gallery-background-math.png";
-import bgGalleryProgress from "./backgrounds/gallery/gallery-background-progress.png";
-import bgService1 from "./backgrounds/service/service-background1.jpg";
-import bgService2 from "./backgrounds/service/service-background2.jpg";
-import bgService3 from "./backgrounds/service/service-background3.jpg";
-import bgService4 from "./backgrounds/service/service-background4.jpg";
-import profile from "./profile/profile.png";
-import sadIcon from "./image/sad.svg";
-
-export default {
-	bgMain1, bgMain2, bgMain3,
-	bgGallery, bgGalleryArt, bgGalleryMath, bgGalleryProgress, bgGalleryKorean,
-	bgService1, bgService2, bgService3, bgService4,
-	profile, sadIcon
+const cdnPrefix = "https://raw.githubusercontent.com/HelloWorld017/nenwchan2/master/app/assets";
+const assets = {
+	bgMain1: "/backgrounds/main/main-background1.jpg",
+	bgMain2: "/backgrounds/main/main-background2.jpg",
+	bgMain3: "/backgrounds/main/main-background3.png",
+	bgGallery: "/backgrounds/gallery/gallery-background.png",
+	bgGalleryArt: "/backgrounds/gallery/gallery-background-art.png",
+	bgGalleryKorean: "/backgrounds/gallery/gallery-background-korean.png",
+	bgGalleryMath: "/backgrounds/gallery/gallery-background-math.png",
+	bgGalleryProgress: "/backgrounds/gallery/gallery-background-progress.png",
+	bgService1: "/backgrounds/service/service-background1.jpg",
+	bgService2: "/backgrounds/service/service-background2.jpg",
+	bgService3: "/backgrounds/service/service-background3.jpg",
+	bgService4: "/backgrounds/service/service-background4.jpg",
+	profile: "/profile/profile.png",
+	sadIcon: "/image/sad.svg"
 };
+
+Object.keys(assets).forEach((k) => assets[k] = cdnPrefix + assets[k]);
+
+export default assets;

@@ -37,8 +37,10 @@
 
 				if(this.scroll + this.scrollOffset >= this.position) {
 					this.$el.classList.add(this.className);
+					this.$emit('under');
 				} else {
 					this.$el.classList.remove(this.className);
+					this.$emit('over');
 				}
 			}
 		},

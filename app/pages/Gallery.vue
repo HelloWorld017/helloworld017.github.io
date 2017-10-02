@@ -1,7 +1,7 @@
 <template>
 	<main>
 		<nenw-navigation></nenw-navigation>
-		
+
 		<parallax
 			:height="100"
 			:src="getAsset('bgGallery')"
@@ -31,7 +31,7 @@
 					</header>
 
 					<div class="decorated-text" v-for="link in section.links">
-						<a :href="link.link" v-text="link.name"></a>
+						<a target="_blank" :href="link.link" v-text="link.name"></a>
 					</div>
 				</section>
 			</parallax>
