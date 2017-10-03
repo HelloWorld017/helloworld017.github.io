@@ -1,4 +1,4 @@
-const cdnPrefix = "https://raw.githubusercontent.com/HelloWorld017/nenwchan2/master/app/assets";
+const cdnPrefix = "https://cdn.rawgit.com/HelloWorld017/nenwchan2/master/app/assets";
 const assets = {
 	bgMain1: "/backgrounds/main/main-background1.jpg",
 	bgMain2: "/backgrounds/main/main-background2.jpg",
@@ -13,7 +13,16 @@ const assets = {
 	bgService3: "/backgrounds/service/service-background3.jpg",
 	bgService4: "/backgrounds/service/service-background4.jpg",
 	profile: "/profile/profile.png",
-	sadIcon: "/image/sad.svg"
+	sadIcon: "/image/sad.svg",
+	ann: "/image/ann.svg",
+	atom: "/image/atom.svg",
+	electron: "/image/electron.svg",
+	es8: "/image/es8.svg",
+	heroes: "/image/heroes.svg",
+	lesscss: "/image/lesscss.svg",
+	nodejs: "/image/nodejs.svg",
+	postcss: "/image/postcss.svg",
+	vue: "/image/vue.svg"
 };
 
 Object.keys(assets).forEach((k) => assets[k] = cdnPrefix + assets[k]);

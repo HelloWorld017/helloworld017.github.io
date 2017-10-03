@@ -41,8 +41,13 @@
 		</parallax>
 
 		<section id="summary" class="chevron-section">
-			<scroll-trigger :position="height" class-name="active"></scroll-trigger>
-			<scroll-trigger :position="height + 550" class-name="inactive"></scroll-trigger>
+			<!-- <scroll-trigger
+				:position="500"
+				:max="height + 500"
+				class-name="rain"
+				@over="rain = true"
+				@under="rain = false">
+			</scroll-trigger> -->
 
 			<canvas :width="width" height="550" ref="canvas"></canvas>
 
@@ -75,6 +80,7 @@
 		<section class="chevron-section"></section>
 
 		<section class="chevron-section contents" id="interests">
+			<scroll-trigger :position="1130" class-name="anim" @over="playAnim"></scroll-trigger>
 			<div class="section-inner">
 				<h2 class="section-title bold">
 					preference
@@ -85,7 +91,7 @@
 							Editor
 						</h3>
 						<a href="https://atom.io">
-							<img src="/app/assets/image/atom.svg" alt="Atom">
+							<img :src="asset('atom')" alt="Atom">
 						</a>
 					</div>
 					<div class="box">
@@ -93,7 +99,7 @@
 							Language
 						</h3>
 						<a href="https://www.ecma-international.org/ecma-262/8.0/index.html">
-							<img src="/app/assets/image/es8.svg" alt="ECMAScript8">
+							<img :src="asset('es8')" alt="ECMAScript8">
 						</a>
 					</div>
 					<div class="box">
@@ -101,7 +107,7 @@
 							Plays
 						</h3>
 						<a @click="heroes" class="sigong-joa">
-							<img src="/app/assets/image/heroes.svg" alt="Heroes of the Storm">
+							<img :src="asset('heroes')" alt="Heroes of the Storm">
 						</a>
 					</div>
 					<div class="box">
@@ -109,10 +115,10 @@
 							CSS Preprocessor
 						</h3>
 						<a href="http://lesscss.org">
-							<img src="/app/assets/image/lesscss.svg" alt="LessCSS">
+							<img :src="asset('lesscss')" alt="LessCSS">
 						</a>
 						<a href="http://postcss.org">
-							<img src="/app/assets/image/postcss.svg" alt="PostCSS">
+							<img :src="asset('postcss')" alt="PostCSS">
 						</a>
 					</div>
 					<div class="box">
@@ -120,7 +126,7 @@
 							Front-end Framework
 						</h3>
 						<a href="https://vuejs.org">
-							<img src="/app/assets/image/vue.svg" alt="VueJS">
+							<img :src="asset('vue')" alt="VueJS">
 						</a>
 					</div>
 					<div class="box">
@@ -128,18 +134,25 @@
 							Likes
 						</h3>
 						<a href="https://en.wikipedia.org/wiki/Artificial_neural_network">
-							<img src="/app/assets/image/ann.svg" alt="Neural Networks">
+							<img :src="asset('ann')" alt="Neural Networks">
 						</a>
 						<a href="https://nodejs.org">
-							<img src="/app/assets/image/nodejs.svg" alt="node.js">
+							<img :src="asset('nodejs')" alt="node.js">
 						</a>
 						<a href="https://electron.atom.io">
-							<img src="/app/assets/image/electron.svg" alt="Electron">
+							<img :src="asset('electron')" alt="Electron">
 						</a>
 					</div>
 				</div>
 			</div>
 		</section>
+
+		<!-- <iframe v-if="rain"
+			src="https://www.youtube-nocookie.com/embed/jX6kn9_U8qk?rel=0&loop=1&autoplay=1&disablekb=1&controls=0&showinfo=0"
+			width="1"
+			height="1"
+			style="border: none; opacity: 0">
+		</iframe> -->
 
 		<section class="chevron-section"></section>
 
@@ -361,6 +374,14 @@
 	.box {
 		display: inline-block;
 		margin-top: 50px;
+		transform: translateY(100px);
+		opacity: 0;
+		transition: transform .4s ease, opacity .4s ease;
+
+		&.active {
+			opacity: 1;
+			transform: translateY(0);
+		}
 	}
 
 	.bottom-menu {
@@ -509,7 +530,10 @@
 
 	export default {
 		data() {
-			return {particles: [60, 40, 30, 50, 70]};
+			return {
+				particles: [60, 40, 30, 50, 70]/*,
+				rain: true */
+			};
 		},
 
 		computed: {
@@ -531,6 +555,10 @@
 				return window.assets[`bgMain${num}`];
 			},
 
+			asset(id) {
+				return window.assets[id];
+			},
+
 			/* getRandomParticle() {
 				let size = `${Math.random() * 400}px`;
 				return {
@@ -544,6 +572,10 @@
 
 			heroes() {
 				restaurance({target: document.querySelector('#app-view')}, ['section', 'main>.parallax', 'footer'], 15);
+			},
+
+			playAnim() {
+				this.$el.querySelectorAll('.box').forEach((v) => v.classList.add('active'));
 			}
 		},
 
