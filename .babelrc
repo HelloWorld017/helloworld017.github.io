@@ -1,0 +1,10 @@
+{
+	"presets": [["env", {
+		"targets": {
+			"uglify": true,
+			"ie": 9,
+			"chrome": 50,
+			"safari": 10
+		}
+	}]]
+}
