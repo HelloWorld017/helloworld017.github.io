@@ -1,7 +1,6 @@
 import Vue from "vue";
 import Vuex from "vuex";
 import VueRouter from "vue-router";
-import swal from "sweetalert";
 import "babel-polyfill";
 import "whatwg-fetch";
 
@@ -76,10 +75,7 @@ new Vue({
 
 loadAsset(assetList, store, () => Promise.all(fontList.map((v) => {
 	return new Promise((resolve) => {
-		v.load(null, 10000).catch((err) => {
-			if(err.family !== 'Material Design Icons')
-				swal("Oops...", "Failed while loading assets!", "error");
-
+		v.load(null, 10000).catch(() => {
 			//Edge bug fix
 		}).then(() => {
 			store.commit('loadAsset');

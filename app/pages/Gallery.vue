@@ -110,7 +110,7 @@
 			position: relative;
 			display: inline-block;
 			color: #fff;
-			font-family: 'Spoqa Han Sans', 'Nanum Square', sans-serif;
+			font-family: 'Nanum Barun Gothic', sans-serif;
 			font-size: 15px;
 			text-decoration: none;
 			text-align: center;

@@ -5,8 +5,8 @@
 				<h3>Footer</h3>
 
 				<p>
-					<light-text highlight="khinenw.tk">
-						4.0, 2017 Redesigned
+					<light-text highlight="nenw.moe">
+						4.1, 2017 Redesigned
 					</light-text>
 					<br>
 					<light-text highlight="Powered by ">
@@ -55,7 +55,7 @@
 		}
 
 		.section {
-		    padding: 20px 10px;
+		    padding: 20px 30px;
 
 			&>.footer-container {
 				max-width: 768px;

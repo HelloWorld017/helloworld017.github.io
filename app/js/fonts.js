@@ -10,8 +10,5 @@ export default [
 	new FontFaceObserver("Nanum Square", {weight: 700}),
 	new FontFaceObserver("Nanum Barun Gothic", {weight: 400}),
 	new FontFaceObserver("Nanum Barun Gothic", {weight: 700}),
-	new FontFaceObserver("Spoqa Han Sans", {weight: 300}),
-	new FontFaceObserver("Spoqa Han Sans", {weight: 400}),
-	new FontFaceObserver("Spoqa Han Sans", {weight: 700}),
 	new FontFaceObserver("Material Design Icons")
 ];

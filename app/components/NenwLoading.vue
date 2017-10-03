@@ -9,6 +9,11 @@
 			</symbol>
 		</svg>
 
+		<div class="loading">
+			<span>Loading</span>
+			<span>{{Math.round(percent)}}%</span>
+		</div>
+
 		<div class="box">
 			<div id="water" class="water" :style="style" ref="water">
 				<canvas :class="{fade: percent === 100}" ref="canvas"></canvas>
@@ -100,6 +105,22 @@
 		&.fade {
 			opacity: 0;
 		}
+	}
+
+	.loading {
+		position: fixed;
+		left: 50vw;
+		top: 50vh;
+		transform: translate(-50%, -50%);
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		font-family: @title-font;
+		font-size: 2rem;
+		font-weight: 100;
+		padding: 10px;
+		background: #00C0A0;
+		color: #f1f2f3;
 	}
 </style>
 

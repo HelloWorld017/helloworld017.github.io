@@ -1,6 +1,17 @@
 <template>
 	<main>
 		<parallax :height="100" :src="getBG(1)" :speed="0.2" :unparallax="mobile">
+			<div class="particle-section" v-if="!mobile">
+				<parallax-object
+					class="diamond-particle"
+					v-for="(top, index) in particles"
+					:scroll-offset="0"
+					:top="top"
+					:key="index"
+					:speed="Math.random() + 0.5">
+				</parallax-object>
+			</div>
+
 			<div class="fixed-centered text-centered">
 				<h1 class="main-title">Khinenw's Page</h1>
 				<h3 class="sub-title">키네누의 페이지에 오신 것을 환영합니다!</h3>
@@ -27,16 +38,6 @@
 					<a target="_blank" href="https://t.me/Khinenw">Telegram</a>
 				</div>
 			</scroll-trigger>
-			<div class="particle-section" v-if="!mobile">
-				<parallax-object
-					class="diamond-particle"
-					v-for="(top, index) in particles"
-					:scroll-offset="0"
-					:top="top"
-					:key="index"
-					:speed="Math.random() + 0.5">
-				</parallax-object>
-			</div>
 		</parallax>
 
 		<section id="summary" class="chevron-section">
@@ -75,16 +76,68 @@
 
 		<section class="chevron-section contents" id="interests">
 			<div class="section-inner">
-				<img src="/app/assets/image/atom.svg">
-				<img src="/app/assets/image/ann.svg">
-				<img src="/app/assets/image/es6.svg">
-				<img src="/app/assets/image/lesscss.svg">
-				<img src="/app/assets/image/postcss.svg">
-				<img src="/app/assets/image/nodejs.svg">
-				<img src="/app/assets/image/vue.svg">
-				<a @click="heroes">
-					<img src="/app/assets/image/heroes.svg">
-				</a>
+				<h2 class="section-title bold">
+					preference
+				</h2>
+				<div class="box-container">
+					<div class="box">
+						<h3>
+							Editor
+						</h3>
+						<a href="https://atom.io">
+							<img src="/app/assets/image/atom.svg" alt="Atom">
+						</a>
+					</div>
+					<div class="box">
+						<h3>
+							Language
+						</h3>
+						<a href="https://www.ecma-international.org/ecma-262/8.0/index.html">
+							<img src="/app/assets/image/es8.svg" alt="ECMAScript8">
+						</a>
+					</div>
+					<div class="box">
+						<h3>
+							Plays
+						</h3>
+						<a @click="heroes" class="sigong-joa">
+							<img src="/app/assets/image/heroes.svg" alt="Heroes of the Storm">
+						</a>
+					</div>
+					<div class="box">
+						<h3>
+							CSS Preprocessor
+						</h3>
+						<a href="http://lesscss.org">
+							<img src="/app/assets/image/lesscss.svg" alt="LessCSS">
+						</a>
+						<a href="http://postcss.org">
+							<img src="/app/assets/image/postcss.svg" alt="PostCSS">
+						</a>
+					</div>
+					<div class="box">
+						<h3>
+							Front-end Framework
+						</h3>
+						<a href="https://vuejs.org">
+							<img src="/app/assets/image/vue.svg" alt="VueJS">
+						</a>
+					</div>
+					<div class="box">
+						<h3>
+							Likes
+						</h3>
+						<a href="https://en.wikipedia.org/wiki/Artificial_neural_network">
+							<img src="/app/assets/image/ann.svg" alt="Neural Networks">
+						</a>
+						<a href="https://nodejs.org">
+							<img src="/app/assets/image/nodejs.svg" alt="node.js">
+						</a>
+						<a href="https://electron.atom.io">
+							<img src="/app/assets/image/electron.svg" alt="Electron">
+						</a>
+					</div>
+				</div>
 			</div>
 		</section>
 
@@ -209,24 +262,34 @@
 		position: absolute;
 	}
 
-	.main-title {
-		font-size: 4rem;
+	.sub-title {
 		color: #fff;
 		font-family: @title-font;
 		font-weight: 100;
+		font-size: 1.3rem;
 	}
 
-	.sub-title {
-		.main-title;
-		font-size: 1.3rem;
+	.main-title {
+		.sub-title;
+		font-size: 4rem;
+		background: rgba(0, 0, 0, .5);
+		padding: 0 10px;
 	}
 
 	.section-title {
 		font-size: 2.3rem;
+		&.bold {
+			font-weight: 700;
+			text-transform: uppercase;
+		}
 	}
 
 	.inner-section-title {
 		font-size: 1.3rem;
+	}
+
+	.sigong-joa {
+		cursor: pointer;
 	}
 
 	.particle-section {
@@ -242,6 +305,7 @@
 			border-color: rgba(255, 255, 255, .3);
 			border-style: solid;
 			transform: rotate(45deg) translate(-50%, -50%);
+			opacity: .4;
 
 			&:nth-child(1) {
 				left: 25%;
@@ -286,6 +350,17 @@
 				border-width: 7px;
 			}
 		}
+	}
+
+	.box-container {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: space-between;
+	}
+
+	.box {
+		display: inline-block;
+		margin-top: 50px;
 	}
 
 	.bottom-menu {
@@ -334,7 +409,7 @@
 			right: 0;
 			bottom: 0;
 			transform: skewX(-10deg);
-			background: rgba(0, 0, 0, 0.5);
+			background: rgba(0, 0, 0, .5);
 			.animated(.4s);
 		}
 
@@ -410,8 +485,12 @@
 			font-size: 0.8rem;
 		}
 
-		#summary {
-			padding: 10px;
+		section {
+			padding: 30px;
+		}
+
+		.box-container {
+			flex-direction: column;
 		}
 	}
 </style>
