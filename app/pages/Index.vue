@@ -1,517 +1,282 @@
 <template>
 	<main>
-		<parallax :height="100" :src="getBG(1)" :speed="0.2" :unparallax="mobile">
-			<div class="particle-section" v-if="!mobile">
-				<parallax-object
-					class="diamond-particle"
-					v-for="(top, index) in particles"
-					:scroll-offset="0"
-					:top="top"
-					:key="index"
-					:speed="Math.random() + 0.5">
-				</parallax-object>
-			</div>
-
-			<div class="fixed-centered text-centered">
-				<h1 class="main-title">Khinenw's Page</h1>
-				<h3 class="sub-title">키네누의 페이지에 오신 것을 환영합니다!</h3>
-				<div class="mobile-menu show-on-mobile-down" ref="mobileMenu">
-					<a target="_blank" href="https://blog.khinenw.tk">Blog</a>
-					<router-link to="/gallery">Gallery</router-link>
-					<a target="_blank" href="https://git.khinenw.tk">Projects</a>
-					<a target="_blank" href="https://t.me/Khinenw">Telegram</a>
+		<parallax :height="100" :src="asset('bgMain')" :speed="0.2" :unparallax="mobile" class="main-logo">
+			<div class="overlay"></div>
+			<div class="content">
+				<div class="logo">
+					<div class="logo-wrapper">
+						<span class="logo-text">*</span>
+					</div>
 				</div>
+				<div class="pole-top"></div>
+				<h1 class="title-text">
+					Khinenw's Page
+				</h1>
+				<div class="pole-bottom"></div>
 			</div>
-
-			<scroll-trigger
-				class="bottom-menu hide-on-mobile-down"
-				ref="desktopMenu"
-				class-name="fixed"
-				:position="height * 0.8"
-				:scroll-offset="0">
-
-				<h1 class="title">Khinenw's Page</h1>
-				<div class="right-menu">
-					<a target="_blank" href="https://blog.khinenw.tk">Blog</a>
-					<router-link to="/gallery">Gallery</router-link>
-					<a target="_blank" href="https://git.khinenw.tk">Projects</a>
-					<a target="_blank" href="https://t.me/Khinenw">Telegram</a>
-				</div>
-			</scroll-trigger>
 		</parallax>
 
-		<section id="summary" class="chevron-section">
-			<!-- <scroll-trigger
-				:position="500"
-				:max="height + 500"
-				class-name="rain"
-				@over="rain = true"
-				@under="rain = false">
-			</scroll-trigger> -->
+		<section id="about">
+			<div class="content-decorator"></div>
+			<section class="content">
+				<h2><span class="bold">About</span> Khinenw</h2>
+				<p>
+					Developer@Daedeok High School
+				</p>
+				<code>
+					<span class="sh-line">1  |   </span>
+					console.log(<span class="sh-str">"Hello, World!"</span>);
+				</code>
+			</section>
 
-			<canvas :width="width" height="550" ref="canvas"></canvas>
-
-			<div class="section-inner">
-				<h2 class="section-title">
-					<light-text highlight="About ">Khinenw</light-text>
-				</h2>
-
-				Developer@Daedeok High School
-				<br>
-				<br>
-				<div class="sh">
-					<span class="sh-line">1</span>
-					<span class="sh-code">console.log(
-						<span class="sh-str">"Hello, World!"</span>
-						);
-					</span>
-				</div>
-
-				<br><br>
-				<div style="margin-bottom: 50px;">
-					<h3 class="inner-section-title">Links</h3>
-					<a href="https://github.com/HelloWorld017/">Github</a>
-					<a href="https://blog.khinenw.tk/">Blog</a>
-				</div>
-			</div>
+			<section id="link">
+				<div class="decorator"></div>
+				<div class="decorator"></div>
+				<section class="link-content">
+					<div class="inner-content">
+						<h2>Links</h2>
+						<li>
+							<ul><a class="animated-link" href="https://github.com/HelloWorld017">GitHub</a></ul>
+							<ul><a class="animated-link" href="https://blog.khinenw.tk">Blog</a></ul>
+							<ul><a class="animated-link" href="https://t.me/Khinenw">Telegram</a></ul>
+						</li>
+					</div>
+				</section>
+			</section>
 		</section>
 
-		<section class="chevron-section"></section>
-		<section class="chevron-section"></section>
-
-		<section class="chevron-section contents" id="interests">
-			<scroll-trigger :position="1130" class-name="anim" @over="playAnim"></scroll-trigger>
-			<div class="section-inner">
-				<h2 class="section-title bold">
-					preference
-				</h2>
-				<div class="box-container">
-					<div class="box">
-						<h3>
-							Editor
-						</h3>
-						<a href="https://atom.io">
-							<img :src="asset('atom')" alt="Atom">
-						</a>
-					</div>
-					<div class="box">
-						<h3>
-							Language
-						</h3>
-						<a href="https://www.ecma-international.org/ecma-262/8.0/index.html">
-							<img :src="asset('es8')" alt="ECMAScript8">
-						</a>
-					</div>
-					<div class="box">
-						<h3>
-							Plays
-						</h3>
-						<a @click="heroes" class="sigong-joa">
-							<img :src="asset('heroes')" alt="Heroes of the Storm">
-						</a>
-					</div>
-					<div class="box">
-						<h3>
-							CSS Preprocessor
-						</h3>
-						<a href="http://lesscss.org">
-							<img :src="asset('lesscss')" alt="LessCSS">
-						</a>
-						<a href="http://postcss.org">
-							<img :src="asset('postcss')" alt="PostCSS">
-						</a>
-					</div>
-					<div class="box">
-						<h3>
-							Front-end Framework
-						</h3>
-						<a href="https://vuejs.org">
-							<img :src="asset('vue')" alt="VueJS">
-						</a>
-					</div>
-					<div class="box">
-						<h3>
-							Likes
-						</h3>
-						<a href="https://en.wikipedia.org/wiki/Artificial_neural_network">
-							<img :src="asset('ann')" alt="Neural Networks">
-						</a>
-						<a href="https://nodejs.org">
-							<img :src="asset('nodejs')" alt="node.js">
-						</a>
-						<a href="https://electron.atom.io">
-							<img :src="asset('electron')" alt="Electron">
-						</a>
-					</div>
-				</div>
-			</div>
+		<section id="last">
+			<nenw-footer></nenw-footer>
 		</section>
-
-		<!-- <iframe v-if="rain"
-			src="https://www.youtube-nocookie.com/embed/jX6kn9_U8qk?rel=0&loop=1&autoplay=1&disablekb=1&controls=0&showinfo=0"
-			width="1"
-			height="1"
-			style="border: none; opacity: 0">
-		</iframe> -->
-
-		<section class="chevron-section"></section>
-
-		<!--<parallax :height="30" :src="getBG(2)" :speed="0.6" :unparallax="mobile"></parallax>
-
-		<parallax :height="50" :src="getBG(3)" :speed="0.3" :unparallax="mobile"></parallax> -->
-
-		<nenw-footer></nenw-footer>
 	</main>
 </template>
 
 <style lang="less" scoped>
 	@import "~theme";
-
 	main {
-		min-height: 200vh;
+		overflow: hidden;
 	}
 
-	section {
-		padding: 10px;
-	}
+	.main-logo {
+		display: flex;
+		justify-content: center;
+		align-items: center;
 
-	blockquote {
-	    border-left: .5rem solid #c0c1c2;
-		padding: .75rem .25rem;
-	}
-
-	#summary {
-		color: #fff;
-		position: relative;
-		padding: 100px;
-		height: 550px;
-	    box-sizing: border-box;
-
-		a {
-			color: #fff;
-		}
-
-		h2 {
-			color: #f1f1f1;
-		}
-
-		canvas {
+		.overlay {
 			position: absolute;
-			top: 0;
 			left: 0;
+			top: 0;
 			right: 0;
 			bottom: 0;
-			width: 100%;
+			background: linear-gradient(to right, #2d3442, #192032);
+			opacity: .9;
 		}
 
-		.section-inner {
+		.content {
 			position: relative;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			height: 100vh;
+			overflow: hidden;
+
+			.logo {
+				color: #fff;
+				border: 2.8vmin solid #fff;
+				font-size: 13vmin;
+				display: inline-block;
+				width: 13vmin;
+				height: 13vmin;
+				margin-top: 15vmin;
+				margin-bottom: 3vmin;
+				transform: rotate(45deg);
+
+				.logo-wrapper {
+					width: 13vmin;
+					height: 13vmin;
+					text-align: center;
+					transform: rotate(315deg) scale(2);
+
+					.logo-text {
+						font-family: "Lato", sans-serif;
+					}
+				}
+			}
+
+			.title-text {
+				font-family: "Lato", sans-serif;
+				font-weight: 100;
+				color: #fff;
+				font-size: 16vmin;
+				margin-top: 6vmin;
+				margin-bottom: 6vmin;
+				text-align: center;
+			}
+
+			.pole-top {
+				width: 1vmin;
+				height: 5vmin;
+				background: #fff;
+			}
+
+			.pole-bottom {
+				width: 1vmin;
+				height: 100vh;
+				background: #fff;
+			}
 		}
 	}
 
-	.chevron-section {
-		min-height: 120px;
+	#about {
+		width: 100vw;
+		min-height: 43vw;
+		background: #e3e3e3;
 		position: relative;
-		&.contents {
-			padding-top: 60px;
+
+		.content-decorator {
+			background: #e3e3e3;
+			top: -120px;
+			left: 50%;
+			width: 99.76vw;
+			height: 400px;
+			position: absolute;
+			transform: translateX(-51.5%) rotate(-4deg);
+		    transform-origin: top;
 		}
 
-		&:not(:last-of-type) {
-			&::before, &::after {
-				display: block;
-				content: '';
-				position: absolute;
-				bottom: -60px;
-				width: 0;
-				height: 0;
-				border-style: solid;
-			}
 
-			&::before {
-				border-width: 60px 60vw 0 0;
-				left: 0;
-				z-index: 9;
-			}
-
-			&::after {
-				border-width: 0 60vw 60px 0;
-				right: 0;
-				z-index: 10;
-			}
+		* {
+			font-family: 'Titilium', sans-serif;
 		}
 
-		@section-color: #212121, #323232, #3fc1c9, #ecfffb, #00c0a0;
+		.content {
+			position: relative;
+			padding: 0 4vw;
+			max-width: 768px;
+			margin: 0 auto;
+			font-weight: 100;
 
-		.for(length(@section-color)); .-each(@i) {
-			@color: extract(@section-color, @i);
+			h2 {
+				margin: 0;
+				margin-bottom: 2rem;
+				font-size: 3.5rem;
+				font-weight: 100;
+				color: #222222;
+			}
 
-			&:nth-of-type(@{i}) {
-				background: @color;
+			p {
+				font-size: 2rem;
+			}
 
-				&:not(:last-of-type) {
-					&::before {
-						border-color: @color transparent transparent transparent;
-					}
+			code, code span {
+				font-family: "Fira Code", monospace;
+			}
 
-					&::after {
-						border-color: transparent @color transparent transparent;
-					}
+			code {
+				background: #c0c0c0;
+				color: #222222;
+				padding: 5px;
+
+				.sh-str {
+					color: darken(#ff4e73, 10%);
 				}
 			}
 		}
 	}
 
-	.section-inner {
-		max-width: 768px;
-		margin: 0 auto;
-	}
-
-	.small-masthead {
-		min-height: 300px;
-		height: 300px;
-	}
-
-	.fixed-centered {
+	#link {
 		position: absolute;
-	}
+		bottom: 21vw;
 
-	.sub-title {
-		color: #fff;
-		font-family: @title-font;
-		font-weight: 100;
-		font-size: 1.3rem;
-	}
-
-	.main-title {
-		.sub-title;
-		font-size: 4rem;
-		background: rgba(0, 0, 0, .5);
-		padding: 0 10px;
-	}
-
-	.section-title {
-		font-size: 2.3rem;
-		&.bold {
-			font-weight: 700;
-			text-transform: uppercase;
-		}
-	}
-
-	.inner-section-title {
-		font-size: 1.3rem;
-	}
-
-	.sigong-joa {
-		cursor: pointer;
-	}
-
-	.particle-section {
-		position: absolute;
-		top: 0;
-		left: 0;
-		right: 0;
-		bottom: 0;
-		overflow: hidden;
-
-		.diamond-particle {
+		.decorator:nth-child(1) {
 			position: absolute;
-			border-color: rgba(255, 255, 255, .3);
-			border-style: solid;
-			transform: rotate(45deg) translate(-50%, -50%);
-			opacity: .4;
+			width: 100vw;
+			height: 57vw;
+			transform: rotate(-15deg);
+			background: #222222;
+		}
 
-			&:nth-child(1) {
-				left: 25%;
-				top: 60%;
-				width: 400px;
-				height: 400px;
-				border-width: 3px;
-				border-color: rgba(255, 255, 255, .6);
+		.decorator:nth-child(2) {
+			position: absolute;
+			top: 14vw;
+			width: 120vw;
+			height: 43vw;
+			transform: rotate(-5deg);
+			background: #323232;
+		}
+
+		.link-content {
+			position: absolute;
+			top: 7vw;
+		    left: -14vw;
+			width: 120vw;
+			height: 57vw;
+			background: #f17676;
+			transform: rotate(20deg);
+
+			.inner-content {
+				transform: rotate(-20deg);
+				position: relative;
+				left: 14vw;
+				color: #fff;
+
+				* {
+					font-family: "Roboto", sans-serif;
+				}
+
+				li {
+					list-style-type: none;
+					display: flex;
+
+					ul {
+						padding: 0;
+					}
+				}
+
+				h2 {
+					font-weight: 100;
+					font-size: 3rem;
+					margin: 0;
+				}
+
+				a {
+					color: #fff;
+					font-size: 1.3rem;
+					font-weight: 400;
+				}
 			}
+		}
+	}
 
-			&:nth-child(2) {
-				left: 60%;
-				top: 40%;
-				width: 200px;
+	#last {
+		transform: translateY(10vmin) rotate(3deg);
+	}
+
+	.bold {
+		font-weight: 500;
+	}
+
+	@media screen and (max-width: 768px) {
+		#about {
+			min-height: 300px;
+
+			.content-decorator {
 				height: 200px;
-				border-width: 5px;
-				border-color: rgba(255, 255, 255, .4);
 			}
 
-			&:nth-child(3) {
-				left: 50%;
-				top: 30%;
-				width: 50px;
-				height: 50px;
-				border-width: 3px;
-				border-color: rgba(255, 255, 255, .6);
-			}
+			.content {
+				h2 {
+					font-size: 2rem;
+				}
 
-			&:nth-child(4) {
-				left: 20%;
-				top: 50%;
-				width: 200px;
-				height: 200px;
-				border-width: 18px;
-			}
-
-			&:nth-child(5) {
-				left: 50%;
-				top: 70%;
-				width: 300px;
-				height: 300px;
-				border-width: 7px;
+				p {
+					font-size: 1rem;
+				}
 			}
 		}
-	}
 
-	.box-container {
-		display: flex;
-		flex-wrap: wrap;
-		justify-content: space-between;
-	}
-
-	.box {
-		display: inline-block;
-		margin-top: 50px;
-		transform: translateY(100px);
-		opacity: 0;
-		transition: transform .4s ease, opacity .4s ease;
-
-		&.active {
-			opacity: 1;
-			transform: translateY(0);
-		}
-	}
-
-	.bottom-menu {
-		top: 80%;
-		left: 50%;
-		box-sizing: border-box;
-		transform: translateX(-50%);
-		position: absolute;
-		display: flex;
-		min-width: 0;
-		transition: min-width .4s ease, padding .35s ease, box-shadow .4s ease;
-		justify-content: space-between;
-		.text-centered;
-
-		.right-menu {
-			display: flex;
-		}
-
-		a {
-			.animated-link
-		}
-
-		.title {
-			padding: 0;
-			font-family: @title-font;
-			font-size: 1.3rem;
-			font-weight: 300;
-			color: #fff;
-			margin: 0;
+		#link .decorator {
 			display: none;
-			.animated(.4s);
-			opacity: 0;
-			z-index: inherit;
-			max-width: 0;
-			overflow: hidden;
-			font-size: 1.5rem;
-			padding: 10px;
-		}
-
-		&::before {
-			content: '';
-			display: block;
-			position: absolute;
-			top: 0;
-			left: 0;
-			right: 0;
-			bottom: 0;
-			transform: skewX(-10deg);
-			background: rgba(0, 0, 0, .5);
-			.animated(.4s);
-		}
-
-		&.hide-on-mobile-down.fixed {
-			position: fixed;
-			top: 0;
-			z-index: 99;
-			min-width: 100vw;
-			padding: 0 5vw;
-			.nav-shadow;
-
-			a {
-				font-weight: 400;
-			}
-
-			&::before {
-				background: #00C0A0;
-			}
-
-			.title {
-				display: inline-block;
-				opacity: 1;
-				max-width: none;
-			}
-		}
-	}
-
-	.mobile-menu {
-		display: flex;
-		position: relative;
-		flex-direction: column;
-		.flex-centered;
-
-		a {
-			.animated-link
-		}
-	}
-
-	.sh {
-		font-family: 'D2 Coding', monospace !important;
-		background: #303030;
-		color: #f1f1f1;
-		max-width: 750px;
-		margin: 15px;
-		display: flex;
-	}
-
-	.sh-line {
-		color: #808080;
-		margin-left: 5px;
-		padding-right: 20px;
-		border-right: solid 1px #808080;
-	}
-
-	.sh-code {
-		margin-left: 15px;
-	}
-
-	.sh-str {
-		color: #00FF80;
-	}
-
-	@media only screen and (max-width: 768px) {
-		.main-title {
-			font-size: 3rem;
-		}
-
-		.sub-title {
-			font-size: 1rem;
-		}
-
-		.bottom-menu a {
-			font-size: 0.8rem;
-		}
-
-		section {
-			padding: 30px;
-		}
-
-		.box-container {
-			flex-direction: column;
 		}
 	}
 </style>
@@ -519,7 +284,6 @@
 <script>
 	const NAVBAR_DESIRED = 100;
 
-	import sketchless from "sketchless";
 	import restaurance from "restaurance";
 
 	import LightText from "../components/LightText.vue";
@@ -529,13 +293,6 @@
 	import ScrollTrigger from "../components/ScrollTrigger.vue";
 
 	export default {
-		data() {
-			return {
-				particles: [60, 40, 30, 50, 70]/*,
-				rain: true */
-			};
-		},
-
 		computed: {
 			mobile() {
 				return this.$store.state.mobile;
@@ -551,24 +308,9 @@
 		},
 
 		methods: {
-			getBG(num){
-				return window.assets[`bgMain${num}`];
-			},
-
 			asset(id) {
 				return window.assets[id];
 			},
-
-			/* getRandomParticle() {
-				let size = `${Math.random() * 400}px`;
-				return {
-					'border-width': `${Math.random() * 15 + 5}px`,
-					'top': `${Math.random() * 100}%`,
-					'left': `${Math.random() * 100}%`,
-					'width': size,
-					'height': size
-				};
-			}, */
 
 			heroes() {
 				restaurance({target: document.querySelector('#app-view')}, ['section', 'main>.parallax', 'footer'], 15);
@@ -585,11 +327,6 @@
 			Parallax,
 			ParallaxObject,
 			ScrollTrigger
-		},
-
-		mounted() {
-			//transparent makes a bug in chrome (makes a white diagonal line when nginx hardware accelerated)
-			sketchless.rainy(this.$refs.canvas, '#212121');
 		}
 	};
 </script>

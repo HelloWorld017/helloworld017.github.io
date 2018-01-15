@@ -12,6 +12,7 @@
 	.parallax {
 		width: 100%;
 		position: relative;
+		display: flex;
 	}
 </style>
 
