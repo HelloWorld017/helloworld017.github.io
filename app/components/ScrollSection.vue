@@ -1,24 +1,41 @@
 <template>
-	<scroll-pin class="scroll-section" :duration="height">
-		<div class="identifier" ref="identifier">
-			<a class="bullet" v-for="i in num" :key="i" :class="{active: checkActive(i)}"></a>
+	<div class="scroll-section-root">
+		<div class="scroll-section-wrapper">
+			<scroll-pin class="scroll-section" :duration="totalSectionHeight" :offset="offset" fixed>
+				<div class="identifier" ref="identifier">
+					<a class="bullet" v-for="i in num" :key="i" :class="{active: checkActive(i)}"></a>
+				</div>
+
+				<section class="container">
+					<transition name="slide">
+						<div v-for="i in num" :key="i" v-if="activeId === i" class="scroll-container">
+							<slot :name="`slot-${i}`"></slot>
+						</div>
+					</transition>
+				</section>
+			</scroll-pin>
 		</div>
 
-		<section class="container">
-			<transition>
-				<slot :name="activeSlot"></slot>
-			</transition>
-		</section>
-	</scroll-pin>
+		<div class="position-holder" :style="{height: computedHeight}"></div>
+	</div>
 </template>
 
 <style lang="less" scoped>
+	.scroll-section-root {
+		margin-bottom: 100px;
+	}
+
+	.scroll-section-wrapper {
+		position: absolute;
+		width: 100%;
+	}
+
 	.scroll-section {
 		display: flex;
 		padding-left: 50px;
-		margin: 100px 0;
+		margin: 10vh 0;
 		justify-content: space-between;
-		min-height: 512px;
+		min-height: 80vh;
 
 		.identifier {
 			display: flex;
@@ -49,9 +66,33 @@
 
 		.container {
 			background: #f0f0f0;
+			overflow: hidden;
+			position: relative;
 			flex: 1;
 		}
 	}
+
+	.scroll-container {
+		width: 100%;
+		height: 100%;
+		position: absolute;
+	}
+
+	.slide-enter-active, .slide-leave-active {
+		transition: transform .5s ease;
+	}
+
+	.slide-enter {
+		transform: ~"translateY(calc(80vh - 1px))";
+	}
+
+	.slide-enter-to, .slide-leave {
+		transform: translateY(0);
+	}
+
+	 .slide-leave-to {
+		 transform: ~"translateY(calc(-80vh + 1px))";
+	 }
 </style>
 
 <script>
@@ -61,7 +102,10 @@
 	export default {
 		data() {
 			return {
-				activeId: 1
+				elemTop: 0,
+				events: {
+					resizeListener: () => this.updateRect()
+				}
 			};
 		},
 
@@ -75,25 +119,48 @@
 		methods: {
 			checkActive(i) {
 				return i === this.activeId;
+			},
+
+			updateRect() {
+				this.elemTop = this.$el.getBoundingClientRect().top + this.$store.state.scroll;
 			}
 		},
 
 		computed: {
-			activeSlot() {
-				return `slot-${this.activeId}`;
+			height() {
+				return this.$store.state.height;
 			},
 
-			height() {
-				return this.$store.state.height * this.num;
+			computedHeight() {
+				return `${(this.num + 0.9) * this.height}px`;
+			},
+
+			offset() {
+				return this.height * 0.1;
+			},
+
+			totalSectionHeight() {
+				return this.height * this.num;
+			},
+
+			activeId() {
+				return Math.min(
+					Math.max(
+						0, Math.floor((this.$store.state.scroll - this.elemTop) / this.height)
+					) + 1,
+					this.num
+				);
 			}
 		},
 
 		mounted() {
+			window.addEventListener('resize', this.events.resizeListener);
 
+			this.updateRect();
 		},
 
 		destroyed() {
-
+			window.removeEventListener('resize', this.events.resizeListener);
 		},
 
 		components: {

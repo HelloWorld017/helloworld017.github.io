@@ -5,15 +5,17 @@
 		<sect-about></sect-about>
 
 		<section id="last">
+			<div class="section-decorator"></div>
 			<div class="content">
 				<scroll-section :num="3">
-					<section slot="slot-1">
+					<section slot="slot-1" class="scroll-content">
+						<info-tile image="atom" text="Atom" link="//atom.io"></info-tile>
 					</section>
 
-					<section slot="slot-2">
+					<section slot="slot-2" class="scroll-content" style="background: #222">
 					</section>
 
-					<section slot="slot-3">
+					<section slot="slot-3" class="scroll-content" style="background: #111">
 					</section>
 				</scroll-section>
 				<nenw-footer highlight="transparent" darken="transparent"></nenw-footer>
@@ -30,17 +32,27 @@
 	}
 
 	#last {
+		width: 100vw;
+		overflow: hidden;
 		margin-top: -10vh;
-		width: 200vw;
-		transform: rotate(3deg);
-		transform-origin: top left;
-		background: linear-gradient(to bottom, #f18585, #808080);
-		height: 300vh;
+		position: relative;
+
+		.section-decorator {
+			position: absolute;
+			width: 200vw;
+			height: 450vh;
+			transform: rotate(3deg);
+			transform-origin: top left;
+			background: linear-gradient(to bottom, #f18585, #808080);
+		}
 
 		.content {
-			width: 100vw;
-			transform: rotate(-3deg);
-			transform-origin: top right;
+			position: relative;
+
+			.scroll-content {
+				width: 100%;
+				height: 100%;
+			}
 		}
 	}
 
@@ -64,6 +76,7 @@
 	import ParallaxObject from "../components/ParallaxObject.vue";
 	import ScrollTrigger from "../components/ScrollTrigger.vue";
 	import ScrollSection from "../components/ScrollSection.vue";
+	import InfoTile from "../components/InfoTile.vue";
 
 	export default {
 		computed: {
@@ -101,7 +114,8 @@
 			NenwFooter,
 			ParallaxObject,
 			ScrollTrigger,
-			ScrollSection
+			ScrollSection,
+			InfoTile
 		}
 	};
 </script>

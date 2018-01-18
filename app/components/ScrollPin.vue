@@ -6,6 +6,7 @@
 
 <style lang="less" scoped>
 	.sticky {
+		width: 100%;
 		position: relative;
 
 		&.fixed.active {
@@ -34,7 +35,7 @@
 		props: {
 			offset: {
 				type: Number,
-				default: 50
+				default: 0
 			},
 
 			duration: {
@@ -44,6 +45,11 @@
 
 			fixed: {
 				type: Boolean
+			},
+
+			fixedTop: {
+				type: Number,
+				default: 0
 			}
 		},
 
@@ -55,7 +61,7 @@
 					this.active = true;
 
 					if(this.fixed) {
-						this.calculatedTop = `${this.offset}px`;
+						this.calculatedTop = `${this.fixedTop}px`;
 					} else {
 						this.calculatedTop = `${pos - this.elemTop + this.offset}px`;
 					}
@@ -69,10 +75,12 @@
 			},
 
 			updateRect() {
-				this.elemTop = this.$el.getBoundingClientRect().top;
+				this.$el.style.position = 'static';
+				this.elemTop = this.$el.getBoundingClientRect().top + scroll();
 				this.max = this.duration > 0 ?
 					this.elemTop + this.duration :
 					this.$parent.$el.getBoundingClientRect().bottom;
+				this.$el.style.position = '';
 			}
 		},
 
