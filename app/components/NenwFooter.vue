@@ -10,7 +10,7 @@
 					</light-text>
 					<br>
 					<light-text highlight="Powered by ">
-						Koa
+						Github Pages
 					</light-text>
 					<br>
 					<light-text highlight="Used ">
