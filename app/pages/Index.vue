@@ -7,17 +7,45 @@
 		<section id="last">
 			<div class="section-decorator"></div>
 			<div class="content">
-				<scroll-section :num="3">
+				<h1>Preferences</h1>
+				<section class="scroll-content">
+					<info-tile image="atom" text="Atom" link="https://atom.io"></info-tile>
+					<info-tile
+						image="es8"
+						text="ES8"
+						link="https://www.ecma-international.org/ecma-262/8.0/index.html.io">
+					</info-tile>
+					<info-tile image="python" text="Python3" link="https://python.org"></info-tile>
+					<info-tile image="heroes" text="HotS" link="javascript:sigongjoa()"></info-tile>
+					<info-tile image="lesscss" text="LessCSS" link="http://lesscss.org"></info-tile>
+					<info-tile image="postcss" text="PostCSS" link="http://postcss.org"></info-tile>
+					<info-tile image="vue" text="VueJS" link="https://vuejs.org"></info-tile>
+					<info-tile
+						image="ann"
+						text="NNs"
+						link="https://en.wikipedia.org/wiki/Artificial_neural_network">
+					</info-tile>
+					<info-tile image="torch" text="pytorch" link="http://pytorch.org"></info-tile>
+					<info-tile image="nodejs" text="node.js" link="https://nodejs.org"></info-tile>
+					<info-tile image="electron" text="Electron" link="https://electron.atom.io"></info-tile>
+				</section>
+
+				<!-- <scroll-section :num="3">
 					<section slot="slot-1" class="scroll-content">
 						<info-tile image="atom" text="Atom" link="//atom.io"></info-tile>
+						<info-tile
+							image="es8"
+							text="ES8"
+							link="https://www.ecma-international.org/ecma-262/8.0/index.html.io">
+						</info-tile>
 					</section>
 
-					<section slot="slot-2" class="scroll-content" style="background: #222">
+					<section slot="slot-2" class="scroll-content" style="background: #f1f2f3">
 					</section>
 
-					<section slot="slot-3" class="scroll-content" style="background: #111">
+					<section slot="slot-3" class="scroll-content" style="background: #f1f2f3">
 					</section>
-				</scroll-section>
+				</scroll-section> -->
 				<nenw-footer highlight="transparent" darken="transparent"></nenw-footer>
 			</div>
 		</section>
@@ -37,10 +65,18 @@
 		margin-top: -10vh;
 		position: relative;
 
+		h1 {
+			color: #fff;
+			font-weight: 100;
+			font-size: 3rem;
+			margin-top: 100px;
+			margin-left: 10vw;
+		}
+
 		.section-decorator {
 			position: absolute;
 			width: 200vw;
-			height: 450vh;
+			height: ~"calc(450vh + 300px)";
 			transform: rotate(3deg);
 			transform-origin: top left;
 			background: linear-gradient(to bottom, #f18585, #808080);
@@ -50,8 +86,17 @@
 			position: relative;
 
 			.scroll-content {
-				width: 100%;
+				background: #f1f2f3;
+				margin: 10vw;
+				display: flex;
+				justify-content: space-around;
 				height: 100%;
+
+				flex-wrap: wrap;
+
+				.info-tile {
+					margin: 30px;
+				}
 			}
 		}
 	}
@@ -65,8 +110,6 @@
 
 <script>
 	const NAVBAR_DESIRED = 100;
-
-	import restaurance from "restaurance";
 
 	import SectAbout from "../sections/SectAbout.vue";
 	import SectLogo from "../sections/SectLogo.vue";
@@ -96,10 +139,6 @@
 		methods: {
 			asset(id) {
 				return window.assets[id];
-			},
-
-			heroes() {
-				restaurance({target: document.querySelector('#app-view')}, ['section', 'main>.parallax', 'footer'], 15);
 			},
 
 			playAnim() {

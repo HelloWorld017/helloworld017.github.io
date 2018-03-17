@@ -1,3 +1,4 @@
+import restaurance from "restaurance";
 import Vue from "vue";
 import Vuex from "vuex";
 import VueRouter from "vue-router";
@@ -83,3 +84,7 @@ loadAsset(assetList, store, () => Promise.all(fontList.map((v) => {
 		});
 	});
 })));
+
+window.sigongjoa = () => {
+	restaurance({target: document.querySelector('#app-view')}, ['section', 'main>.parallax', 'footer'], 15);
+};
