@@ -30,22 +30,6 @@
 					<info-tile image="electron" text="Electron" link="https://electron.atom.io"></info-tile>
 				</section>
 
-				<!-- <scroll-section :num="3">
-					<section slot="slot-1" class="scroll-content">
-						<info-tile image="atom" text="Atom" link="//atom.io"></info-tile>
-						<info-tile
-							image="es8"
-							text="ES8"
-							link="https://www.ecma-international.org/ecma-262/8.0/index.html.io">
-						</info-tile>
-					</section>
-
-					<section slot="slot-2" class="scroll-content" style="background: #f1f2f3">
-					</section>
-
-					<section slot="slot-3" class="scroll-content" style="background: #f1f2f3">
-					</section>
-				</scroll-section> -->
 				<nenw-footer highlight="transparent" darken="transparent"></nenw-footer>
 			</div>
 		</section>
@@ -76,7 +60,7 @@
 		.section-decorator {
 			position: absolute;
 			width: 200vw;
-			height: ~"calc(450vh + 300px)";
+			height: 5100px;
 			transform: rotate(3deg);
 			transform-origin: top left;
 			background: linear-gradient(to bottom, #f18585, #808080);
