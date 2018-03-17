@@ -1,5 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
+const DashboardPlugin = require('webpack-dashboard/plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 const cssLoaders = [
@@ -52,6 +53,9 @@ module.exports = {
 			{
 				test: /\.js$/,
 				loader: 'babel-loader',
+				options: {
+					presets: ['env']
+				},
 				exclude: /node_modules/
 			},
 			{
@@ -63,7 +67,7 @@ module.exports = {
 				loader: cssExtract
 			},
 			{
-				test: /\.(png|jpe?g|gif|svg|ttf|woff2?|eot|otf|wav)$/,
+				test: /\.(png|jpe?g|gif|woff2?|otf|wav|ttf|eot|svg)(\?|\#.*)?$/,
 				loader: 'file-loader',
 				options: {
 					name: 'files/[name].[ext]?[hash]'
@@ -73,7 +77,8 @@ module.exports = {
 	},
 
 	plugins: [
-		new ExtractTextPlugin('nenwchan.bundle.css')
+		new ExtractTextPlugin('nenwchan.bundle.css'),
+		new DashboardPlugin()
 	],
 
 	resolve: {

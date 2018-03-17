@@ -1,517 +1,109 @@
 <template>
 	<main>
-		<parallax :height="100" :src="getBG(1)" :speed="0.2" :unparallax="mobile">
-			<div class="particle-section" v-if="!mobile">
-				<parallax-object
-					class="diamond-particle"
-					v-for="(top, index) in particles"
-					:scroll-offset="0"
-					:top="top"
-					:key="index"
-					:speed="Math.random() + 0.5">
-				</parallax-object>
-			</div>
+		<sect-logo></sect-logo>
 
-			<div class="fixed-centered text-centered">
-				<h1 class="main-title">Khinenw's Page</h1>
-				<h3 class="sub-title">키네누의 페이지에 오신 것을 환영합니다!</h3>
-				<div class="mobile-menu show-on-mobile-down" ref="mobileMenu">
-					<a target="_blank" href="https://blog.khinenw.tk">Blog</a>
-					<router-link to="/gallery">Gallery</router-link>
-					<a target="_blank" href="https://git.khinenw.tk">Projects</a>
-					<a target="_blank" href="https://t.me/Khinenw">Telegram</a>
-				</div>
-			</div>
+		<sect-about></sect-about>
 
-			<scroll-trigger
-				class="bottom-menu hide-on-mobile-down"
-				ref="desktopMenu"
-				class-name="fixed"
-				:position="height * 0.8"
-				:scroll-offset="0">
+		<section id="last">
+			<div class="section-decorator"></div>
+			<div class="content">
+				<h1>Preferences</h1>
+				<section class="scroll-content">
+					<info-tile image="atom" text="Atom" link="https://atom.io"></info-tile>
+					<info-tile
+						image="es8"
+						text="ES8"
+						link="https://www.ecma-international.org/ecma-262/8.0/index.html.io">
+					</info-tile>
+					<info-tile image="python" text="Python3" link="https://python.org"></info-tile>
+					<info-tile image="heroes" text="HotS" link="javascript:sigongjoa()"></info-tile>
+					<info-tile image="lesscss" text="LessCSS" link="http://lesscss.org"></info-tile>
+					<info-tile image="postcss" text="PostCSS" link="http://postcss.org"></info-tile>
+					<info-tile image="vue" text="VueJS" link="https://vuejs.org"></info-tile>
+					<info-tile
+						image="ann"
+						text="NNs"
+						link="https://en.wikipedia.org/wiki/Artificial_neural_network">
+					</info-tile>
+					<info-tile image="torch" text="pytorch" link="http://pytorch.org"></info-tile>
+					<info-tile image="nodejs" text="node.js" link="https://nodejs.org"></info-tile>
+					<info-tile image="electron" text="Electron" link="https://electron.atom.io"></info-tile>
+				</section>
 
-				<h1 class="title">Khinenw's Page</h1>
-				<div class="right-menu">
-					<a target="_blank" href="https://blog.khinenw.tk">Blog</a>
-					<router-link to="/gallery">Gallery</router-link>
-					<a target="_blank" href="https://git.khinenw.tk">Projects</a>
-					<a target="_blank" href="https://t.me/Khinenw">Telegram</a>
-				</div>
-			</scroll-trigger>
-		</parallax>
+				<!-- <scroll-section :num="3">
+					<section slot="slot-1" class="scroll-content">
+						<info-tile image="atom" text="Atom" link="//atom.io"></info-tile>
+						<info-tile
+							image="es8"
+							text="ES8"
+							link="https://www.ecma-international.org/ecma-262/8.0/index.html.io">
+						</info-tile>
+					</section>
 
-		<section id="summary" class="chevron-section">
-			<!-- <scroll-trigger
-				:position="500"
-				:max="height + 500"
-				class-name="rain"
-				@over="rain = true"
-				@under="rain = false">
-			</scroll-trigger> -->
+					<section slot="slot-2" class="scroll-content" style="background: #f1f2f3">
+					</section>
 
-			<canvas :width="width" height="550" ref="canvas"></canvas>
-
-			<div class="section-inner">
-				<h2 class="section-title">
-					<light-text highlight="About ">Khinenw</light-text>
-				</h2>
-
-				Developer@Daedeok High School
-				<br>
-				<br>
-				<div class="sh">
-					<span class="sh-line">1</span>
-					<span class="sh-code">console.log(
-						<span class="sh-str">"Hello, World!"</span>
-						);
-					</span>
-				</div>
-
-				<br><br>
-				<div style="margin-bottom: 50px;">
-					<h3 class="inner-section-title">Links</h3>
-					<a href="https://github.com/HelloWorld017/">Github</a>
-					<a href="https://blog.khinenw.tk/">Blog</a>
-				</div>
+					<section slot="slot-3" class="scroll-content" style="background: #f1f2f3">
+					</section>
+				</scroll-section> -->
+				<nenw-footer highlight="transparent" darken="transparent"></nenw-footer>
 			</div>
 		</section>
-
-		<section class="chevron-section"></section>
-		<section class="chevron-section"></section>
-
-		<section class="chevron-section contents" id="interests">
-			<scroll-trigger :position="1130" class-name="anim" @over="playAnim"></scroll-trigger>
-			<div class="section-inner">
-				<h2 class="section-title bold">
-					preference
-				</h2>
-				<div class="box-container">
-					<div class="box">
-						<h3>
-							Editor
-						</h3>
-						<a href="https://atom.io">
-							<img :src="asset('atom')" alt="Atom">
-						</a>
-					</div>
-					<div class="box">
-						<h3>
-							Language
-						</h3>
-						<a href="https://www.ecma-international.org/ecma-262/8.0/index.html">
-							<img :src="asset('es8')" alt="ECMAScript8">
-						</a>
-					</div>
-					<div class="box">
-						<h3>
-							Plays
-						</h3>
-						<a @click="heroes" class="sigong-joa">
-							<img :src="asset('heroes')" alt="Heroes of the Storm">
-						</a>
-					</div>
-					<div class="box">
-						<h3>
-							CSS Preprocessor
-						</h3>
-						<a href="http://lesscss.org">
-							<img :src="asset('lesscss')" alt="LessCSS">
-						</a>
-						<a href="http://postcss.org">
-							<img :src="asset('postcss')" alt="PostCSS">
-						</a>
-					</div>
-					<div class="box">
-						<h3>
-							Front-end Framework
-						</h3>
-						<a href="https://vuejs.org">
-							<img :src="asset('vue')" alt="VueJS">
-						</a>
-					</div>
-					<div class="box">
-						<h3>
-							Likes
-						</h3>
-						<a href="https://en.wikipedia.org/wiki/Artificial_neural_network">
-							<img :src="asset('ann')" alt="Neural Networks">
-						</a>
-						<a href="https://nodejs.org">
-							<img :src="asset('nodejs')" alt="node.js">
-						</a>
-						<a href="https://electron.atom.io">
-							<img :src="asset('electron')" alt="Electron">
-						</a>
-					</div>
-				</div>
-			</div>
-		</section>
-
-		<!-- <iframe v-if="rain"
-			src="https://www.youtube-nocookie.com/embed/jX6kn9_U8qk?rel=0&loop=1&autoplay=1&disablekb=1&controls=0&showinfo=0"
-			width="1"
-			height="1"
-			style="border: none; opacity: 0">
-		</iframe> -->
-
-		<section class="chevron-section"></section>
-
-		<!--<parallax :height="30" :src="getBG(2)" :speed="0.6" :unparallax="mobile"></parallax>
-
-		<parallax :height="50" :src="getBG(3)" :speed="0.3" :unparallax="mobile"></parallax> -->
-
-		<nenw-footer></nenw-footer>
 	</main>
 </template>
 
 <style lang="less" scoped>
 	@import "~theme";
-
 	main {
-		min-height: 200vh;
+		background: #e3e3e3;
+		overflow: hidden;
 	}
 
-	section {
-		padding: 10px;
-	}
-
-	blockquote {
-	    border-left: .5rem solid #c0c1c2;
-		padding: .75rem .25rem;
-	}
-
-	#summary {
-		color: #fff;
+	#last {
+		width: 100vw;
+		overflow: hidden;
+		margin-top: -10vh;
 		position: relative;
-		padding: 100px;
-		height: 550px;
-	    box-sizing: border-box;
 
-		a {
+		h1 {
 			color: #fff;
+			font-weight: 100;
+			font-size: 3rem;
+			margin-top: 100px;
+			margin-left: 10vw;
 		}
 
-		h2 {
-			color: #f1f1f1;
-		}
-
-		canvas {
+		.section-decorator {
 			position: absolute;
-			top: 0;
-			left: 0;
-			right: 0;
-			bottom: 0;
-			width: 100%;
+			width: 200vw;
+			height: ~"calc(450vh + 300px)";
+			transform: rotate(3deg);
+			transform-origin: top left;
+			background: linear-gradient(to bottom, #f18585, #808080);
 		}
 
-		.section-inner {
+		.content {
 			position: relative;
-		}
-	}
 
-	.chevron-section {
-		min-height: 120px;
-		position: relative;
-		&.contents {
-			padding-top: 60px;
-		}
+			.scroll-content {
+				background: #f1f2f3;
+				margin: 10vw;
+				display: flex;
+				justify-content: space-around;
+				height: 100%;
 
-		&:not(:last-of-type) {
-			&::before, &::after {
-				display: block;
-				content: '';
-				position: absolute;
-				bottom: -60px;
-				width: 0;
-				height: 0;
-				border-style: solid;
-			}
+				flex-wrap: wrap;
 
-			&::before {
-				border-width: 60px 60vw 0 0;
-				left: 0;
-				z-index: 9;
-			}
-
-			&::after {
-				border-width: 0 60vw 60px 0;
-				right: 0;
-				z-index: 10;
-			}
-		}
-
-		@section-color: #212121, #323232, #3fc1c9, #ecfffb, #00c0a0;
-
-		.for(length(@section-color)); .-each(@i) {
-			@color: extract(@section-color, @i);
-
-			&:nth-of-type(@{i}) {
-				background: @color;
-
-				&:not(:last-of-type) {
-					&::before {
-						border-color: @color transparent transparent transparent;
-					}
-
-					&::after {
-						border-color: transparent @color transparent transparent;
-					}
+				.info-tile {
+					margin: 30px;
 				}
 			}
 		}
 	}
 
-	.section-inner {
-		max-width: 768px;
-		margin: 0 auto;
-	}
-
-	.small-masthead {
-		min-height: 300px;
-		height: 300px;
-	}
-
-	.fixed-centered {
-		position: absolute;
-	}
-
-	.sub-title {
-		color: #fff;
-		font-family: @title-font;
-		font-weight: 100;
-		font-size: 1.3rem;
-	}
-
-	.main-title {
-		.sub-title;
-		font-size: 4rem;
-		background: rgba(0, 0, 0, .5);
-		padding: 0 10px;
-	}
-
-	.section-title {
-		font-size: 2.3rem;
-		&.bold {
-			font-weight: 700;
-			text-transform: uppercase;
-		}
-	}
-
-	.inner-section-title {
-		font-size: 1.3rem;
-	}
-
-	.sigong-joa {
-		cursor: pointer;
-	}
-
-	.particle-section {
-		position: absolute;
-		top: 0;
-		left: 0;
-		right: 0;
-		bottom: 0;
-		overflow: hidden;
-
-		.diamond-particle {
-			position: absolute;
-			border-color: rgba(255, 255, 255, .3);
-			border-style: solid;
-			transform: rotate(45deg) translate(-50%, -50%);
-			opacity: .4;
-
-			&:nth-child(1) {
-				left: 25%;
-				top: 60%;
-				width: 400px;
-				height: 400px;
-				border-width: 3px;
-				border-color: rgba(255, 255, 255, .6);
-			}
-
-			&:nth-child(2) {
-				left: 60%;
-				top: 40%;
-				width: 200px;
-				height: 200px;
-				border-width: 5px;
-				border-color: rgba(255, 255, 255, .4);
-			}
-
-			&:nth-child(3) {
-				left: 50%;
-				top: 30%;
-				width: 50px;
-				height: 50px;
-				border-width: 3px;
-				border-color: rgba(255, 255, 255, .6);
-			}
-
-			&:nth-child(4) {
-				left: 20%;
-				top: 50%;
-				width: 200px;
-				height: 200px;
-				border-width: 18px;
-			}
-
-			&:nth-child(5) {
-				left: 50%;
-				top: 70%;
-				width: 300px;
-				height: 300px;
-				border-width: 7px;
-			}
-		}
-	}
-
-	.box-container {
-		display: flex;
-		flex-wrap: wrap;
-		justify-content: space-between;
-	}
-
-	.box {
-		display: inline-block;
-		margin-top: 50px;
-		transform: translateY(100px);
-		opacity: 0;
-		transition: transform .4s ease, opacity .4s ease;
-
-		&.active {
-			opacity: 1;
-			transform: translateY(0);
-		}
-	}
-
-	.bottom-menu {
-		top: 80%;
-		left: 50%;
-		box-sizing: border-box;
-		transform: translateX(-50%);
-		position: absolute;
-		display: flex;
-		min-width: 0;
-		transition: min-width .4s ease, padding .35s ease, box-shadow .4s ease;
-		justify-content: space-between;
-		.text-centered;
-
-		.right-menu {
-			display: flex;
-		}
-
-		a {
-			.animated-link
-		}
-
-		.title {
-			padding: 0;
-			font-family: @title-font;
-			font-size: 1.3rem;
-			font-weight: 300;
-			color: #fff;
-			margin: 0;
-			display: none;
-			.animated(.4s);
-			opacity: 0;
-			z-index: inherit;
-			max-width: 0;
-			overflow: hidden;
-			font-size: 1.5rem;
-			padding: 10px;
-		}
-
-		&::before {
-			content: '';
-			display: block;
-			position: absolute;
-			top: 0;
-			left: 0;
-			right: 0;
-			bottom: 0;
-			transform: skewX(-10deg);
-			background: rgba(0, 0, 0, .5);
-			.animated(.4s);
-		}
-
-		&.hide-on-mobile-down.fixed {
-			position: fixed;
-			top: 0;
-			z-index: 99;
-			min-width: 100vw;
-			padding: 0 5vw;
-			.nav-shadow;
-
-			a {
-				font-weight: 400;
-			}
-
-			&::before {
-				background: #00C0A0;
-			}
-
-			.title {
-				display: inline-block;
-				opacity: 1;
-				max-width: none;
-			}
-		}
-	}
-
-	.mobile-menu {
-		display: flex;
-		position: relative;
-		flex-direction: column;
-		.flex-centered;
-
-		a {
-			.animated-link
-		}
-	}
-
-	.sh {
-		font-family: 'D2 Coding', monospace !important;
-		background: #303030;
-		color: #f1f1f1;
-		max-width: 750px;
-		margin: 15px;
-		display: flex;
-	}
-
-	.sh-line {
-		color: #808080;
-		margin-left: 5px;
-		padding-right: 20px;
-		border-right: solid 1px #808080;
-	}
-
-	.sh-code {
-		margin-left: 15px;
-	}
-
-	.sh-str {
-		color: #00FF80;
-	}
-
-	@media only screen and (max-width: 768px) {
-		.main-title {
-			font-size: 3rem;
-		}
-
-		.sub-title {
-			font-size: 1rem;
-		}
-
-		.bottom-menu a {
-			font-size: 0.8rem;
-		}
-
-		section {
-			padding: 30px;
-		}
-
-		.box-container {
-			flex-direction: column;
+	@media screen and (max-width: 768px) {
+		#last {
+			margin-top: -20vh;
 		}
 	}
 </style>
@@ -519,23 +111,17 @@
 <script>
 	const NAVBAR_DESIRED = 100;
 
-	import sketchless from "sketchless";
-	import restaurance from "restaurance";
+	import SectAbout from "../sections/SectAbout.vue";
+	import SectLogo from "../sections/SectLogo.vue";
 
 	import LightText from "../components/LightText.vue";
 	import NenwFooter from "../components/NenwFooter.vue";
-	import Parallax from "../components/Parallax.vue";
 	import ParallaxObject from "../components/ParallaxObject.vue";
 	import ScrollTrigger from "../components/ScrollTrigger.vue";
+	import ScrollSection from "../components/ScrollSection.vue";
+	import InfoTile from "../components/InfoTile.vue";
 
 	export default {
-		data() {
-			return {
-				particles: [60, 40, 30, 50, 70]/*,
-				rain: true */
-			};
-		},
-
 		computed: {
 			mobile() {
 				return this.$store.state.mobile;
@@ -551,27 +137,8 @@
 		},
 
 		methods: {
-			getBG(num){
-				return window.assets[`bgMain${num}`];
-			},
-
 			asset(id) {
 				return window.assets[id];
-			},
-
-			/* getRandomParticle() {
-				let size = `${Math.random() * 400}px`;
-				return {
-					'border-width': `${Math.random() * 15 + 5}px`,
-					'top': `${Math.random() * 100}%`,
-					'left': `${Math.random() * 100}%`,
-					'width': size,
-					'height': size
-				};
-			}, */
-
-			heroes() {
-				restaurance({target: document.querySelector('#app-view')}, ['section', 'main>.parallax', 'footer'], 15);
 			},
 
 			playAnim() {
@@ -580,16 +147,14 @@
 		},
 
 		components: {
+			SectAbout,
+			SectLogo,
 			LightText,
 			NenwFooter,
-			Parallax,
 			ParallaxObject,
-			ScrollTrigger
-		},
-
-		mounted() {
-			//transparent makes a bug in chrome (makes a white diagonal line when nginx hardware accelerated)
-			sketchless.rainy(this.$refs.canvas, '#212121');
+			ScrollTrigger,
+			ScrollSection,
+			InfoTile
 		}
 	};
 </script>

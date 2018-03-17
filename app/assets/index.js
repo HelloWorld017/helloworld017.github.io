@@ -1,30 +1,34 @@
-const cdnPrefix = "https://cdn.rawgit.com/HelloWorld017/nenwchan2/master/app/assets";
-const assets = {
-	bgMain1: "/backgrounds/main/main-background1.jpg",
-	bgMain2: "/backgrounds/main/main-background2.jpg",
-	bgMain3: "/backgrounds/main/main-background3.png",
-	bgGallery: "/backgrounds/gallery/gallery-background.png",
-	bgGalleryArt: "/backgrounds/gallery/gallery-background-art.png",
-	bgGalleryKorean: "/backgrounds/gallery/gallery-background-korean.png",
-	bgGalleryMath: "/backgrounds/gallery/gallery-background-math.png",
-	bgGalleryProgress: "/backgrounds/gallery/gallery-background-progress.png",
-	bgService1: "/backgrounds/service/service-background1.jpg",
-	bgService2: "/backgrounds/service/service-background2.jpg",
-	bgService3: "/backgrounds/service/service-background3.jpg",
-	bgService4: "/backgrounds/service/service-background4.jpg",
-	profile: "/profile/profile.png",
-	sadIcon: "/image/sad.svg",
-	ann: "/image/ann.svg",
-	atom: "/image/atom.svg",
-	electron: "/image/electron.svg",
-	es8: "/image/es8.svg",
-	heroes: "/image/heroes.svg",
-	lesscss: "/image/lesscss.svg",
-	nodejs: "/image/nodejs.svg",
-	postcss: "/image/postcss.svg",
-	vue: "/image/vue.svg"
-};
+import bgMain from "./backgrounds/main/main-background.jpg";
+import bgGallery from "./backgrounds/gallery/gallery-background.png";
+import bgGalleryArt from "./backgrounds/gallery/gallery-background-art.png";
+import bgGalleryKorean from "./backgrounds/gallery/gallery-background-korean.png";
+import bgGalleryMath from "./backgrounds/gallery/gallery-background-math.png";
+import bgGalleryProgress from "./backgrounds/gallery/gallery-background-progress.png";
+import bgService1 from "./backgrounds/service/service-background1.jpg";
+import bgService2 from "./backgrounds/service/service-background2.jpg";
+import bgService3 from "./backgrounds/service/service-background3.jpg";
+import bgService4 from "./backgrounds/service/service-background4.jpg";
+import logo from "./image/nenw-logo.png";
+import profile from "./profile/profile.png";
+import sadIcon from "./image/sad.svg";
+import ann from "./image/ann.svg";
+import atom from "./image/atom.svg";
+import electron from "./image/electron.svg";
+import es8 from "./image/es8.svg";
+import heroes from "./image/heroes.svg";
+import lesscss from "./image/lesscss.svg";
+import nodejs from "./image/nodejs.svg";
+import torch from "./image/torch.svg";
+import postcss from "./image/postcss.svg";
+import python from "./image/python.svg";
+import vue from "./image/vue.svg";
 
-Object.keys(assets).forEach((k) => assets[k] = cdnPrefix + assets[k]);
-
-export default assets;
+export default {
+	bgMain,
+	bgGallery, bgGalleryArt, bgGalleryKorean, bgGalleryMath, bgGalleryProgress,
+	bgService1, bgService2, bgService3, bgService4,
+	logo,
+	profile,
+	sadIcon,
+	ann, atom, electron, es8, heroes, lesscss, nodejs, torch, postcss, python, vue
+}

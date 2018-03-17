@@ -1,3 +1,4 @@
+import restaurance from "restaurance";
 import Vue from "vue";
 import Vuex from "vuex";
 import VueRouter from "vue-router";
@@ -8,7 +9,7 @@ import App from "./App.vue";
 
 import loadAsset from "./js/asset-loader";
 import assetList from "./assets/";
-import fontList from "./js/fonts";
+import fontList from "./assets/fonts";
 import routes from "./js/routes";
 import scroll from "./js/scroll";
 
@@ -68,7 +69,7 @@ new Vue({
 	el: '#app',
 	store,
 	router,
-	render(h){
+	render(h) {
 		return h(App);
 	}
 });
@@ -83,3 +84,7 @@ loadAsset(assetList, store, () => Promise.all(fontList.map((v) => {
 		});
 	});
 })));
+
+window.sigongjoa = () => {
+	restaurance({target: document.querySelector('#app-view')}, ['section', 'main>.parallax', 'footer'], 15);
+};
