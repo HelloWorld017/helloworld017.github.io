@@ -31,7 +31,7 @@
 		.section-decorator {
 			position: absolute;
 			width: 200vw;
-			height: ~"calc(450vh + 300px)";
+			height: 5100px;
 			transform: rotate(3deg);
 			transform-origin: top left;
 			background: linear-gradient(to bottom, #f18585, #808080);

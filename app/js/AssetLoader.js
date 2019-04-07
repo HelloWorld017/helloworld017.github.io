@@ -3,17 +3,27 @@ import swal from "sweetalert";
 export default async (assets, store, afterBehavior) => {
 	window.assets = {};
 
-	for(let asset in assets){
-		try {
-			const resp = await fetch(assets[asset]);
-			const blob = await resp.blob();
+	await new Promise((resolve, reject) => {
+		const loadedAssets = [];
 
-			window.assets[asset] = URL.createObjectURL(blob);
+		const keys = Object.keys(assets);
+		keys.forEach(async idx => {
+			try {
+				const resp = await fetch(assets[idx]);
+				const blob = await resp.blob();
+
+				window.assets[idx] = URL.createObjectURL(blob);
+			} catch(err) {
+				swal('Oops...', 'Failed while loading assets!', 'error');
+			}
 			store.commit('loadAsset');
-		} catch(err) {
-			swal("Oops...", "Failed while loading assets!", "error");
-		}
-	}
+
+			loadedAssets.push(idx);
+			if(loadedAssets.length === keys.length) {
+				resolve();
+			}
+		});
+	});
 
 	await afterBehavior();
 
