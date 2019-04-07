@@ -1,10 +1,10 @@
 <template>
 	<div class="fullpage">
 		<div class="nenw-logon">
-			<nenw-sticker class="sticker"></nenw-sticker>
+			<sticker class="sticker"></sticker>
 			<div class="bio">
-				<h1>Khinenw</h1>
-				<span>console.log("Hello, World!")</span>
+				<h1>nenw*</h1>
+				<span>console.log("Aviation in progress")</span>
 			</div>
 			<div class="loader">
 				<div></div>
@@ -105,11 +105,11 @@
 
 <script>
 	import Cookie from "../js/cookie";
-	import NenwSticker from "../components/NenwSticker.vue";
+	import Sticker from "../components/Sticker.vue";
 
 	export default {
 		components: {
-			NenwSticker
+			Sticker
 		},
 
 		mounted(){

@@ -1,8 +1,8 @@
 <template>
 	<div id="app" :class="{loaded, finished}">
 		<template v-if="!logonShowed">
-			<nenw-loading v-if="!loaded"></nenw-loading>
-			<nenw-logon v-if="loaded && !finished"></nenw-logon>
+			<loading v-if="!loaded"></loading>
+			<logon v-if="loaded && !finished"></logon>
 			<div class="fake-slide" v-if="loaded" :class="{finished}"></div>
 			<transition name="slide-fade" mode="out-in" v-if="finished">
 				<keep-alive>
@@ -92,8 +92,8 @@
 <script>
 	import Cookie from "./js/cookie";
 
-	import NenwLoading from "./components/NenwLoading.vue";
-	import NenwLogon from "./components/NenwLogon.vue";
+	import Loading from "./pages/Loading.vue";
+	import Logon from "./pages/Logon.vue";
 
 	export default {
 		computed: {
@@ -115,8 +115,8 @@
 		},
 
 		components: {
-			NenwLoading,
-			NenwLogon
+			Loading,
+			Logon
 		}
 	};
 </script>

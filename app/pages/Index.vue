@@ -1,54 +1,9 @@
 <template>
 	<main>
 		<sect-logo></sect-logo>
-
 		<sect-about></sect-about>
-
-		<section id="last">
-			<div class="section-decorator"></div>
-			<div class="content">
-				<h1>Preferences</h1>
-				<section class="scroll-content">
-					<info-tile image="atom" text="Atom" link="https://atom.io"></info-tile>
-					<info-tile
-						image="es8"
-						text="ES8"
-						link="https://www.ecma-international.org/ecma-262/8.0/index.html.io">
-					</info-tile>
-					<info-tile image="python" text="Python3" link="https://python.org"></info-tile>
-					<info-tile image="heroes" text="HotS" link="javascript:sigongjoa()"></info-tile>
-					<info-tile image="lesscss" text="LessCSS" link="http://lesscss.org"></info-tile>
-					<info-tile image="postcss" text="PostCSS" link="http://postcss.org"></info-tile>
-					<info-tile image="vue" text="VueJS" link="https://vuejs.org"></info-tile>
-					<info-tile
-						image="ann"
-						text="NNs"
-						link="https://en.wikipedia.org/wiki/Artificial_neural_network">
-					</info-tile>
-					<info-tile image="torch" text="pytorch" link="http://pytorch.org"></info-tile>
-					<info-tile image="nodejs" text="node.js" link="https://nodejs.org"></info-tile>
-					<info-tile image="electron" text="Electron" link="https://electron.atom.io"></info-tile>
-				</section>
-
-				<!-- <scroll-section :num="3">
-					<section slot="slot-1" class="scroll-content">
-						<info-tile image="atom" text="Atom" link="//atom.io"></info-tile>
-						<info-tile
-							image="es8"
-							text="ES8"
-							link="https://www.ecma-international.org/ecma-262/8.0/index.html.io">
-						</info-tile>
-					</section>
-
-					<section slot="slot-2" class="scroll-content" style="background: #f1f2f3">
-					</section>
-
-					<section slot="slot-3" class="scroll-content" style="background: #f1f2f3">
-					</section>
-				</scroll-section> -->
-				<nenw-footer highlight="transparent" darken="transparent"></nenw-footer>
-			</div>
-		</section>
+		<sect-preference></sect-preference>
+		<sect-footer highlight="transparent" darken="transparent"></sect-footer>
 	</main>
 </template>
 
@@ -112,14 +67,9 @@
 	const NAVBAR_DESIRED = 100;
 
 	import SectAbout from "../sections/SectAbout.vue";
+	import SectFooter from "../sections/SectFooter.vue";
 	import SectLogo from "../sections/SectLogo.vue";
-
-	import LightText from "../components/LightText.vue";
-	import NenwFooter from "../components/NenwFooter.vue";
-	import ParallaxObject from "../components/ParallaxObject.vue";
-	import ScrollTrigger from "../components/ScrollTrigger.vue";
-	import ScrollSection from "../components/ScrollSection.vue";
-	import InfoTile from "../components/InfoTile.vue";
+	import SectPreference from "../sections/SectPreference.vue";
 
 	export default {
 		computed: {
@@ -148,13 +98,8 @@
 
 		components: {
 			SectAbout,
-			SectLogo,
-			LightText,
-			NenwFooter,
-			ParallaxObject,
-			ScrollTrigger,
-			ScrollSection,
-			InfoTile
+			SectFooter,
+			SectLogo
 		}
 	};
 </script>
