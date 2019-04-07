@@ -11,7 +11,7 @@
 			</transition>
 		</template>
 		<template v-else>
-			<nenw-loading v-if="!firstFinished"></nenw-loading>
+			<loading v-if="!firstFinished"></loading>
 			<div
 				class="fake-slide first-anim"
 				v-if="loaded"
@@ -30,7 +30,7 @@
 
 <style lang="less">
 	@import "~theme";
-	@import "~sweetalert/dist/sweetalert.css";
+	@import "~sweetalert2/dist/sweetalert2.css";
 
 	body, html {
 		margin: 0;
@@ -90,7 +90,7 @@
 </style>
 
 <script>
-	import Cookie from "./js/cookie";
+	import Cookie from "./src/Cookie";
 
 	import Loading from "./pages/Loading.vue";
 	import Logon from "./pages/Logon.vue";

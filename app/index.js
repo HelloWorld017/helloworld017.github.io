@@ -7,11 +7,11 @@ import "whatwg-fetch";
 
 import App from "./App.vue";
 
-import loadAsset from "./js/asset-loader";
 import assetList from "./assets/";
 import fontList from "./assets/fonts";
-import routes from "./js/routes";
-import scroll from "./js/scroll";
+import loadAsset from "./src/AssetLoader";
+import routes from "./src/routes";
+import scroll from "./src/scroll";
 
 //Loading Assets
 

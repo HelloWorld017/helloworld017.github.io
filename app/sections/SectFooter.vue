@@ -5,30 +5,34 @@
 				<h3>Footer</h3>
 
 				<p>
-					<light-text highlight="nenw.moe">
+					<div>
+						<span class="light">nenw.moe</span>
 						4.1, 2017 Redesigned
-					</light-text>
+					</div>
 					<br>
-					<light-text highlight="Powered by ">
+					<div>
+						<span class="light">Powered by </span>
 						Github Pages
-					</light-text>
+					</div>
 					<br>
-					<light-text highlight="Used ">
+					<div>
+						<span class="light">Used </span>
 						Vue.js, Nanum Fonts
-					</light-text>
+					</div>
 				</p>
 			</div>
 		</div>
 		<div class="darken section" :style="{background: darken}">
 			<div class="footer-container flex-container">
-				<light-text highlight="© 2016-2017 ">
+				<div>
+					<span class="light">© 2016-2019 </span>
 					Khinenw
-				</light-text>
+				</div>
 				<br>
 
 				<span>
 					View on
-					<a href="https://github.com/HelloWorld017/nenwchan2"
+					<a href="https://github.com/HelloWorld017/helloworld017.github.io"
 						class="no-decoration" :style="{color: foreground}">
 
 						<span class="bold">GitHub</span>
@@ -71,8 +75,6 @@
 </style>
 
 <script>
-	import LightText from "./LightText.vue";
-
 	export default {
 		props: {
 			highlight: {
@@ -89,10 +91,6 @@
 				type: String,
 				default: '#fff'
 			}
-		},
-
-		components: {
-			LightText
 		}
 	};
 </script>

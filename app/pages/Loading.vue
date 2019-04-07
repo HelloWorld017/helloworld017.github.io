@@ -125,7 +125,7 @@
 </style>
 
 <script>
-	import RippleCreator from "../js/ripple";
+	import RippleCreator from "../src/Ripple";
 
 	export default {
 		computed: {

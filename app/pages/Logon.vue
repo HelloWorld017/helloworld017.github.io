@@ -104,7 +104,7 @@
 </style>
 
 <script>
-	import Cookie from "../js/cookie";
+	import Cookie from "../src/Cookie";
 	import Sticker from "../components/Sticker.vue";
 
 	export default {

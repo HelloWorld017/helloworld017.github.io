@@ -1,36 +1,56 @@
 const path = require('path');
 const webpack = require('webpack');
-const DashboardPlugin = require('webpack-dashboard/plugin');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
-const cssLoaders = [
-	{
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const WebpackBarPlugin = require('webpackbar');
+const VueLoaderPlugin = require('vue-loader/lib/plugin');
+
+const nodeEnv = (process.env.NODE_ENV || 'development').trim();
+
+const styleLoader = nodeEnv !== 'production'
+	? 'vue-style-loader'
+	: MiniCssExtractPlugin.loader;
+
+const postcssLoader = {
+	loader: 'postcss-loader',
+	options: {
+		sourceMap: true
+	}
+};
+
+const lessLoader = [
+	styleLoader, {
+		loader: 'css-loader',
+		options: {
+			importLoaders: 2
+		}
+	},
+	postcssLoader,
+	'less-loader'
+];
+
+const cssLoader = [
+	styleLoader, {
 		loader: 'css-loader',
 		options: {
 			importLoaders: 1
 		}
 	},
-	'postcss-loader'
+	postcssLoader
 ];
 
-const cssExtract = ExtractTextPlugin.extract({
-	use: cssLoaders,
-	fallback: 'vue-style-loader'
-});
-
-const lessExtract = ExtractTextPlugin.extract({
-	use: cssLoaders.concat('less-loader'),
-	fallback: 'vue-style-loader'
-});
-
 module.exports = {
-	entry: path.resolve(__dirname, 'app', 'index.js'),
+	entry: {
+		nenwchan: path.resolve(__dirname, 'app', 'index.js')
+	},
 
 	output: {
 		path: path.resolve(__dirname, 'dist'),
 		publicPath: '/dist/',
-		filename: 'nenwchan.bundle.js'
+		filename: '[name].bundle.js'
 	},
+
+	mode: nodeEnv,
 
 	module: {
 		rules: [
@@ -39,46 +59,68 @@ module.exports = {
 				loader: 'vue-loader',
 				options: {
 					loaders: {
-						'less': lessExtract,
-						'css': cssExtract,
+						'less': lessLoader,
+						'css': cssLoader,
 						'js': {
-							loader: 'babel-loader',
-							options: {
-								presets: ['env']
-							}
+							loader: 'babel-loader'
 						}
 					}
 				}
 			},
+
 			{
 				test: /\.js$/,
 				loader: 'babel-loader',
-				options: {
-					presets: ['env']
-				},
 				exclude: /node_modules/
 			},
+
 			{
 				test: /\.less$/,
-				loader: lessExtract
+				loader: lessLoader
 			},
+
 			{
 				test: /\.css$/,
-				loader: cssExtract
+				loader: cssLoader
 			},
+
 			{
-				test: /\.(png|jpe?g|gif|woff2?|otf|wav|ttf|eot|svg)(\?|\#.*)?$/,
+				test: /\.svg$/,
+				oneOf: [
+					{
+						resourceQuery: /inline/,
+						loader: 'vue-svg-loader',
+						options: {
+							svgo: false
+						}
+					},
+
+					{
+						loader: 'file-loader',
+						options: {
+							name: 'files/[hash:8].[ext]'
+						}
+					}
+				]
+			},
+
+			{
+				test: /\.(png|jpe?g|gif|woff2?|otf|wav|ttf|eot)(\?|\#.*)?$/,
 				loader: 'file-loader',
 				options: {
-					name: 'files/[name].[ext]?[hash]'
+					name: 'files/[hash:8].[ext]'
 				}
 			}
 		]
 	},
 
 	plugins: [
-		new ExtractTextPlugin('nenwchan.bundle.css'),
-		new DashboardPlugin()
+		new webpack.EnvironmentPlugin({
+			NODE_ENV: nodeEnv
+		}),
+		new MiniCssExtractPlugin({filename: '[name].bundle.css'}),
+		new VueLoaderPlugin(),
+		new WebpackBarPlugin({profile: true})
 	],
 
 	resolve: {
@@ -92,20 +134,7 @@ module.exports = {
 
 if(process.env.NODE_ENV === 'production'){
 	module.exports.devtool = '#source-map';
-	module.exports.plugins = (module.exports.plugins || []).concat([
-		new webpack.DefinePlugin({
-			'process.env': {
-				NODE_ENV: '"production"'
-			}
-		}),
-		new webpack.optimize.UglifyJsPlugin({
-			sourceMap: true,
-			compress: {
-				warnings: false
-			}
-		}),
-		new webpack.LoaderOptionsPlugin({
-			minimize: true
-		})
-	]);
+	module.exports.optimization = {
+		minimize: true
+	};
 }

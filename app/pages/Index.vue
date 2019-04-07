@@ -8,58 +8,12 @@
 </template>
 
 <style lang="less" scoped>
-	@import "~theme";
 	main {
+		display: flex;
+		flex-direction: column;
+		
 		background: #e3e3e3;
 		overflow: hidden;
-	}
-
-	#last {
-		width: 100vw;
-		overflow: hidden;
-		margin-top: -10vh;
-		position: relative;
-
-		h1 {
-			color: #fff;
-			font-weight: 100;
-			font-size: 3rem;
-			margin-top: 100px;
-			margin-left: 10vw;
-		}
-
-		.section-decorator {
-			position: absolute;
-			width: 200vw;
-			height: 5100px;
-			transform: rotate(3deg);
-			transform-origin: top left;
-			background: linear-gradient(to bottom, #f18585, #808080);
-		}
-
-		.content {
-			position: relative;
-
-			.scroll-content {
-				background: #f1f2f3;
-				margin: 10vw;
-				display: flex;
-				justify-content: space-around;
-				height: 100%;
-
-				flex-wrap: wrap;
-
-				.info-tile {
-					margin: 30px;
-				}
-			}
-		}
-	}
-
-	@media screen and (max-width: 768px) {
-		#last {
-			margin-top: -20vh;
-		}
 	}
 </style>
 
@@ -99,7 +53,8 @@
 		components: {
 			SectAbout,
 			SectFooter,
-			SectLogo
+			SectLogo,
+			SectPreference
 		}
 	};
 </script>
