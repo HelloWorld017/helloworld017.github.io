@@ -2,7 +2,7 @@
 	<main>
 		<sect-logo></sect-logo>
 		<sect-about></sect-about>
-		<sect-preference></sect-preference>
+		<sect-pref1></sect-pref1>
 		<sect-footer highlight="transparent" darken="transparent"></sect-footer>
 	</main>
 </template>
@@ -23,7 +23,7 @@
 	import SectAbout from "../sections/SectAbout.vue";
 	import SectFooter from "../sections/SectFooter.vue";
 	import SectLogo from "../sections/SectLogo.vue";
-	import SectPreference from "../sections/SectPreference.vue";
+	import SectPref1 from "../sections/SectPref1.vue";
 
 	export default {
 		computed: {
@@ -54,7 +54,7 @@
 			SectAbout,
 			SectFooter,
 			SectLogo,
-			SectPreference
+			SectPref1
 		}
 	};
 </script>

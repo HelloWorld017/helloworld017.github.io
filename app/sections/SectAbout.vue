@@ -88,7 +88,9 @@
 				
 			</div>
 		</div>
-		<sect-clip></sect-clip>
+		<div class="SectAbout__clip">
+			<sect-clip class="SectAbout__clip__image"></sect-clip>
+		</div>
 	</section>
 </template>
 
@@ -171,6 +173,16 @@
 		&__contact {
 			&:not(:first-child) {
 				margin-top: 5px;
+			}
+		}
+		
+		&__clip {
+			position: relative;
+			
+			&__image {
+				position: relative;
+				height: 80%;
+				transform: scale(1.25) translateY(-6.25%);
 			}
 		}
 	}
@@ -293,34 +305,11 @@
 		}
 		
 		&__value {
+			cursor: pointer;
 			color: #fff;
 			text-decoration: none;
 			position: relative;
-			transition: all .4s ease;
-			
-			&::after {
-				display: block;
-				background: #fff;
-				content: '';
-				
-				position: absolute;
-				left: 50%;
-				bottom: -1px;
-				height: 1px;
-				width: 20px;
-				
-				transform: translate(-50%, 0);
-				
-				transition: all .4s ease;
-			}
-			
-			&:hover {
-				color: #25d7c3;
-				
-				&::after {
-					width: 100%;
-				}
-			}
+			z-index: 2;
 		}
 	}
 </style>
