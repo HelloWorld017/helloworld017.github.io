@@ -3,6 +3,7 @@
 		<sect-logo></sect-logo>
 		<sect-about></sect-about>
 		<sect-pref1></sect-pref1>
+		<sect-pref2></sect-pref2>
 		<sect-footer highlight="transparent" darken="transparent"></sect-footer>
 	</main>
 </template>
@@ -11,7 +12,7 @@
 	main {
 		display: flex;
 		flex-direction: column;
-		
+
 		background: #e3e3e3;
 		overflow: hidden;
 	}
@@ -24,22 +25,9 @@
 	import SectFooter from "../sections/SectFooter.vue";
 	import SectLogo from "../sections/SectLogo.vue";
 	import SectPref1 from "../sections/SectPref1.vue";
+	import SectPref2 from "../sections/SectPref2.vue";
 
 	export default {
-		computed: {
-			mobile() {
-				return this.$store.state.mobile;
-			},
-
-			height() {
-				return this.$store.state.height;
-			},
-
-			width() {
-				return this.$store.state.width;
-			}
-		},
-
 		methods: {
 			asset(id) {
 				return window.assets[id];
@@ -54,7 +42,8 @@
 			SectAbout,
 			SectFooter,
 			SectLogo,
-			SectPref1
+			SectPref1,
+			SectPref2
 		}
 	};
 </script>
