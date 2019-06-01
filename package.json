@@ -20,6 +20,7 @@
   "homepage": "https://github.com/HelloWorld017/nenwchan2#readme",
   "devDependencies": {
     "@babel/core": "^7.4.3",
+    "@babel/plugin-syntax-dynamic-import": "^7.2.0",
     "@babel/plugin-transform-runtime": "^7.4.3",
     "@babel/preset-env": "^7.4.3",
     "babel-loader": "^8.0.5",

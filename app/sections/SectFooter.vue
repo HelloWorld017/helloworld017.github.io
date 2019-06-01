@@ -1,34 +1,33 @@
 <template>
-	<footer id="nenw-footer" :style="{color: foreground}">
-		<div class="highlight section" :style="{background: highlight}">
-			<div class="footer-container">
+	<footer id="SectFooter" class="Section Footer" :style="{color: foreground}">
+		<div class="Footer__section" :style="{background: highlight}">
+			<div class="Footer__container">
 				<h3>Footer</h3>
 
 				<p>
-					<div>
-						<span class="light">nenw.moe</span>
-						4.1, 2017 Redesigned
+					<div class="Footer__line">
+						<span class="bold">nenw.moe</span>
+						4.2, 2019 Redesigned
 					</div>
-					<br>
-					<div>
-						<span class="light">Powered by </span>
+
+					<div class="Footer__line">
+						<span class="bold">Powered by </span>
 						Github Pages
 					</div>
-					<br>
-					<div>
-						<span class="light">Used </span>
-						Vue.js, Nanum Fonts
+
+					<div class="Footer__line">
+						<span class="bold">Used </span>
+						Vue.js
 					</div>
 				</p>
 			</div>
 		</div>
-		<div class="darken section" :style="{background: darken}">
-			<div class="footer-container flex-container">
+		<div class="Footer__section Footer__section--darken" :style="{background: darken}">
+			<div class="Footer__container Footer__container--justify">
 				<div>
-					<span class="light">© 2016-2019 </span>
+					<span class="bold">© 2016-2019 </span>
 					Khinenw
 				</div>
-				<br>
 
 				<span>
 					View on
@@ -44,7 +43,7 @@
 </template>
 
 <style lang="less" scoped>
-	footer {
+	.Footer {
 		.bold {
 			font-weight: 700;
 		}
@@ -58,17 +57,21 @@
 			font-size: 2rem;
 		}
 
-		.section {
+		&__line:not(:first-child) {
+			margin-bottom: 5px;
+		}
+
+		&__section {
 		    padding: 20px 30px;
+		}
 
-			&>.footer-container {
-				max-width: 768px;
-				margin: 0 auto;
+		&__container {
+			max-width: 768px;
+			margin: 0 auto;
 
-				&.flex-container {
-					display: flex;
-					justify-content: space-between;
-				}
+			&--justify {
+				display: flex;
+				justify-content: space-between;
 			}
 		}
 	}

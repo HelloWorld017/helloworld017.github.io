@@ -31,7 +31,7 @@
 		<h2 class="SectionPref2__subtitle">Game</h2>
 
 		<div class="SectionPref2__list PrefList">
-			<div class="PrefList__item">
+			<div class="PrefList__item PrefList__item--clickable" @click="kidnap">
 				<hots></hots>
 			</div>
 
@@ -110,6 +110,15 @@
 				height: 20vw;
 				max-height: 200px;
 			}
+
+			&--clickable {
+				cursor: pointer;
+				transition: all .4s ease;
+
+				&:hover {
+					box-shadow: 0 2px 6px 1px rgba(0, 0, 0, .3), 0 0 4px 0px rgba(0, 0, 0, .5);
+				}
+			}
 		}
 	}
 </style>
@@ -126,6 +135,8 @@
 	import Tetris from "../assets/image/pref/Tetris.svg?inline";
 	import VueJs from "../assets/image/pref/VueJS.svg?inline";
 
+	import restaurance from "restaurance";
+
 	export default {
 		components: {
 			Es8,
@@ -138,6 +149,16 @@
 			RainbowSix,
 			Tetris,
 			VueJs
+		},
+
+		methods: {
+			kidnap() {
+				restaurance(
+					{target: document.querySelector('#app-view')},
+					[...document.querySelectorAll('main > *')],
+					15
+				);
+			}
 		}
 	};
 </script>

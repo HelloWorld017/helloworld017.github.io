@@ -115,7 +115,7 @@
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		font-family: @title-font;
+		font-family: 'Roboto', sans-serif;
 		font-size: 2rem;
 		font-weight: 100;
 		padding: 10px;

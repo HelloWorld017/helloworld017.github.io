@@ -10,7 +10,6 @@ import App from "./App.vue";
 import assetList from "./assets/";
 import fontList from "./assets/fonts";
 import loadAsset from "./src/AssetLoader";
-import routes from "./src/routes";
 import scroll from "./src/scroll";
 
 //Loading Assets
@@ -63,7 +62,7 @@ const store = new Vuex.Store({
 window.addEventListener('resize', () => store.commit('updateResize'));
 window.addEventListener('scroll', () => store.commit('updateScroll'));
 
-const router = new VueRouter({routes, mode: 'history'});
+const router = new VueRouter({routes: [], mode: 'history'});
 
 new Vue({
 	el: '#app',
@@ -74,16 +73,21 @@ new Vue({
 	}
 });
 
-loadAsset(assetList, store, () => Promise.all(fontList.map((v) => {
-	return new Promise((resolve) => {
-		v.load(null, 10000).catch(() => {
-			//Edge bug fix
-		}).then(() => {
-			store.commit('loadAsset');
-			resolve();
+loadAsset(assetList, store, async () => {
+	await Promise.all(fontList.map((v) => {
+		return new Promise((resolve) => {
+			v.load(null, 10000).catch(() => {
+				//Edge bug fix
+			}).then(() => {
+				store.commit('loadAsset');
+				resolve();
+			});
 		});
-	});
-})));
+	}));
+
+	const {default: routes} = await import("./src/routes");
+	router.addRoutes(routes);
+});
 
 window.sigongjoa = () => {
 	restaurance({target: document.querySelector('#app-view')}, ['section', 'main>.parallax', 'footer'], 15);

@@ -1,10 +1,11 @@
 <template>
 	<main>
+		<navigation></navigation>
 		<sect-logo></sect-logo>
 		<sect-about></sect-about>
 		<sect-pref1></sect-pref1>
 		<sect-pref2></sect-pref2>
-		<sect-footer highlight="transparent" darken="transparent"></sect-footer>
+		<sect-footer highlight="#1c1c1c" darken="#191919"></sect-footer>
 	</main>
 </template>
 
@@ -19,8 +20,7 @@
 </style>
 
 <script>
-	const NAVBAR_DESIRED = 100;
-
+	import Navigation from "../components/Navigation.vue";
 	import SectAbout from "../sections/SectAbout.vue";
 	import SectFooter from "../sections/SectFooter.vue";
 	import SectLogo from "../sections/SectLogo.vue";
@@ -31,14 +31,11 @@
 		methods: {
 			asset(id) {
 				return window.assets[id];
-			},
-
-			playAnim() {
-				this.$el.querySelectorAll('.box').forEach((v) => v.classList.add('active'));
 			}
 		},
 
 		components: {
+			Navigation,
 			SectAbout,
 			SectFooter,
 			SectLogo,
