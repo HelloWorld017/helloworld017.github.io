@@ -132,7 +132,8 @@
 
 			&__name {
 				color: #fff;
-				font-family: 'Exo 2 Thin', sans-serif;
+				font-family: 'Exo 2', sans-serif;
+				font-weight: 100;
 				font-size: 2rem;
 			}
 
@@ -282,7 +283,8 @@
 			display: flex;
 
 			&, & * {
-				font-family: 'Fira Code', 'Noto Sans CJK KR', sans-serif;
+				//TODO change to noto sans?
+				font-family: 'Fira Code', 'Nanum Barun Gothic', sans-serif;
 			}
 		}
 

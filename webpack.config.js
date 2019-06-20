@@ -47,7 +47,8 @@ module.exports = {
 	output: {
 		path: path.resolve(__dirname, 'dist'),
 		publicPath: '/dist/',
-		filename: '[name].bundle.js'
+		filename: '[name].bundle.js',
+		chunkFilename: '[name].bundle.js'
 	},
 
 	mode: nodeEnv,
@@ -65,6 +66,14 @@ module.exports = {
 							loader: 'babel-loader'
 						}
 					}
+				}
+			},
+
+			{
+				test: /\.svelte$/,
+				loader: 'svelte-loader',
+				options: {
+					emitCss: true
 				}
 			},
 

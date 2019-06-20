@@ -1,94 +1,74 @@
-import restaurance from "restaurance";
-import Vue from "vue";
-import Vuex from "vuex";
-import VueRouter from "vue-router";
-import "babel-polyfill";
-import "whatwg-fetch";
-
-import App from "./App.vue";
-
 import assetList from "./assets/";
 import fontList from "./assets/fonts";
-import loadAsset from "./src/AssetLoader";
-import scroll from "./src/scroll";
+import AssetLoader from "./src/AssetLoader";
+import Route from "route-parser";
+import URL from "url";
 
-//Loading Assets
-
-Vue.use(Vuex);
-Vue.use(VueRouter);
-
-const store = new Vuex.Store({
-	state: {
-		assetsAmount: Object.keys(assetList).length + fontList.length,
-		assetFinish: false,
-		firstAnimationFinish: false,
-		initAnimationFinish: false,
-		loadedAssets: 0,
-		height: window.innerHeight,
-		width: window.innerWidth,
-		mobile: window.innerWidth < 768,
-		scroll: scroll()
-	},
-
-	mutations: {
-		loadAsset(state) {
-			state.loadedAssets++;
-		},
-
-		assetFinish(state) {
-			state.assetFinish = true;
-		},
-
-		firstAnimationFinish(state) {
-			state.firstAnimationFinish = true;
-		},
-
-		animationFinish(state) {
-			state.initAnimationFinish = true;
-		},
-
-		updateResize(state) {
-			state.width = window.innerWidth;
-			state.height = window.innerHeight;
-			state.mobile = window.innerWidth < 768;
-		},
-
-		updateScroll(state) {
-			state.scroll = scroll();
+(async () => {
+	const loadSpec = {
+		assets: assetList,
+		fonts: fontList,
+		scripts: {
+			'App': import('./App.js')
 		}
+	};
+
+	const url = location.href;
+	const pathname = new URL(url).pathname;
+	const routes = [
+		{path: '/', module: 'Index'},
+		{path: '/gallery', module: 'Gallery'},
+		{path: '*', module: 'NotFound'}
+	];
+
+	let initRoute = null;
+	routes.every(routeObject => {
+		const route = new Route(routeObject.path);
+		if(route.match(pathname)) {
+			loadSpec.scripts[routeObject.module] = import(`./pages/${routeObject.module}.vue`);
+			initRoute = routeObject;
+			return false;
+		}
+
+		return true;
+	});
+
+	if(initRoute === null) {
+		initRoute = routes[routes.length - 1];
 	}
-});
 
-window.addEventListener('resize', () => store.commit('updateResize'));
-window.addEventListener('scroll', () => store.commit('updateScroll'));
+	const loader = new AssetLoader();
+	const assets = await loader.load(loadSpec);
 
-const router = new VueRouter({routes: [], mode: 'history'});
+	const {app, router, store} = assets.App([
+		{path: initRoute.path, component: assets[initRoute.module]}
+	]);
 
-new Vue({
-	el: '#app',
-	store,
-	router,
-	render(h) {
-		return h(App);
-	}
-});
+	router.pushWhenLoaded = function(...args) {
 
-loadAsset(assetList, store, async () => {
-	await Promise.all(fontList.map((v) => {
-		return new Promise((resolve) => {
-			v.load(null, 10000).catch(() => {
-				//Edge bug fix
-			}).then(() => {
-				store.commit('loadAsset');
-				resolve();
-			});
-		});
-	}));
+	};
 
-	const {default: routes} = await import("./src/routes");
-	router.addRoutes(routes);
-});
+	setTimeout(() => {
+		loader.destroyUi();
+	}, 5000);
 
-window.sigongjoa = () => {
-	restaurance({target: document.querySelector('#app-view')}, ['section', 'main>.parallax', 'footer'], 15);
-};
+	const backgroundLoadSpec = {
+		scripts: {}
+	};
+
+	const backgroundRoutes = routes.filter(({module: routeModule}) => routeModule !== initRoute.module);
+
+	backgroundRoutes.forEach(routeObject => {
+		if(routeObject.module !== initRoute.module) {
+			backgroundLoadSpec[routeObject.module] = import(`./pages/${routeObject.module}.vue`);
+		}
+	});
+
+	const backgroundAssets = await loader.backgroundLoad(backgroundLoadSpec);
+
+	router.addRoutes(
+		backgroundRoutes.map(routeObject => {
+			return {path: routeObject.path, component: backgroundAssets[routeObject.module]};
+		})
+	);
+})();

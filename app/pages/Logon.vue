@@ -6,12 +6,9 @@
 				<h1>nenw*</h1>
 				<span>console.log("Aviation in progress")</span>
 			</div>
-			<div class="loader">
-				<div></div>
-				<div></div>
-				<div></div>
-				<div></div>
-				<div></div>
+
+			<div class="Progress">
+				<div v-for="i in 5" :key="i"></div>
 			</div>
 		</div>
 	</div>
@@ -19,7 +16,7 @@
 
 <style lang="less" scoped>
 	@import "~theme";
-	@import "../less/horizontal-loader.css";
+	@import "../less/Progress.css";
 
 	@bio-height: 100px;
 

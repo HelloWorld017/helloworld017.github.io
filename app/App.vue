@@ -1,7 +1,6 @@
 <template>
 	<div id="app" :class="{loaded, finished}">
 		<template v-if="!logonShowed">
-			<loading v-if="!loaded"></loading>
 			<logon v-if="loaded && !finished"></logon>
 			<div class="fake-slide" v-if="loaded" :class="{finished}"></div>
 			<transition name="slide-fade" mode="out-in" v-if="finished">
@@ -92,7 +91,6 @@
 <script>
 	import Cookie from "./src/Cookie";
 
-	import Loading from "./pages/Loading.vue";
 	import Logon from "./pages/Logon.vue";
 
 	export default {
@@ -115,7 +113,6 @@
 		},
 
 		components: {
-			Loading,
 			Logon
 		}
 	};
