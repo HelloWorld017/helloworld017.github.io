@@ -46,7 +46,7 @@
 
 		&__readmore {
 			color: #fff;
-			font-family: 'Lato', sans-serif;
+			font-family: 'Roboto', sans-serif;
 			font-size: 1.5rem;
 			font-weight: 400;
 			text-decoration: none;

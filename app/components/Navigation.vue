@@ -73,6 +73,7 @@
 
 			&:not(.closer) {
 				.animated-link;
+				font-weight: 400;
 			}
 		}
 
@@ -112,6 +113,7 @@
 
 			a {
 				.animated-link;
+				font-weight: 400;
 				font-size: 1.1rem;
 			}
 		}
