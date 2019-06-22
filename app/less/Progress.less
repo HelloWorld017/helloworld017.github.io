@@ -1,0 +1,54 @@
+.Progress {
+	position: relative;
+	overflow: hidden;
+
+	width: 100vw;
+	height: 50px;
+
+	div {
+		position: absolute;
+		left: -5%;
+
+		animation-name: Progress;
+		animation-iteration-count: 1;
+		animation-duration: 3s;
+		animation-fill-mode: both;
+		animation-timing-function: cubic-bezier(0,.67,.99,.34);
+
+		width: 6px;
+		height: 6px;
+		background: #fff;
+		border-radius: 100%;
+		top: 20px;
+
+		&:nth-child(1) {
+			animation-delay: 1.80s;
+		}
+
+		&:nth-child(2){
+			animation-delay: 1.88s;
+		}
+
+		&:nth-child(3){
+			animation-delay: 1.96s;
+		}
+
+		&:nth-child(4){
+			animation-delay: 2.04s;
+		}
+
+		&:nth-child(5){
+			animation-delay: 2.12s;
+		}
+	}
+}
+
+@keyframes Progress {
+	10%, 90.01% {
+		left: -5%;
+	}
+
+	90% {left:
+		105%;
+	}
+}

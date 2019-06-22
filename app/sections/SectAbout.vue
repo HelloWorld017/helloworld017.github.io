@@ -1,207 +1,333 @@
 <template>
-	<section id="about">
-		<div class="content-decorator"></div>
-		<section class="content">
-			<h2><span class="bold">About</span> Khinenw</h2>
-			<p>
-				Developer@Daedeok High School
-			</p>
-			<code>
-				<span class="sh-line">1  |   </span>
-				console.log(<span class="sh-str">"Hello, World!"</span>);
-			</code>
-		</section>
+	<section class="SectAbout Section">
+		<div class="SectAbout__inner">
+			<h1 class="SectAbout__title">
+				Profile
+			</h1>
 
-		<section id="link">
-			<div class="decorator"></div>
-			<div class="decorator"></div>
-			<section class="link-content">
-				<div class="inner-content">
-					<h2>Links</h2>
-					<li>
-						<ul><a class="animated-link" href="https://github.com/HelloWorld017">GitHub</a></ul>
-						<ul><a class="animated-link" href="https://blog.khinenw.tk">Blog</a></ul>
-						<ul><a class="animated-link" href="https://t.me/Khinenw">Telegram</a></ul>
-					</li>
+			<div class="SectAbout__content">
+				<div class="SectAbout__top">
+					<div class="SectAbout__profile">
+						<img class="SectAbout__profile__image" :src="asset('profile')" alt="profile">
+						<span class="SectAbout__profile__name">nenw*</span>
+					</div>
+
+					<div class="SectAbout__aviate Aviate">
+						<div class="Aviate__diagram">
+							<div class="Aviate__dot"></div>
+							<div class="Aviate__connect Aviate__connect--2x"></div>
+							<div class="Aviate__plane">
+								<i class="Aviate__plane__fill mdi mdi-airplane"></i>
+								<i class="Aviate__plane__stroke mdi mdi-airplane"></i>
+							</div>
+							<div class="Aviate__connect"></div>
+							<div class="Aviate__dot"></div>
+						</div>
+
+						<div class="Aviate__nodes">
+							<div class="Aviate__node Aviate__start">
+								<span class="Aviate__point__name">H2</span>
+								<span class="Avaite__point__date">2017.02</span>
+							</div>
+
+							<div class="Aviate__node Aviate__end">
+								<span class="Aviate__dot__name">K4</span>
+								<span class="Avaite__dot__date">2022.02</span>
+							</div>
+						</div>
+					</div>
 				</div>
-			</section>
-		</section>
+
+				<div class="SectAbout__bio">
+					Developer @ KAIST
+				</div>
+
+				<div class="SectAbout__code Code">
+					<div class="Code__line">
+						<div class="Code__indicator">
+							1
+						</div>
+						<code class="Code__code">
+							<span class="Code__fragment">Khinenw.status(</span>
+							<span class="Code__string Code__string--yellow">'Aviation in Progress'</span>
+							<span class="Code__fragment">);</span>
+						</code>
+					</div>
+
+					<div class="Code__line">
+						<div class="Code__indicator">
+							2
+						</div>
+						<code class="Code__code">
+							<span class="Code__fragment">Khinenw.setAka(</span>
+							<span class="Code__string">'nenw*'</span>,
+							<span class="Code__string">'키네누'</span>,
+							<span class="Code__string">'네누별'</span>,
+							<span class="Code__string">'キネヌ'</span>
+							<span class="Code__fragment">);</span>
+						</code>
+					</div>
+				</div>
+
+				<div class="SectAbout__contacts">
+					<div class="SectAbout__contact Contact">
+						<i class="Contact__icon mdi mdi-github-circle"></i>
+						<a class="Contact__value" href="https://github.com/HelloWorld017">@HelloWorld017</a>
+					</div>
+
+					<div class="SectAbout__contact Contact">
+						<i class="Contact__icon mdi mdi-telegram"></i>
+						<a class="Contact__value" href="https://t.me/Khinenw">@Khinenw</a>
+					</div>
+
+					<div class="SectAbout__contact Contact">
+						<i class="Contact__icon mdi mdi-email-variant"></i>
+						<a class="Contact__value" href="mailto:khi@nenw.dev">khi at nenw dot dev</a>
+					</div>
+				</div>
+
+			</div>
+		</div>
+		<div class="SectAbout__clip">
+			<sect-clip class="SectAbout__clip__image"></sect-clip>
+		</div>
 	</section>
 </template>
 
 <style lang="less" scoped>
 	@import "~theme";
 
-	#about {
-		width: 100vw;
-		min-height: 43vw;
-		background: #e3e3e3;
+	.SectAbout {
+		background: #272727;
+		display: flex;
+		flex-direction: column;
 		position: relative;
 
-		.content-decorator {
-			background: #e3e3e3;
-			top: -10px;
-			left: 50%;
-			width: 113vw;
-			height: 100vw;
-			position: absolute;
-			transform: translateX(-50%) rotate(-4deg);
-			transform-origin: bottom left;
+		&__title {
+			color: #fff;
+			font-family: 'Titillium Web', sans-serif;
+			font-weight: 100;
+			font-size: 2.4rem;
+
+			padding-bottom: 25px;
 		}
 
-
-		* {
-			font-family: 'Titilium', sans-serif;
-		}
-
-		.content {
-			position: relative;
-			padding: 0 4vw;
+		&__inner {
+			padding: 40px 20px;
+			width: 100%;
 			max-width: 768px;
 			margin: 0 auto;
-			font-weight: 100;
+			box-sizing: border-box;
+		}
 
-			h2 {
-				margin: 0;
-				margin-bottom: 2rem;
-				font-size: 3.5rem;
+		&__content {
+			display: flex;
+			flex-direction: column;
+			align-items: flex-start;
+			padding: 0 20px;
+		}
+
+		&__profile {
+			display: flex;
+			align-items: center;
+
+			&__name {
+				color: #fff;
+				font-family: 'Exo 2', sans-serif;
 				font-weight: 100;
-				color: #222222;
-			}
-
-			p {
 				font-size: 2rem;
 			}
 
-			code, code span {
-				font-family: "Fira Code", monospace;
-			}
-
-			code {
-				background: #d0d0d0;
-				color: #222222;
-				padding: 5px;
-				overflow-x: auto;
-				overflow-y: visible;
-				white-space: nowrap;
-
-				.sh-str {
-					color: darken(#ff4e73, 10%);
-				}
-			}
-		}
-	}
-
-	#link {
-		margin-top: 20rem;
-		padding-bottom: 30vh;
-		overflow: hidden;
-
-		.decorator {
-			position: absolute;
-
-			&:nth-child(1) {
-				width: 100vw;
-				height: 57vw;
-				transform: rotate(-15deg);
-				background: #222222;
-			}
-
-			&:nth-child(2) {
-				width: 120vw;
-				height: 43vw;
-				transform: rotate(-5deg);
-				background: #323232;
+			&__image {
+				width: 60px;
+				height: 60px;
+				border-radius: 50%;
+				margin-right: 20px;
 			}
 		}
 
-		.link-content {
-			position: absolute;
-			left: -14vw;
-			width: 120vw;
-			height: 57vw;
-			background: #f17676;
-			transform: rotate(20deg);
+		&__top {
+			display: flex;
+			justify-content: space-between;
 
-			.inner-content {
-				transform: rotate(-20deg);
-				transform-origin: left;
+			width: 100%;
+		}
+
+		&__bio {
+			margin-top: 10px;
+
+			color: #f1f1f1;
+			font-family: 'Exo 2', sans-serif;
+			font-weight: 300;
+			font-size: 1.6rem;
+		}
+
+		&__code {
+			margin-top: 40px;
+		}
+
+		&__contacts {
+			display: flex;
+			flex-direction: column;
+			margin-top: 70px;
+		}
+
+		&__contact {
+			&:not(:first-child) {
+				margin-top: 5px;
+			}
+		}
+
+		&__clip {
+			position: relative;
+
+			&__image {
 				position: relative;
-				top: 15%;
-				left: 14vw;
-				color: #fff;
-
-				* {
-					font-family: "Roboto", sans-serif;
-				}
-
-				li {
-					list-style-type: none;
-					display: flex;
-
-					ul {
-						padding: 0;
-					}
-				}
-
-				h2 {
-					font-weight: 100;
-					font-size: 3rem;
-					margin: 0;
-				}
-
-				a {
-					color: #fff;
-					font-size: 1.3rem;
-					font-weight: 400;
-				}
+				height: 80%;
+				transform: scale(1.25) translateY(-6.25%);
 			}
 		}
 	}
 
-	.bold {
-		font-weight: 500;
-	}
+	.Aviate {
+		display: flex;
+		flex-direction: column;
 
-	@media screen and (max-width: 768px) {
-		#about {
-			min-height: 300px;
+		&__nodes {
+			display: flex;
+			justify-content: space-between;
+			width: 200px;
+		}
 
-			.content-decorator {
-				height: 200px;
-			}
+		&__node {
+			display: flex;
+			flex-direction: column;
+			color: #f1f1f1;
+		}
 
-			.content {
-				h2 {
-					font-size: 2rem;
-				}
+		&__start {
+			align-items: flex-start;
+		}
 
-				p {
-					font-size: 1rem;
-				}
+		&__end {
+			align-items: flex-end;
+		}
+
+		&__diagram {
+			display: flex;
+			align-items: center;
+			overflow: hidden;
+		}
+
+		&__dot {
+			width: 10px;
+			height: 10px;
+			border-radius: 50%;
+			background: #fff;
+		}
+
+		&__connect {
+			flex: 1;
+			height: 1px;
+			background: #fff;
+
+			&--2x {
+				flex: 2;
 			}
 		}
 
-		#link {
-			padding-bottom: 10vh;
-			margin-top: 10rem;
+		&__plane {
+			position: relative;
+			transform: rotate(90deg);
+			transform-origin: center;
 
-			 .decorator {
-				 display: none;
-			 }
-
-			.link-content {
-				position: static;
-				transform: none;
-
-				.inner-content {
-					transform: none;
-				}
+			&__fill {
+				position: relative;
+				color: #25D7C3;
+				z-index: 1;
 			}
+
+			&__stroke {
+				position: absolute;
+				top: 0;
+				left: 0;
+
+				color: #272727;
+				transform: scale(3) rotate(90deg);
+			}
+		}
+	}
+
+	.Code {
+		background: #202020;
+		display: flex;
+		flex-direction: column;
+		padding: 10px 20px;
+
+		&__line {
+			display: flex;
+			margin-top: 5px;
+		}
+
+		&__indicator {
+			font-family: 'Fira Code', sans-serif;
+
+			width: 10px;
+			padding-right: 10px;
+			border-right: 1.5px solid #404040;
+			margin-right: 15px;
+			color: #404040;
+		}
+
+		&__code {
+			color: #fff;
+			display: flex;
+
+			&, & * {
+				//TODO change to noto sans?
+				font-family: 'Fira Code', 'Nanum Barun Gothic', sans-serif;
+			}
+		}
+
+		&__string {
+			color: #25d7c3;
+
+			&--yellow {
+				color: #d6ad43;
+			}
+		}
+	}
+
+	.Contact {
+		display: flex;
+		color: #f1f1f1;
+		font-size: 1.1rem;
+
+		&__icon {
+			margin-right: 1rem;
+		}
+
+		&__value {
+			cursor: pointer;
+			color: #a0a0a0;
+			text-decoration: none;
+			position: relative;
+			z-index: 2;
 		}
 	}
 </style>
 
 <script>
-	export default {};
+	import SectClip from "../assets/image/sectclip-1.svg?inline";
+	export default {
+		methods: {
+			asset(id) {
+				return window.assets[id];
+			}
+		},
+
+		components: {
+			SectClip
+		}
+	};
 </script>

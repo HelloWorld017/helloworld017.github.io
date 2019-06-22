@@ -1,0 +1,83 @@
+.box {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+	overflow: hidden;
+
+	.water {
+		position: absolute;
+		left: 0;
+		bottom: 0;
+		z-index: 2;
+		width: 100%;
+		height: 0%;
+		background: #1de9b6;
+		transition: all 2s ease;
+
+		&-wave {
+			width: 200%;
+			position: absolute;
+			top: 1px;
+			transform: translate(0, -100%);
+		}
+	}
+
+	.wave {
+		&-back {
+			right: 0;
+			animation: wave-back 1.4s infinite linear;
+		}
+
+		&-front {
+			left: 0;
+			animation: wave-front .7s infinite linear;
+		}
+
+		&-content {
+			&-back {
+				fill: #64ffda;
+			}
+
+			&-front {
+				fill: #1de9b6;
+			}
+		}
+	}
+}
+
+svg {
+	display: block;
+}
+
+canvas {
+	width: 100%;
+	height: 100%;
+	opacity: 1;
+
+	transition-property: all;
+	transition-timing-function: ease;
+	transition-duration: 1s;
+	transition-delay: 7s;
+
+	&.fade {
+		opacity: 0;
+	}
+}
+
+.loading {
+	position: fixed;
+	left: 50vw;
+	top: 50vh;
+	transform: translate(-50%, -50%);
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	font-family: 'Roboto', sans-serif;
+	font-size: 2rem;
+	font-weight: 100;
+	padding: 10px;
+	background: #00C0A0;
+	color: #f1f2f3;
+}

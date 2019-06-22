@@ -1,6 +1,6 @@
 <template>
 	<main>
-		<nenw-navigation></nenw-navigation>
+		<navigation></navigation>
 
 		<parallax
 			:height="100"
@@ -37,7 +37,7 @@
 			</parallax>
 		</template>
 
-		<nenw-footer highlight="#d00060" darken="#c00050"></nenw-footer>
+		<sect-footer highlight="#d00060" darken="#c00050"></sect-footer>
 	</main>
 </template>
 
@@ -159,9 +159,9 @@
 </style>
 
 <script>
+	import Navigation from "../components/Navigation.vue";
 	import Parallax from "../components/Parallax.vue";
-	import NenwFooter from "../components/NenwFooter.vue";
-	import NenwNavigation from "../components/NenwNavigation.vue";
+	import SectFooter from "../sections/SectFooter.vue";
 
 	const normalizeLinks = (v) => {
 		if(typeof v === 'string'){
@@ -247,9 +247,9 @@
 		},
 
 		components: {
+			Navigation,
 			Parallax,
-			NenwFooter,
-			NenwNavigation
+			SectFooter
 		}
 	};
 </script>

@@ -105,7 +105,7 @@
 
 <script>
 	import Color from "color";
-	import {World} from "../js/origami";
+	import {World} from "../src/Origami";
 
 	const start = Color('#c33764').darken(0.2);
 	const end = Color('#1d2671').darken(0.2);

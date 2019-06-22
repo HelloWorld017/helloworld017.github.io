@@ -6,18 +6,8 @@
 	</div>
 </template>
 
-<style lang="less" scoped>
-	@import "~theme";
-
-	.parallax {
-		width: 100%;
-		position: relative;
-		display: flex;
-	}
-</style>
-
 <script>
-	import scroll from "../js/scroll";
+	import scroll from "../src/scroll";
 
 	export default {
 		data(){
