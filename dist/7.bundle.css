@@ -1,0 +1,257 @@
+[data-v-67792b94]::-moz-selection {
+  color: #fff;
+  background: #ff3553;
+}
+[data-v-67792b94]::selection {
+  color: #fff;
+  background: #ff3553;
+}
+[data-v-67792b94]::-webkit-scrollbar {
+  width: 16px;
+  height: 16px;
+}
+[data-v-67792b94]::-webkit-scrollbar-button {
+  width: 0px;
+  height: 0px;
+}
+[data-v-67792b94]::-webkit-scrollbar-thumb {
+  background: #ff3553;
+  border: none;
+  border-radius: 0px;
+}
+[data-v-67792b94]::-webkit-scrollbar-thumb:hover {
+  background: #ff687e;
+}
+[data-v-67792b94]::-webkit-scrollbar-thumb:active {
+  background: #ff4f69;
+}
+[data-v-67792b94]::-webkit-scrollbar-track {
+  background: #303030;
+  border: none;
+  border-radius: 0px;
+}
+[data-v-67792b94]::-webkit-scrollbar-track:active {
+  background: #232323;
+}
+[data-v-67792b94]::-webkit-scrollbar-corner {
+  background: #303030;
+}
+*[data-v-67792b94] {
+  scrollbar-arrow-color: #ff3553;
+  scrollbar-base-color: #303030;
+  scrollbar-track-color: #303030;
+  scrollbar-face-color: #ff3553;
+  scrollbar-highlight-color: #303030;
+  scrollbar-3dlight-color: #303030;
+  scrollbar-darkshadow-color: #303030;
+  scrollbar-shadow-color: #ff3553;
+  font-family: 'Roboto', 'Nanum Barun Gothic', sans-serif;
+}
+main[data-v-67792b94] {
+  background: #fff;
+}
+.fixed-centered[data-v-67792b94] {
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+}
+.flex-centered[data-v-67792b94] {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+.text-centered[data-v-67792b94] {
+  text-align: center;
+}
+.show-on-mobile-down[data-v-67792b94] {
+  display: none !important;
+}
+.nav-shadow[data-v-67792b94] {
+  -webkit-box-shadow: #303132 0 0 15px 1px;
+          box-shadow: #303132 0 0 15px 1px;
+}
+.animated-link[data-v-67792b94] {
+  color: #fff;
+  position: relative;
+  display: inline-block;
+  margin: 0 10px;
+  padding: 10px;
+  font-family: 'Roboto', 'Nanum Square', sans-serif;
+  text-decoration: none;
+  font-size: 20.8px;
+  font-size: 1.3rem;
+  font-weight: 300;
+}
+.animated-link[data-v-67792b94]::after {
+  content: '';
+  display: block;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: #fff;
+  -webkit-transform: scaleX(0);
+          transform: scaleX(0);
+  -webkit-transition: -webkit-transform 300ms;
+  transition: -webkit-transform 300ms;
+  transition: transform 300ms;
+  transition: transform 300ms, -webkit-transform 300ms;
+  will-change: transform;
+}
+.animated-link[data-v-67792b94]:hover::after {
+  -webkit-transform: scaleX(1);
+          transform: scaleX(1);
+}
+@media only screen and (max-width: 768px) {
+.show-on-mobile-down[data-v-67792b94] {
+    display: -webkit-box !important;
+    display: -ms-flexbox !important;
+    display: flex !important;
+}
+.hide-on-mobile-down[data-v-67792b94] {
+    display: none !important;
+}
+}
+@-webkit-keyframes whiteout-data-v-67792b94 {
+100% {
+    background-color: #00c0a0;
+}
+}
+@keyframes whiteout-data-v-67792b94 {
+100% {
+    background-color: #00c0a0;
+}
+}
+@-webkit-keyframes fadein-data-v-67792b94 {
+100% {
+    opacity: 1;
+}
+}
+@keyframes fadein-data-v-67792b94 {
+100% {
+    opacity: 1;
+}
+}
+@-webkit-keyframes up-data-v-67792b94 {
+100% {
+    top: 0;
+}
+}
+@keyframes up-data-v-67792b94 {
+100% {
+    top: 0;
+}
+}
+@-webkit-keyframes view-in-data-v-67792b94 {
+100% {
+    left: 0;
+}
+}
+@keyframes view-in-data-v-67792b94 {
+100% {
+    left: 0;
+}
+}
+@-webkit-keyframes disappear-data-v-67792b94 {
+100% {
+    display: none !important;
+}
+}
+@keyframes disappear-data-v-67792b94 {
+100% {
+    display: none !important;
+}
+}
+main[data-v-67792b94] {
+  width: 100vw;
+  height: 100vh;
+  background: #73213b;
+  background: -webkit-gradient(linear, left top, right top, from(#73213b), to(#080b20));
+  background: linear-gradient(to right, #73213b, #080b20);
+}
+img[data-v-67792b94] {
+  position: absolute;
+  width: 80vw;
+  max-width: 80vh;
+  height: 80vw;
+  max-height: 80vh;
+  opacity: 0.2;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+}
+section[data-v-67792b94] {
+  width: 80vw;
+  height: 80vh;
+  position: absolute;
+  color: #fff;
+  z-index: 999;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+}
+section h1[data-v-67792b94] {
+  font-family: 'Roboto', 'Nanum Square', sans-serif;
+  font-size: 80px;
+  font-size: 5rem;
+  font-weight: 100;
+  margin: 0;
+  padding: 0;
+}
+canvas[data-v-67792b94] {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+}
+.button-bar[data-v-67792b94] {
+  margin-top: 10vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+.button-bar a[data-v-67792b94] {
+  margin-right: 10px;
+  display: block;
+  border: 1px solid #fff;
+  border-radius: 25px;
+  background: transparent;
+  cursor: pointer;
+  padding: 20px 50px;
+  height: 50px;
+  line-height: 10px;
+  font-family: 'Roboto', 'Nanum Square', sans-serif;
+  font-size: 19.2px;
+  font-size: 1.2rem;
+  font-weight: 100;
+  -webkit-transition: background 0.4s ease, color 0.4s ease;
+  transition: background 0.4s ease, color 0.4s ease;
+  outline: 0;
+  text-decoration: none;
+  color: #fff;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  text-align: center;
+}
+.button-bar a[data-v-67792b94]:hover {
+  background-color: #fff;
+  color: #000;
+  font-weight: 300;
+}
+.button-bar a[data-v-67792b94]:active {
+  filter: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg"><filter id="filter"><feComponentTransfer color-interpolation-filters="sRGB"><feFuncR type="linear" slope="0.9" /><feFuncG type="linear" slope="0.9" /><feFuncB type="linear" slope="0.9" /></feComponentTransfer></filter></svg>#filter');
+  -webkit-filter: brightness(90%);
+          filter: brightness(90%);
+}
+

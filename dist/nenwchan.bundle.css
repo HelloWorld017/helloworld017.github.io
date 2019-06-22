@@ -1,0 +1,154 @@
+.WaveContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+.WaveContainer .Water {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  z-index: 2;
+  width: 100%;
+  height: 0%;
+  background: #1de9b6;
+  -webkit-transition: all 2s ease;
+  transition: all 2s ease;
+}
+.WaveContainer .Wave {
+  width: 200%;
+  position: absolute;
+  top: 1px;
+  -webkit-transform: translate(0, -100%);
+          transform: translate(0, -100%);
+}
+.WaveContainer .Wave--back {
+  right: 0;
+  -webkit-animation: WaveBack 1.4s infinite linear;
+          animation: WaveBack 1.4s infinite linear;
+}
+.WaveContainer .Wave--front {
+  left: 0;
+  -webkit-animation: WaveFront 0.7s infinite linear;
+          animation: WaveFront 0.7s infinite linear;
+}
+.WaveContainer .Wave__content--back {
+  fill: #64ffda;
+}
+.WaveContainer .Wave__content--front {
+  fill: #1de9b6;
+}
+@-webkit-keyframes WaveFront {
+  100% {
+    -webkit-transform: translate(-50%, -100%);
+            transform: translate(-50%, -100%);
+  }
+}
+@keyframes WaveFront {
+  100% {
+    -webkit-transform: translate(-50%, -100%);
+            transform: translate(-50%, -100%);
+  }
+}
+@-webkit-keyframes WaveBack {
+  100% {
+    -webkit-transform: translate(50%, -100%);
+            transform: translate(50%, -100%);
+  }
+}
+@keyframes WaveBack {
+  100% {
+    -webkit-transform: translate(50%, -100%);
+            transform: translate(50%, -100%);
+  }
+}
+
+svg.svelte-iw4991{display:block}canvas.svelte-iw4991{width:100%;height:100%;opacity:1;-webkit-transition-property:all;transition-property:all;-webkit-transition-timing-function:ease;transition-timing-function:ease;-webkit-transition-duration:1s;transition-duration:1s;-webkit-transition-delay:7s;transition-delay:7s}canvas.fade.svelte-iw4991{opacity:0}.Loading.svelte-iw4991{position:fixed;left:50vw;top:50vh;width:100px;height:100px;background:#159284;border-radius:50%;-webkit-transform:translate(-50%, -50%);transform:translate(-50%, -50%);font-family:'Roboto', sans-serif;font-size:32px;font-size:2rem;font-weight:100;text-align:center;line-height:100px;color:#f1f2f3}.Logs.svelte-iw4991{position:fixed;left:10px;bottom:10px;width:300px;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:reverse;-ms-flex-direction:column-reverse;flex-direction:column-reverse;color:#f1f2f3;background:rgba(0, 0, 0, .5);border-radius:5px;padding:20px}.FadeOut.svelte-iw4991{-webkit-animation-name:svelte-iw4991-FadeOut;animation-name:svelte-iw4991-FadeOut;-webkit-animation-duration:.4s;animation-duration:.4s;-webkit-animation-timing-function:ease;animation-timing-function:ease;-webkit-animation-fill-mode:forwards;animation-fill-mode:forwards}@-webkit-keyframes svelte-iw4991-FadeOut{from{opacity:1}to{opacity:0}}@keyframes svelte-iw4991-FadeOut{from{opacity:1}to{opacity:0}}
+.box {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+.box .water {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  z-index: 2;
+  width: 100%;
+  height: 0%;
+  background: #1de9b6;
+  -webkit-transition: all 2s ease;
+  transition: all 2s ease;
+}
+.box .water-wave {
+  width: 200%;
+  position: absolute;
+  top: 1px;
+  -webkit-transform: translate(0, -100%);
+          transform: translate(0, -100%);
+}
+.box .wave-back {
+  right: 0;
+  -webkit-animation: wave-back 1.4s infinite linear;
+          animation: wave-back 1.4s infinite linear;
+}
+.box .wave-front {
+  left: 0;
+  -webkit-animation: wave-front 0.7s infinite linear;
+          animation: wave-front 0.7s infinite linear;
+}
+.box .wave-content-back {
+  fill: #64ffda;
+}
+.box .wave-content-front {
+  fill: #1de9b6;
+}
+svg {
+  display: block;
+}
+canvas {
+  width: 100%;
+  height: 100%;
+  opacity: 1;
+  -webkit-transition-property: all;
+  transition-property: all;
+  -webkit-transition-timing-function: ease;
+          transition-timing-function: ease;
+  -webkit-transition-duration: 1s;
+          transition-duration: 1s;
+  -webkit-transition-delay: 7s;
+          transition-delay: 7s;
+}
+canvas.fade {
+  opacity: 0;
+}
+.loading {
+  position: fixed;
+  left: 50vw;
+  top: 50vh;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-family: 'Roboto', sans-serif;
+  font-size: 32px;
+  font-size: 2rem;
+  font-weight: 100;
+  padding: 10px;
+  background: #00C0A0;
+  color: #f1f2f3;
+}
+
