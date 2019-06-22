@@ -1,28 +1,32 @@
 <template>
-	<div id="app" :class="{loaded, finished}">
+	<div id="app" class="App" :class="{'App--loaded': loaded, 'App--finished': finished}">
 		<template v-if="!logonShowed">
 			<logon v-if="loaded && !finished"></logon>
-			<div class="fake-slide" v-if="loaded" :class="{finished}"></div>
-			<transition name="slide-fade" mode="out-in" v-if="finished">
-				<keep-alive>
-					<router-view id="app-view" :class="{finished}"></router-view>
-				</keep-alive>
-			</transition>
+
+			<div class="FakeSlide" v-if="loaded"></div>
+
+			<div class="AppView">
+				<transition name="SlideFade" mode="out-in" v-if="finished">
+					<keep-alive>
+						<router-view class="AppView__router"></router-view>
+					</keep-alive>
+				</transition>
+			</div>
 		</template>
 		<template v-else>
-			<loading v-if="!firstFinished"></loading>
 			<div
-				class="fake-slide first-anim"
-				v-if="loaded"
-				:class="{finished: firstFinished}">
+				class="FakeSlide FakeSlide--first"
+				v-if="loaded">
 			</div>
 
-			<transition name="slide-fade" mode="out-in" v-if="firstFinished">
-				<keep-alive>
-					<router-view id="app-view" :class="{finished: firstFinished}">
-					</router-view>
-				</keep-alive>
-			</transition>
+			<div class="AppView">
+				<transition name="SlideFade" mode="out-in" v-if="firstFinished">
+					<keep-alive>
+						<router-view class="AppView__router">
+						</router-view>
+					</keep-alive>
+				</transition>
+			</div>
 		</template>
 	</div>
 </template>
@@ -36,16 +40,17 @@
 		padding: 0;
 	}
 
-	#app {
-		background-color: #fff;
+	.App {
 		min-height: 100vh;
+		width: 100%;
+		overflow-x: hidden;
 
-		&.loaded {
+		&--loaded {
 			background-color: transparent;
 		}
 	}
 
-	#app-view {
+	.AppView {
 		opacity: 0;
 		animation-name: fadein;
 		animation-duration: .5s;
@@ -54,7 +59,7 @@
 		animation-fill-mode: forwards;
 	}
 
-	.fake-slide {
+	.FakeSlide {
 		position: fixed;
 		top: 0;
 		left: -100vw;
@@ -68,23 +73,20 @@
 		animation-fill-mode: forwards;
 		animation-delay: 4.2s;
 
-		&.first-anim {
+		&--first {
 			animation-delay: 0s;
 		}
+	}
 
-		&.finished {
-			display: none;
+	.SlideFade {
+		&-enter-active, &-leave-active {
+			transition: all .5s ease;
 		}
-	}
 
-	.slide-fade-enter-active {
-		.animated(.5s);
-	}
-	.slide-fade-leave-active {
-		.animated(.5s);
-	}
-	.slide-fade-enter, .slide-fade-leave-to{
-		opacity: 0;
+		&-enter, &-leave-to {
+			transform: translate(10px);
+			opacity: 0;
+		}
 	}
 </style>
 

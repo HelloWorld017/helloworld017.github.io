@@ -1,4 +1,4 @@
-<div id="nenw-loading">
+<div id="AssetLoader">
 	<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" style="display: none;">
 		<symbol id="wave">
 			<path d="M420,20c21.5-0.4,38.8-2.5,51.1-4.5c13.4-2.2,26.5-5.2,27.3-5.4C514,6.5,518,4.7,528.5,2.7c7.1-1.3,17.9-2.8,31.5-2.7c0,0,0,0,0,0v20H420z"></path>
@@ -8,49 +8,49 @@
 		</symbol>
 	</svg>
 
-	<div class="loading">
-		<span>Loading</span>
-		<span>{percent}</span>
-	</div>
+	<div class="WaveContainer">
+		<div class="Water" style="height: {percent}" bind:this={water}>
+			<canvas class:fade="{percent === 100}" bind:this={canvas}></canvas>
 
-	<div class="logs">
-		{#each logs as log}
-			<div class="log">
-				{log}
-			</div>
-		{/each}
-	</div>
-
-	<div class="box">
-		<div id="water" class="water" :style="height: `{percent}`">
-			<canvas :class="{fade: percent === 100}" bind:this={canvas}></canvas>
-
-			<div class="water-wave wave-back">
-				<svg viewBox="0 0 560 20" class="wave-content-back">
+			<div class="Wave Wave--back">
+				<svg viewBox="0 0 560 20" class="Wave__content--back">
 					<use xlink:href="#wave"></use>
 				</svg>
 			</div>
-			<div class="water-wave wave-front">
-				<svg viewBox="0 0 560 20" class="wave-content-front">
+			<div class="Wave Wave--front">
+				<svg viewBox="0 0 560 20" class="Wave__content--front">
 					<use xlink:href="#wave"></use>
 				</svg>
 			</div>
 		</div>
+	</div>
+
+	<div class="Loading" class:FadeOut="{percent === 100}">
+		<span>{percent}</span>
+	</div>
+
+	<div class="Logs" class:FadeOut="{percent === 100}">
+		{#each logs as log}
+			<div class="Log">
+				{log}
+			</div>
+		{/each}
 	</div>
 </div>
 
 <script>
 	import {onMount, onDestroy} from 'svelte';
 	import RippleCreator from "../src/Ripple";
+	import "../less/Wave.less";
 
 	export let loader;
 
 	let percent = 0;
 	let logs = [];
-	let canvas, rippleCreator;
+	let water, canvas, rippleCreator;
 
 	loader.on('update', (newPercent, newLog) => {
-		percent = `${Math.round(newPercent)}%`;
+		percent = `${newPercent}%`;
 		logs = [newLog, ...logs].slice(0, 10);
 	});
 
@@ -58,7 +58,7 @@
 		canvas.width = canvas.offsetWidth;
 
 		rippleCreator = new RippleCreator(canvas, () => {
-			return this.$refs.water.offsetHeight;
+			return water.offsetHeight;
 		});
 	});
 
@@ -67,56 +67,7 @@
 	});
 </script>
 
-<style lang="less">
-	.box {
-		position: fixed;
-		top: 0;
-		left: 0;
-		width: 100vw;
-		height: 100vh;
-		overflow: hidden;
-
-		.water {
-			position: absolute;
-			left: 0;
-			bottom: 0;
-			z-index: 2;
-			width: 100%;
-			height: 0%;
-			background: #1de9b6;
-			transition: all 2s ease;
-
-			&-wave {
-				width: 200%;
-				position: absolute;
-				top: 1px;
-				transform: translate(0, -100%);
-			}
-		}
-
-		.wave {
-			&-back {
-				right: 0;
-				animation: wave-back 1.4s infinite linear;
-			}
-
-			&-front {
-				left: 0;
-				animation: wave-front .7s infinite linear;
-			}
-
-			&-content {
-				&-back {
-					fill: #64ffda;
-				}
-
-				&-front {
-					fill: #1de9b6;
-				}
-			}
-		}
-	}
-
+<style>
 	svg {
 		display: block;
 	}
@@ -130,25 +81,57 @@
 		transition-timing-function: ease;
 		transition-duration: 1s;
 		transition-delay: 7s;
-
-		&.fade {
-			opacity: 0;
-		}
 	}
 
-	.loading {
+	canvas.fade {
+		opacity: 0;
+	}
+
+	.Loading {
 		position: fixed;
 		left: 50vw;
 		top: 50vh;
+		width: 100px;
+		height: 100px;
+		background: #159284;
+		border-radius: 50%;
 		transform: translate(-50%, -50%);
-		display: flex;
-		flex-direction: column;
-		align-items: center;
+
 		font-family: 'Roboto', sans-serif;
 		font-size: 2rem;
 		font-weight: 100;
-		padding: 10px;
-		background: #00C0A0;
+		text-align: center;
+		line-height: 100px;
 		color: #f1f2f3;
+	}
+
+	.Logs {
+		position: fixed;
+		left: 10px;
+		bottom: 10px;
+		width: 300px;
+		display: flex;
+		flex-direction: column-reverse;
+		color: #f1f2f3;
+		background: rgba(0, 0, 0, .5);
+		border-radius: 5px;
+		padding: 20px;
+	}
+
+	.FadeOut {
+		animation-name: FadeOut;
+		animation-duration: .4s;
+		animation-timing-function: ease;
+		animation-fill-mode: forwards;
+	}
+
+	@keyframes FadeOut {
+		from {
+			opacity: 1;
+		}
+
+		to {
+			opacity: 0;
+		}
 	}
 </style>

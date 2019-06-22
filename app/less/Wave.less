@@ -1,0 +1,58 @@
+.WaveContainer {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+	overflow: hidden;
+
+	.Water {
+		position: absolute;
+		left: 0;
+		bottom: 0;
+		z-index: 2;
+		width: 100%;
+		height: 0%;
+		background: #1de9b6;
+		transition: all 2s ease;
+	}
+
+	.Wave {
+		width: 200%;
+		position: absolute;
+		top: 1px;
+		transform: translate(0, -100%);
+		
+		&--back {
+			right: 0;
+			animation: WaveBack 1.4s infinite linear;
+		}
+
+		&--front {
+			left: 0;
+			animation: WaveFront .7s infinite linear;
+		}
+
+		&__content {
+			&--back {
+				fill: #64ffda;
+			}
+
+			&--front {
+				fill: #1de9b6;
+			}
+		}
+	}
+}
+
+@keyframes WaveFront {
+	100% {
+		transform: translate(-50%, -100%);
+	}
+}
+
+@keyframes WaveBack {
+	100% {
+		transform: translate(50%, -100%);
+	}
+}

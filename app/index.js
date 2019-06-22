@@ -2,8 +2,6 @@ import assetList from "./assets/";
 import fontList from "./assets/fonts";
 import AssetLoader from "./src/AssetLoader";
 import Route from "route-parser";
-import URL from "url";
-
 (async () => {
 	const loadSpec = {
 		assets: assetList,
@@ -24,6 +22,7 @@ import URL from "url";
 	let initRoute = null;
 	routes.every(routeObject => {
 		const route = new Route(routeObject.path);
+		routeObject.route = route;
 		if(route.match(pathname)) {
 			loadSpec.scripts[routeObject.module] = import(`./pages/${routeObject.module}.vue`);
 			initRoute = routeObject;
@@ -44,31 +43,28 @@ import URL from "url";
 		{path: initRoute.path, component: assets[initRoute.module]}
 	]);
 
-	router.pushWhenLoaded = function(...args) {
-
-	};
-
 	setTimeout(() => {
 		loader.destroyUi();
 	}, 5000);
 
 	const backgroundLoadSpec = {
-		scripts: {}
+		assets: {}, fonts: {}, scripts: {}
 	};
 
 	const backgroundRoutes = routes.filter(({module: routeModule}) => routeModule !== initRoute.module);
 
 	backgroundRoutes.forEach(routeObject => {
 		if(routeObject.module !== initRoute.module) {
-			backgroundLoadSpec[routeObject.module] = import(`./pages/${routeObject.module}.vue`);
+			backgroundLoadSpec.scripts[routeObject.module] = import(`./pages/${routeObject.module}.vue`);
 		}
 	});
 
-	const backgroundAssets = await loader.backgroundLoad(backgroundLoadSpec);
-
 	router.addRoutes(
 		backgroundRoutes.map(routeObject => {
-			return {path: routeObject.path, component: backgroundAssets[routeObject.module]};
+			return {path: routeObject.path, component: () => import(`./pages/${routeObject.module}.vue`)}
 		})
 	);
+
+	// Start route preloading
+	await loader.backgroundLoad(backgroundLoadSpec);
 })();

@@ -1,8 +1,8 @@
 <template>
-	<div class="fullpage">
-		<div class="nenw-logon">
-			<sticker class="sticker"></sticker>
-			<div class="bio">
+	<div class="Logon">
+		<div class="Profile">
+			<sticker class="Sticker"></sticker>
+			<div class="Profile__bio">
 				<h1>nenw*</h1>
 				<span>console.log("Aviation in progress")</span>
 			</div>
@@ -16,11 +16,11 @@
 
 <style lang="less" scoped>
 	@import "~theme";
-	@import "../less/Progress.css";
+	@import "../less/Progress.less";
 
 	@bio-height: 100px;
 
-	.fullpage {
+	.Logon {
 		position: fixed;
 		top: 0;
 		left: 0;
@@ -35,19 +35,49 @@
 		background-color: #1de9b6;
 	}
 
-	.nenw-logon {
+	.Profile {
 		position: fixed;
-		.fixed-centered;
-	}
+		left: 50%;
+		top: 50%;
+		transform: translate(-50%, -50%);
 
-	.nenw-logon, .bio {
-		.flex-centered;
-
+		width: 100%;
 		display: flex;
 		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+
+		&__bio {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+
+			height: @bio-height;
+			opacity: 0;
+
+			animation-name: fadein;
+			animation-delay: 1.3s;
+			animation-duration: .5s;
+			animation-fill-mode: forwards;
+			animation-timing-function: ease;
+
+			h1, span {
+				color: #fff;
+				margin: 0;
+				margin-bottom: 5px;
+				padding: 0;
+				text-align: center;
+				font-family: @title-font;
+			}
+
+			h1 {
+				font-weight: 100;
+			}
+		}
 	}
 
-	.sticker {
+	.Sticker {
 		position: relative;
 		top: @bio-height / 2;
 		animation-name: up;
@@ -55,48 +85,6 @@
 		animation-duration: .5s;
 		animation-fill-mode: forwards;
 		animation-timing-function: ease;
-	}
-
-	.bio {
-		.flex-centered;
-
-		height: @bio-height;
-		opacity: 0;
-
-		animation-name: fadein;
-		animation-delay: 1.3s;
-		animation-duration: .5s;
-		animation-fill-mode: forwards;
-		animation-timing-function: ease;
-
-		h1, span {
-			color: #fff;
-			margin: 0;
-			margin-bottom: 5px;
-			padding: 0;
-			text-align: center;
-			font-family: @title-font;
-		}
-
-		h1 {
-			font-weight: 100;
-		}
-	}
-
-	.loader {
-		width: 100vw;
-
-		div {
-			background: #fff;
-			animation-iteration-count: 1;
-			animation-duration: 3s;
-		}
-
-		.for(5); .-each(@n) {
-			div:nth-child(@{n}) {
-				animation-delay: 1.8s + @n * 0.08s;
-			}
-		}
 	}
 </style>
 

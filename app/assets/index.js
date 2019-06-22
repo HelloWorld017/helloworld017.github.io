@@ -8,7 +8,7 @@ export default {
 		name: "Main Background"
 	},
 	profile: {
-		src: profile
+		src: profile,
 		name: "Profile Image"
 	},
 	sadIcon: {

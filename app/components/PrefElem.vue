@@ -17,6 +17,8 @@
 		display: flex;
 		width: 100%;
 		max-width: 768px;
+		padding: 0 50px;
+		box-sizing: border-box;
 		margin: 20px auto;
 
 		&__icon * {

@@ -69,6 +69,7 @@
 			margin: 10px auto;
 			margin-top: 100px;
 			padding: 0;
+			padding-left: 20px;
 			width: 100%;
 			color: #fff;
 			font-family: 'Roboto', sans-serif;

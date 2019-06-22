@@ -8,15 +8,10 @@ import "whatwg-fetch";
 import App from "./App.vue";
 import scroll from "./src/scroll";
 
-//Loading Assets
-
 Vue.use(Vuex);
 Vue.use(VueRouter);
 
-window.addEventListener('resize', () => store.commit('updateResize'));
-window.addEventListener('scroll', () => store.commit('updateScroll'));
-
-module.exports = (routes) => {
+export default routes => {
 	const store = new Vuex.Store({
 		state: {
 			assetFinish: false,
@@ -67,6 +62,9 @@ module.exports = (routes) => {
 	setTimeout(() => store.commit('assetFinish'), 1000);
 	setTimeout(() => store.commit('firstAnimationFinish'), 1400);
 	setTimeout(() => store.commit('animationFinish'), 5800);
+
+	window.addEventListener('resize', () => store.commit('updateResize'));
+	window.addEventListener('scroll', () => store.commit('updateScroll'));
 
 	return {
 		app, router, store
