@@ -13,7 +13,7 @@
 			<node></node>
 		</pref-elem>
 
-		<pref-elem name="Electron" url="https://electron.js.org">
+		<pref-elem name="Electron" url="https://electronjs.org">
 			<electron></electron>
 		</pref-elem>
 

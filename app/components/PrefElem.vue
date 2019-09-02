@@ -5,7 +5,7 @@
 		</div>
 		<div class="PrefElem__desc">
 			<span class="PrefElem__title">{{name}}</span>
-			<a class="PrefElem__readmore" :href="url">
+			<a class="PrefElem__readmore" :href="url" target="_blank" rel="noopener">
 				<i class="mdi mdi-texture"></i> ExLink
 			</a>
 		</div>
