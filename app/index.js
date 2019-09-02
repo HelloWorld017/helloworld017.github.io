@@ -1,7 +1,7 @@
 import assetList from "./assets/";
 import fontList from "./assets/fonts";
 import AssetLoader from "./src/AssetLoader";
-import Route from "route-parser";
+import UrlPattern from "url-pattern";
 (async () => {
 	const loadSpec = {
 		assets: assetList,
@@ -21,7 +21,7 @@ import Route from "route-parser";
 
 	let initRoute = null;
 	routes.every(routeObject => {
-		const route = new Route(routeObject.path);
+		const route = new UrlPattern(routeObject.path);
 		routeObject.route = route;
 		if(route.match(pathname)) {
 			loadSpec.scripts[routeObject.module] = import(`./pages/${routeObject.module}.vue`);
