@@ -84,7 +84,6 @@ main[data-v-d115b840] {
   text-decoration: none;
   font-size: 20.8px;
   font-size: 1.3rem;
-  font-weight: 300;
 }
 .animated-link[data-v-d115b840]::after {
   content: '';
@@ -334,7 +333,6 @@ main[data-v-393030ec] {
   text-decoration: none;
   font-size: 20.8px;
   font-size: 1.3rem;
-  font-weight: 300;
 }
 .animated-link[data-v-393030ec]::after {
   content: '';
@@ -659,7 +657,6 @@ main {
   text-decoration: none;
   font-size: 20.8px;
   font-size: 1.3rem;
-  font-weight: 300;
 }
 .animated-link::after {
   content: '';
