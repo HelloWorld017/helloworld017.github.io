@@ -155,7 +155,7 @@
 		methods: {
 			kidnap() {
 				restaurance(
-					{target: document.querySelector('#app-view')},
+					{target: document.querySelector('.AppView')},
 					[...document.querySelectorAll('main > *')],
 					15
 				);

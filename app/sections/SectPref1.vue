@@ -87,6 +87,12 @@
 			transform: translate(0, 100%);
 		}
 	}
+
+	@media (max-width: 768px) {
+		.Change {
+			font-size: 5rem;
+		}
+	}
 </style>
 
 <script>

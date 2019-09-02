@@ -180,11 +180,11 @@
 
 		&__clip {
 			position: relative;
+			margin-top: -10vh;
 
 			&__image {
 				position: relative;
-				height: 80%;
-				transform: scale(1.25) translateY(-6.25%);
+				width: 100%;
 			}
 		}
 	}
@@ -282,6 +282,7 @@
 		&__code {
 			color: #fff;
 			display: flex;
+			flex-wrap: wrap;
 
 			&, & * {
 				//TODO change to noto sans?
@@ -313,6 +314,12 @@
 			text-decoration: none;
 			position: relative;
 			z-index: 2;
+		}
+	}
+
+	@media (max-width: 768px) {
+		.SectAbout__aviate {
+			display: none;
 		}
 	}
 </style>

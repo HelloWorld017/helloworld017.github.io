@@ -1,7 +1,9 @@
 <template>
 	<div id="app" class="App" :class="{'App--loaded': loaded, 'App--finished': finished}">
 		<template v-if="!logonShowed">
-			<logon v-if="loaded && !finished"></logon>
+			<transition name="Fade">
+				<logon v-if="loaded && !finished"></logon>
+			</transition>
 
 			<div class="FakeSlide" v-if="loaded"></div>
 
@@ -85,6 +87,16 @@
 
 		&-enter, &-leave-to {
 			transform: translate(10px);
+			opacity: 0;
+		}
+	}
+
+	.Fade {
+		&-enter-active, &-leave-active {
+			transition: all .5s ease;
+		}
+
+		&-enter, &-leave-to {
 			opacity: 0;
 		}
 	}

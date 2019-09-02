@@ -14,7 +14,6 @@
 					<div class="nav-right">
 						<router-link to="/">Main</router-link>
 						<a target="_blank" href="https://blog.nenw.dev">Blog</a>
-						<router-link to="/gallery">Gallery</router-link>
 						<a target="_blank" href="https://git.nenw.dev">Projects</a>
 						<a target="_blank" href="https://t.me/Khinenw">Telegram</a>
 					</div>
@@ -31,7 +30,6 @@
 			<h1>Khinenw's Page</h1>
 			<router-link to="/">Main</router-link>
 			<a href="https://blog.nenw.dev">Blog</a>
-			<router-link to="/gallery">Gallery</router-link>
 			<a href="https://git.nenw.dev">Projects</a>
 			<a href="https://t.me/Khinenw">Telegram</a>
 		</aside>
